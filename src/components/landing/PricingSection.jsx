@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
-const PlanCard = ({ plan, isPopular, delay }) => (
+const PlanCard = ({ plan, isPopular, delay, onContactClick }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -55,16 +55,7 @@ const PlanCard = ({ plan, isPopular, delay }) => (
 
       {/* CTA Button */}
       <button 
-        onClick={() => {
-          const element = document.querySelector('#contactSection');
-          if (element) {
-            const topOffset = element.offsetTop;
-            window.scrollTo({
-              top: topOffset,
-              behavior: 'smooth'
-            });
-          }
-        }} 
+        onClick={onContactClick} 
         className={`w-full py-4 rounded-xl font-medium transition-colors ${
         isPopular
           ? 'bg-[#CBDFF4] text-[#090744] hover:bg-[#CBDFF4]/90'
@@ -77,6 +68,7 @@ const PlanCard = ({ plan, isPopular, delay }) => (
 );
 
 const PricingSection = () => {
+  const scrollToElement = useScrollTo();
   const plans = [
     {
       name: "Plan Básico",
@@ -148,6 +140,7 @@ const PricingSection = () => {
               plan={plan}
               isPopular={plan.isPopular}
               delay={0.2 + index * 0.1}
+              onContactClick={() => scrollToElement('#contactSection')}
             />
           ))}
         </div>
@@ -179,16 +172,7 @@ const PricingSection = () => {
             Chatea con nuestra asistente virtual aquí.
           </p>
           <button 
-            onClick={() => {
-              const element = document.querySelector('#contactSection');
-              if (element) {
-                const topOffset = element.offsetTop;
-                window.scrollTo({
-                  top: topOffset,
-                  behavior: 'smooth'
-                });
-              }
-            }}
+            onClick={() => scrollToElement('#contactSection')}
             className="px-8 py-4 bg-[#CBDFF4] text-[#090744] rounded-xl font-medium hover:bg-[#CBDFF4]/90 transition-all"
           >
             Comienza aquí
