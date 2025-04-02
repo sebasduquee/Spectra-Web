@@ -3,6 +3,26 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Copy, Key } from 'lucide-react';
 
+const generateTempPassword = () => {
+  if (window.crypto && window.crypto.getRandomValues) {
+    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+    const length = 12;
+    let result = '';
+    const randomValues = new Uint32Array(length);
+    
+    window.crypto.getRandomValues(randomValues);
+    
+    for (let i = 0; i < length; i++) {
+      result += charset[randomValues[i] % charset.length];
+    }
+    
+    return result;
+  } else {
+    return Math.random().toString(36).slice(-10) + 
+           Math.random().toString(36).slice(-10);
+  }
+};
+
 const InitialCredentialsModal = ({ isOpen, onClose, credentials }) => {
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
