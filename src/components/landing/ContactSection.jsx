@@ -31,8 +31,11 @@ const ContactSection = () => {
     }
     
     // Validación opcional para el teléfono si se ingresa
-    if (formData.phone.trim() && !/^\d{6,}$/.test(formData.phone.trim())) {
-      errors.phone = 'Por favor, ingrese un número de teléfono válido';
+    if (formData.phone.trim()) {
+      const phoneRegex = /^[\d\s()-+]{6,}$/;
+      if (!phoneRegex.test(formData.phone.trim())) {
+        errors.phone = 'Por favor, ingresa un número de teléfono válido';
+      }
     }
     
     return errors;
@@ -40,11 +43,19 @@ const ContactSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
+    
+    // Limpiar mensajes anteriores
+    setSubmitStatus({ type: '', message: '' });
+    setFormErrors({});
     
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
-      setSubmitStatus({ type: 'error', message: 'Por favor, completa los campos obligatorios correctamente.' });
+      setSubmitStatus({ 
+        type: 'error', 
+        message: 'Por favor, revisa los campos marcados en rojo y completa la información correctamente.' 
+      });
       return;
     }
     
@@ -108,6 +119,7 @@ const ContactSection = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
+          noValidate
           className="max-w-xl mx-auto space-y-6"
         >
           <div>
