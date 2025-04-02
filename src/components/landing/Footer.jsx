@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useScrollTo } from "../../hooks/useScrollTo";
 
 const Footer = () => {
+  const scrollTo = useScrollTo();
   return (
     <footer className="bg-[#090744]/95 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-16">
@@ -42,7 +43,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <button
-                  onClick={() => useScrollTo('#features')}
+                  onClick={() => scrollTo('#features')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   Características
@@ -50,7 +51,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => useScrollTo('#pricing')}
+                  onClick={() => scrollTo('#pricing')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   Planes
@@ -58,7 +59,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => useScrollTo('#testimonials')}
+                  onClick={() => scrollTo('#testimonials')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   Testimonios

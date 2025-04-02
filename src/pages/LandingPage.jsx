@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useScrollTo } from '../hooks/useScrollTo';
 import GradientBackground from '../components/shared/GradientBackground';
 import FeaturesSection from '../components/landing/FeaturesSection';
 import HowItWorksSection from '../components/landing/HowItWorksSection';
@@ -14,6 +15,7 @@ import ContactSection from '../components/landing/ContactSection';
 
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const scrollTo = useScrollTo();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,31 +48,13 @@ const LandingPage = () => {
           </div>
           <div className="hidden md:flex items-center space-x-12">
             <button 
-              onClick={() => {
-                const element = document.querySelector('#features');
-                if (element) {
-                  const topOffset = element.offsetTop;
-                  window.scrollTo({
-                    top: topOffset,
-                    behavior: 'smooth'
-                  });
-                }
-              }}
+              onClick={() => scrollTo('#features')}
               className="text-white/80 hover:text-white transition-colors"
             >
               Características
             </button>
             <button 
-              onClick={() => {
-                const element = document.querySelector('#pricing');
-                if (element) {
-                  const topOffset = element.offsetTop;
-                  window.scrollTo({
-                    top: topOffset,
-                    behavior: 'smooth'
-                  });
-                }
-              }}
+              onClick={() => scrollTo('#pricing')}
               className="text-white/80 hover:text-white transition-colors"
             >
               Planes
@@ -104,16 +88,7 @@ const LandingPage = () => {
               </p>
               <div className="flex gap-4">
                 <button 
-                  onClick={() => {
-                    const element = document.querySelector('#contactSection');
-                    if (element) {
-                      const topOffset = element.offsetTop;
-                      window.scrollTo({
-                        top: topOffset,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
+                  onClick={() => scrollTo('#contactSection')}
                   className="px-8 py-4 bg-[#CBDFF4] text-[#010129] rounded-xl font-medium hover:bg-[#CBDFF4]/90 transition-all"
                 >
                   Empezar Ahora
