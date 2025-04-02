@@ -1,9 +1,9 @@
-
 // src/components/landing/Footer.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import scrollToElement from './useScrollTo'; // Assuming this hook is in the same directory
 
 const Footer = () => {
   return (
@@ -50,16 +50,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => {
-                    const element = document.querySelector('#pricing');
-                    if (element) {
-                      const topOffset = element.offsetTop;
-                      window.scrollTo({
-                        top: topOffset,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
+                  onClick={() => scrollToElement('#pricing')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   Planes
@@ -67,16 +58,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => {
-                    const element = document.querySelector('#testimonials');
-                    if (element) {
-                      const topOffset = element.offsetTop;
-                      window.scrollTo({
-                        top: topOffset,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
+                  onClick={() => scrollToElement('#testimonials')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   Testimonios
