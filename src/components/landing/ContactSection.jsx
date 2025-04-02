@@ -17,13 +17,22 @@ const ContactSection = () => {
     const errors = {};
     
     if (!formData.name.trim()) {
-      errors.name = 'El nombre es obligatorio';
+      errors.name = 'Por favor, ingrese su nombre completo';
     }
     
     if (!formData.email.trim()) {
-      errors.email = 'El correo electrónico es obligatorio';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'El formato del correo electrónico no es válido';
+      errors.email = 'Por favor, ingrese su correo electrónico';
+    } else {
+      // Validación más específica para el email
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (!emailRegex.test(formData.email.trim())) {
+        errors.email = 'Por favor, ingrese un correo electrónico válido';
+      }
+    }
+    
+    // Validación opcional para el teléfono si se ingresa
+    if (formData.phone.trim() && !/^\d{6,}$/.test(formData.phone.trim())) {
+      errors.phone = 'Por favor, ingrese un número de teléfono válido';
     }
     
     return errors;
