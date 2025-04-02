@@ -1,0 +1,26 @@
+[vite] connecting...
+[vite] connected.
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+useScrollTo is not defined
+You're attempting to animate multiple children within AnimatePresence, but its mode is set to "wait". This will lead to odd visual behaviour.
+useScrollTo is not defined
+The above error occurred in the <PricingSection> component:
+
+    at PricingSection (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3001/src/components/landing/PricingSection.jsx:125:27)
+    at div
+    at div
+    at GradientBackground (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3001/src/components/shared/GradientBackground.jsx:19:31)
+    at LandingPage (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3001/src/pages/LandingPage.jsx:32:39)
+    at div
+    at MotionComponent (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3001/node_modules/.vite/deps/framer-motion.js?v=50112021:948:40)
+    at RenderedRoute (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3001/node_modules/.vite/deps/react-router-dom.js?v=50112021:4073:5)
+    at Routes (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3001/node_modules/.vite/deps/react-router-dom.js?v=50112021:4543:5)
+    at PresenceChild (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3001/node_modules/.vite/deps/framer-motion.js?v=50112021:124:24)
+    at AnimatePresence (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3001/node_modules/.vite/deps/framer-motion.js?v=50112021:213:26)
+    at Router (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3001/node_modules/.vite/deps/react-router-dom.js?v=50112021:4486:15)
+    at BrowserRouter (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3001/node_modules/.vite/deps/react-router-dom.js?v=50112021:5232:5)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+useScrollTo is not defined
