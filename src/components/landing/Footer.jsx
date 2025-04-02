@@ -42,16 +42,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <button
-                  onClick={() => {
-                    const element = document.querySelector('#features');
-                    if (element) {
-                      const topOffset = element.offsetTop;
-                      window.scrollTo({
-                        top: topOffset,
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
+                  onClick={() => scrollToElement('#features')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   Características
