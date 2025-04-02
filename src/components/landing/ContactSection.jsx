@@ -9,11 +9,36 @@ const ContactSection = () => {
     phone: '',
     message: ''
   });
+  const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
+  const validateForm = () => {
+    const errors = {};
+    
+    if (!formData.name.trim()) {
+      errors.name = 'El nombre es requerido';
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = 'El correo electrónico es requerido';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'El correo electrónico no es válido';
+    }
+    
+    return errors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      setSubmitStatus({ type: 'error', message: 'Por favor, corrige los errores en el formulario.' });
+      return;
+    }
+    
     setIsSubmitting(true);
     setSubmitStatus({ type: '', message: '' });
 
@@ -83,10 +108,14 @@ const ContactSection = () => {
             <input
               type="text"
               value={formData.name}
-              onChange={(e) => setFormData({...formData, name: e.target.value})}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900"
+              onChange={(e) => {
+                setFormData({...formData, name: e.target.value});
+                setFormErrors({...formErrors, name: ''});
+              }}
+              className={`w-full px-4 py-3 rounded-lg border ${formErrors.name ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900`}
               required
             />
+            {formErrors.name && <p className="text-red-500 text-xs mt-1">{formErrors.name}</p>}
           </div>
 
           <div>
@@ -96,10 +125,14 @@ const ContactSection = () => {
             <input
               type="email"
               value={formData.email}
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900"
+              onChange={(e) => {
+                setFormData({...formData, email: e.target.value});
+                setFormErrors({...formErrors, email: ''});
+              }}
+              className={`w-full px-4 py-3 rounded-lg border ${formErrors.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900`}
               required
             />
+            {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
           </div>
 
           <div>
