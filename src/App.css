@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Resto de tus estilos personalizados */
+
+body {
+  background-color: #010129;
+  color: white;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #CBDFF4, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
