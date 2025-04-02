@@ -15,40 +15,37 @@ const ContactSection = () => {
 
   const validateForm = () => {
     const errors = {};
-    
+
     if (!formData.name.trim()) {
-      errors.name = 'Por favor, ingrese su nombre completo';
+      errors.name = 'El nombre es obligatorio';
+    } else if (formData.name.trim().length < 2) {
+      errors.name = 'El nombre debe tener al menos 2 caracteres';
     }
-    
+
     if (!formData.email.trim()) {
-      errors.email = 'Por favor, ingrese su correo electrónico';
-    } else {
-      // Validación más específica para el email
-      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-      if (!emailRegex.test(formData.email.trim())) {
-        errors.email = 'Por favor, ingrese un correo electrónico válido';
-      }
+      errors.email = 'El correo electrónico es obligatorio';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Ingresa un correo electrónico válido (ejemplo@dominio.com)';
     }
-    
-    // Validación opcional para el teléfono si se ingresa
+
     if (formData.phone.trim()) {
       const phoneRegex = /^[\d\s()-+]{6,}$/;
       if (!phoneRegex.test(formData.phone.trim())) {
-        errors.phone = 'Por favor, ingresa un número de teléfono válido';
+        errors.phone = 'El número debe tener al menos 6 dígitos y puede incluir espacios, guiones o paréntesis';
       }
     }
-    
+
     return errors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     // Limpiar mensajes anteriores
     setSubmitStatus({ type: '', message: '' });
     setFormErrors({});
-    
+
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
@@ -58,7 +55,7 @@ const ContactSection = () => {
       });
       return;
     }
-    
+
     setIsSubmitting(true);
     setSubmitStatus({ type: '', message: '' });
 
@@ -166,6 +163,7 @@ const ContactSection = () => {
               onChange={(e) => setFormData({...formData, phone: e.target.value})}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900"
             />
+            {formErrors.phone && <p className="text-red-500 text-xs mt-1">{formErrors.phone}</p>}
           </div>
 
           <div>
