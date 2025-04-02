@@ -17,13 +17,13 @@ const ContactSection = () => {
     const errors = {};
     
     if (!formData.name.trim()) {
-      errors.name = 'El nombre es requerido';
+      errors.name = 'Por favor, ingresa tu nombre';
     }
     
     if (!formData.email.trim()) {
-      errors.email = 'El correo electrónico es requerido';
+      errors.email = 'Por favor, ingresa tu correo electrónico';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'El correo electrónico no es válido';
+      errors.email = 'Por favor, ingresa un correo electrónico válido';
     }
     
     return errors;
@@ -35,7 +35,7 @@ const ContactSection = () => {
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
-      setSubmitStatus({ type: 'error', message: 'Por favor, corrige los errores en el formulario.' });
+      setSubmitStatus({ type: 'error', message: 'Por favor, completa todos los campos requeridos correctamente.' });
       return;
     }
     
