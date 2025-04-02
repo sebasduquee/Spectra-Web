@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import scrollToElement from './useScrollTo'; // Assuming this hook is in the same directory
+import { useScrollTo } from "../../hooks/useScrollTo";
 
 const Footer = () => {
   return (
@@ -42,7 +42,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <button
-                  onClick={() => scrollToElement('#features')}
+                  onClick={() => useScrollTo('#features')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   Características
@@ -50,7 +50,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToElement('#pricing')}
+                  onClick={() => useScrollTo('#pricing')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   Planes
@@ -58,7 +58,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToElement('#testimonials')}
+                  onClick={() => useScrollTo('#testimonials')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   Testimonios
