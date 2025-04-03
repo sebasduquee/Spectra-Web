@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Users,
@@ -12,71 +12,15 @@ import {
   CheckCircle,
   XCircle,
   Clock,
-  UserX,
-  RefreshCw
 } from "lucide-react";
 import AdminLayout from "../components/layout/AdminLayout";
 import EditUserView from "../components/users/EditUserView";
 import DeleteUserModal from "../components/users/DeleteUserModal";
 import UserPermissionsModal from "../components/users/UserPermissionsModal";
 import InitialCredentialsModal from "../components/users/InitialCredentialsModal";
-import LoadingSpinner from "../../components/ui/LoadingSpinner";
-import ErrorState from "../../components/ui/ErrorState";
-import EmptyState from "../../components/ui/EmptyState";
-import { TableRowSkeleton } from "../../components/ui/SkeletonLoader";
-import { useToast } from "../../contexts/ToastContext";
-import { useApi } from '../../hooks/useApi'; // Added import
-
 
 // Componente de tabla de usuarios
-const UsersTable = ({ users, onEdit, onDelete, onPermissions, isLoading }) => {
-  if (isLoading) {
-    return (
-      <div className="w-full overflow-x-auto rounded-xl border border-white/10 p-4">
-        <div className="bg-white/5 px-6 py-4 flex">
-          <div className="w-1/4"><div className="h-6 bg-white/10 rounded w-3/4"></div></div>
-          <div className="w-1/4"><div className="h-6 bg-white/10 rounded w-3/4"></div></div>
-          <div className="w-1/6"><div className="h-6 bg-white/10 rounded w-3/4"></div></div>
-          <div className="w-1/6"><div className="h-6 bg-white/10 rounded w-3/4"></div></div>
-          <div className="w-1/6"><div className="h-6 bg-white/10 rounded w-3/4"></div></div>
-          <div className="w-1/12"><div className="h-6 bg-white/10 rounded w-3/4"></div></div>
-        </div>
-        {[1, 2, 3, 4, 5].map((i) => (
-          <div key={i} className="animate-pulse px-6 py-4 flex items-center space-x-4 border-t border-white/5">
-            <div className="flex items-center space-x-3 w-1/4">
-              <div className="w-8 h-8 rounded-lg bg-white/10"></div>
-              <div className="space-y-2">
-                <div className="h-4 bg-white/10 rounded w-24"></div>
-                <div className="h-3 bg-white/10 rounded w-16"></div>
-              </div>
-            </div>
-            <div className="w-1/4"><div className="h-4 bg-white/10 rounded w-32"></div></div>
-            <div className="w-1/6"><div className="h-5 bg-white/10 rounded w-16"></div></div>
-            <div className="w-1/6"><div className="h-5 bg-white/10 rounded w-16"></div></div>
-            <div className="w-1/6"><div className="h-4 bg-white/10 rounded w-20"></div></div>
-            <div className="w-1/12 flex justify-end space-x-1">
-              <div className="w-8 h-8 rounded bg-white/10"></div>
-              <div className="w-8 h-8 rounded bg-white/10"></div>
-              <div className="w-8 h-8 rounded bg-white/10"></div>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  if (!users || users.length === 0) {
-    return (
-      <EmptyState 
-        title="No hay usuarios disponibles"
-        description="No se encontraron usuarios en el sistema"
-        icon={UserX}
-        action={() => onEdit(null)}
-        actionLabel="Crear Primer Usuario"
-      />
-    );
-  }
-
+const UsersTable = ({ users, onEdit, onDelete, onPermissions }) => {
   return (
     <div className="w-full overflow-x-auto rounded-xl border border-white/10">
       <table className="w-full">
@@ -100,13 +44,7 @@ const UsersTable = ({ users, onEdit, onDelete, onPermissions, isLoading }) => {
         </thead>
         <tbody className="divide-y divide-white/5">
           {users.map((user) => (
-            <motion.tr 
-              key={user.id} 
-              className="hover:bg-white/5"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
+            <tr key={user.id} className="hover:bg-white/5">
               <td className="px-6 py-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
@@ -190,7 +128,7 @@ const UsersTable = ({ users, onEdit, onDelete, onPermissions, isLoading }) => {
                   </button>
                 </div>
               </td>
-            </motion.tr>
+            </tr>
           ))}
         </tbody>
       </table>
@@ -200,64 +138,45 @@ const UsersTable = ({ users, onEdit, onDelete, onPermissions, isLoading }) => {
 
 // Componente principal
 const UsersView = () => {
-  // Estados de UI
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { showError, showSuccess } = useToast();
-  const { getUsers } = useApi(); //Using the custom hook
-
   // Estados
-  const [users, setUsers] = useState([]);
-  // Mock de usuarios para simulación
-  //const mockUsers = [ ... ]; // Removed mock data
-
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      name: "Ana Martínez",
+      username: "anamartinez",
+      email: "ana@creator.com",
+      plan: "Diamond",
+      status: "active",
+      lastActive: "Hace 5 min",
+      avatar: null,
+    },
+    {
+      id: 2,
+      name: "Carlos Rodriguez",
+      username: "carlosr",
+      email: "carlos@creator.com",
+      plan: "Gold",
+      status: "active",
+      lastActive: "Hace 1 hora",
+      avatar: null,
+    },
+    {
+      id: 3,
+      name: "Laura Gómez",
+      username: "laurag",
+      email: "laura@creator.com",
+      plan: "Silver",
+      status: "pending",
+      lastActive: "Hace 2 días",
+      avatar: null,
+    },
+  ]);
 
   // Estados para modales
   const [showFormModal, setShowFormModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showPermissionsModal, setShowPermissionsModal] = useState(false);
-  const [showCredentialsModal, setShowCredentialsModal] = useState(false);
-  const [newUserCredentials, setNewUserCredentials] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        const fetchedUsers = await getUsers(); //Fetching users using the hook
-        setUsers(fetchedUsers);
-        setSearchResults(fetchedUsers);
-      } catch (err) {
-        const errorMsg = err.message || "Error al cargar usuarios";
-        setError(errorMsg);
-        showError(errorMsg);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchUsers();
-  }, [getUsers]); // Added getUsers to the dependency array
-
-
-  useEffect(() => {
-    if (searchTerm.trim() === '') {
-      setSearchResults(users);
-      return;
-    }
-
-    const filtered = users.filter(user => 
-      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.username.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    setSearchResults(filtered);
-  }, [searchTerm, users]);
 
   const handleEdit = (user) => {
     setSelectedUser(user);
@@ -274,6 +193,9 @@ const UsersView = () => {
     setShowPermissionsModal(true);
   };
 
+  const [showCredentialsModal, setShowCredentialsModal] = useState(false);
+  const [newUserCredentials, setNewUserCredentials] = useState(null);
+
   const generateTempPassword = () => {
     return Math.random().toString(36).slice(-8);
   };
@@ -283,57 +205,34 @@ const UsersView = () => {
     setShowFormModal(true);
   };
 
-  const handleSaveUser = async (userData) => {
-    try {
-      setIsLoading(true);
-      // Placeholder for API call using useApi hook -  Replace with actual API call
-      await new Promise(resolve => setTimeout(resolve, 800));
-
-      if (selectedUser) {
-        // Actualizar usuario existente
-        setUsers(
-          users.map((user) =>
-            user.id === selectedUser.id ? { ...user, ...userData } : user,
-          ),
-        );
-        showSuccess("Usuario actualizado correctamente");
-      } else {
-        // Crear nuevo usuario
-        const tempPassword = generateTempPassword();
-        const newUser = {
-          id: users.length + 1,
-          status: "pending",
-          lastActive: "Ahora",
-          avatar: null,
-          ...userData,
-        };
-
-        setUsers([...users, newUser]);
-        setNewUserCredentials({
-          email: userData.email,
-          password: tempPassword
-        });
-        setShowCredentialsModal(true);
-        showSuccess("Usuario creado correctamente");
-      }
-
+  const handleSaveUser = (userData) => {
+    if (selectedUser) {
+      // Actualizar usuario existente
+      setUsers(
+        users.map((user) =>
+          user.id === selectedUser.id ? { ...user, ...userData } : user,
+        ),
+      );
       setShowFormModal(false);
-    } catch (err) {
-      const errorMsg = err.message || "Error al guardar usuario";
-      showError(errorMsg);
-    } finally {
-      setIsLoading(false);
+    } else {
+      // Crear nuevo usuario
+      const tempPassword = generateTempPassword();
+      const newUser = {
+        id: users.length + 1,
+        status: "pending",
+        lastActive: "Ahora",
+        avatar: null,
+        ...userData,
+      };
+      
+      setUsers([...users, newUser]);
+      setNewUserCredentials({
+        email: userData.email,
+        password: tempPassword
+      });
+      setShowCredentialsModal(true);
+      setShowFormModal(false);
     }
-  };
-
-  const handleRetry = () => {
-    setIsLoading(true);
-    setError(null);
-    // Simulamos una nueva carga
-    setTimeout(() => {
-      //setUsers(mockUsers);  //Removed mock data
-      setIsLoading(false);
-    }, 1000);
   };
 
   return (
@@ -349,14 +248,9 @@ const UsersView = () => {
           </div>
           <button
             onClick={handleCreateUser}
-            disabled={isLoading}
-            className="inline-flex items-center px-4 py-2 bg-[#CBDFF4] text-[#090744] rounded-xl font-medium hover:bg-[#CBDFF4]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center px-4 py-2 bg-[#CBDFF4] text-[#090744] rounded-xl font-medium hover:bg-[#CBDFF4]/90 transition-colors"
           >
-            {isLoading ? (
-              <LoadingSpinner size="sm" />
-            ) : (
-              <Plus className="w-5 h-5 mr-2" />
-            )}
+            <Plus className="w-5 h-5 mr-2" />
             Nuevo Usuario
           </button>
         </div>
@@ -368,52 +262,22 @@ const UsersView = () => {
             <input
               type="text"
               placeholder="Buscar usuarios..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              disabled={isLoading || error}
-              className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-white/20 disabled:opacity-50"
+              className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-white/20"
             />
           </div>
-          <button
-            disabled={isLoading || error}
-            className="inline-flex items-center px-4 py-3 bg-white/5 text-white rounded-xl hover:bg-white/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
+          <button className="inline-flex items-center px-4 py-3 bg-white/5 text-white rounded-xl hover:bg-white/10 transition-colors">
             <Filter className="w-5 h-5 mr-2" />
             Filtros
           </button>
         </div>
 
-        {/* Error state */}
-        {error ? (
-          <ErrorState 
-            message="Error al cargar usuarios" 
-            details={error}
-            onRetry={handleRetry}
-            fullPage
-          />
-        ) : (
-          <>
-            {/* Empty search results */}
-            {!isLoading && searchTerm && searchResults.length === 0 ? (
-              <EmptyState 
-                title="No se encontraron resultados"
-                description={`No hay coincidencias para "${searchTerm}"`}
-                icon={Search}
-                action={() => setSearchTerm("")}
-                actionLabel="Limpiar búsqueda"
-              />
-            ) : (
-              /* Users Table */
-              <UsersTable
-                users={searchResults}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-                onPermissions={handlePermissions}
-                isLoading={isLoading}
-              />
-            )}
-          </>
-        )}
+        {/* Users Table */}
+        <UsersTable
+          users={users}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onPermissions={handlePermissions}
+        />
 
         {/* Modales */}
         <EditUserView
@@ -428,14 +292,8 @@ const UsersView = () => {
           isOpen={showDeleteModal}
           onClose={() => setShowDeleteModal(false)}
           onConfirm={() => {
-            try {
-              setUsers(users.filter((user) => user.id !== selectedUser?.id));
-              showSuccess(`Usuario ${selectedUser?.name} eliminado correctamente`);
-            } catch (err) {
-              showError("Error al eliminar usuario");
-            } finally {
-              setShowDeleteModal(false);
-            }
+            setUsers(users.filter((user) => user.id !== selectedUser?.id));
+            setShowDeleteModal(false);
           }}
           userName={selectedUser?.name}
         />
@@ -447,14 +305,8 @@ const UsersView = () => {
             onClose={() => setShowPermissionsModal(false)}
             user={selectedUser}
             onSave={(permissions) => {
-              try {
-                console.log("Saving permissions:", permissions);
-                showSuccess("Permisos actualizados correctamente");
-              } catch (err) {
-                showError("Error al actualizar permisos");
-              } finally {
-                setShowPermissionsModal(false);
-              }
+              console.log("Saving permissions:", permissions);
+              setShowPermissionsModal(false);
             }}
           />
         </div>
@@ -464,7 +316,7 @@ const UsersView = () => {
         onClose={() => setShowCredentialsModal(false)}
         credentials={newUserCredentials}
       />
-    </AdminLayout>
+      </AdminLayout>
   );
 };
 

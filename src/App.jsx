@@ -1,8 +1,8 @@
 // src/App.jsx
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthProvider } from './contexts/AuthContext';
-import { ToastProvider } from './contexts/ToastContext'; // Added ToastProvider import
+import { ToastProvider } from './contexts/ToastContext'; 
 import { ProtectedRoute, PublicRoute } from './components/auth/ProtectedRoute';
 
 // Pages
@@ -11,7 +11,7 @@ import LoginPage from "./admin/pages/LoginPage";
 import DashboardPage from "./admin/pages/DashboardPage";
 import AllNotificationsView from "./admin/components/notifications/AllNotificationsView";
 import UsersView from './admin/pages/UsersView';
-// import ApiToastExamplePage from './pages/ApiToastExamplePage'; // Added import - Removed
+import ApiToastExamplePage from './pages/ApiToastExamplePage'; // Added import
 
 function App() {
   const pageTransition = {
@@ -22,8 +22,8 @@ function App() {
   };
 
   return (
-    <AuthProvider> {/* Wrap with AuthProvider */}
-      <ToastProvider> {/* Wrap with ToastProvider */}
+    <AuthProvider> 
+      <ToastProvider> 
         <BrowserRouter
           future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
         >
@@ -35,6 +35,16 @@ function App() {
                 element={
                   <motion.div {...pageTransition}>
                     <LandingPage />
+                  </motion.div>
+                }
+              />
+
+              {/* API Toast Example Route */}
+              <Route
+                path="/api-toast-example"
+                element={
+                  <motion.div {...pageTransition}>
+                    <ApiToastExamplePage />
                   </motion.div>
                 }
               />
@@ -92,3 +102,32 @@ function App() {
 }
 
 export default App;
+
+// src/pages/ApiToastExamplePage.jsx // Added placeholder component
+import React from 'react';
+import { useApi } from '../hooks/useApi';
+import apiClient from '../services/apiClient'; // Assuming this is your API client
+
+const ApiToastExamplePage = () => {
+  const { execute, data, isLoading, error } = useApi(apiClient.get);
+
+  const fetchData = async () => {
+    try {
+      await execute('/your-api-endpoint');
+    } catch (e) {
+      console.error("Error fetching data:", e);
+    }
+  };
+
+  return (
+    <div>
+      <h1>API Toast Example</h1>
+      <button onClick={fetchData}>Fetch Data</button>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+    </div>
+  );
+};
+
+export default ApiToastExamplePage;

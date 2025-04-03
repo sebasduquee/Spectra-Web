@@ -3,10 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, User, Mail, Phone, Calendar,
   MapPin, Instagram, AtSign, Lock,
-  CheckCircle, AlertCircle, LoaderCircle
+  CheckCircle
 } from 'lucide-react';
-import { useToast } from '../../../contexts/ToastContext';
-import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 
 const EditUserView = ({ isOpen, onClose, user, onSave, isCreating = false }) => {
   const [formData, setFormData] = useState({
@@ -38,54 +36,15 @@ const EditUserView = ({ isOpen, onClose, user, onSave, isCreating = false }) => 
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [validationErrors, setValidationErrors] = useState({});
-  const { showError, showSuccess: showToastSuccess } = useToast();
 
-  const validateForm = () => {
-    const errors = {};
-    
-    if (!formData.firstName.trim()) {
-      errors.firstName = 'El nombre es requerido';
-    }
-    
-    if (!formData.email.trim()) {
-      errors.email = 'El email es requerido';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = 'El email no es válido';
-    }
-    
-    if (!formData.phone.trim()) {
-      errors.phone = 'El teléfono es requerido';
-    }
-    
-    return errors;
-  };
-
-  const handleSave = async () => {
-    try {
-      const errors = validateForm();
-      
-      if (Object.keys(errors).length > 0) {
-        setValidationErrors(errors);
-        showError('Por favor corrige los errores en el formulario');
-        return;
-      }
-      
-      setIsSubmitting(true);
-      await onSave(formData);
-      setShowSuccess(true);
-      showToastSuccess(isCreating ? 'Usuario creado correctamente' : 'Usuario actualizado correctamente');
-      setHasChanges(false);
-      setTimeout(() => {
-        setShowSuccess(false);
-        onClose();
-      }, 2000);
-    } catch (error) {
-      showError(error.message || 'Error al guardar el usuario');
-    } finally {
-      setIsSubmitting(false);
-    }
+  const handleSave = () => {
+    onSave(formData);
+    setShowSuccess(true);
+    setHasChanges(false);
+    setTimeout(() => {
+      setShowSuccess(false);
+      onClose();
+    }, 2000);
   };
 
   const handleClose = () => {
@@ -154,35 +113,16 @@ const EditUserView = ({ isOpen, onClose, user, onSave, isCreating = false }) => 
                         <div className="grid grid-cols-3 gap-4">
                           <div>
                             <label className="block text-white/80 text-sm mb-2">Nombre</label>
-                            <div className="relative">
-                              <input
-                                type="text"
-                                value={formData.firstName}
-                                onChange={(e) => {
-                                  setFormData({ ...formData, firstName: e.target.value });
-                                  setHasChanges(true);
-                                  if (validationErrors.firstName) {
-                                    const newErrors = {...validationErrors};
-                                    delete newErrors.firstName;
-                                    setValidationErrors(newErrors);
-                                  }
-                                }}
-                                className={`w-full bg-white/10 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 ${
-                                  validationErrors.firstName 
-                                    ? 'border border-red-500 focus:ring-red-500/20' 
-                                    : 'focus:ring-white/20'
-                                }`}
-                                placeholder="Ana"
-                              />
-                              {validationErrors.firstName && (
-                                <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                  <AlertCircle className="w-5 h-5 text-red-500" />
-                                </div>
-                              )}
-                            </div>
-                            {validationErrors.firstName && (
-                              <p className="mt-1 text-xs text-red-500">{validationErrors.firstName}</p>
-                            )}
+                            <input
+                              type="text"
+                              value={formData.firstName}
+                              onChange={(e) => {
+                                setFormData({ ...formData, firstName: e.target.value });
+                                setHasChanges(true);
+                              }}
+                              className="w-full bg-white/10 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/20"
+                              placeholder="Ana"
+                            />
                           </div>
                           <div>
                             <label className="block text-white/80 text-sm mb-2">Primer Apellido</label>
@@ -298,69 +238,31 @@ const EditUserView = ({ isOpen, onClose, user, onSave, isCreating = false }) => 
                         {/* Email */}
                         <div>
                           <label className="block text-white/80 text-sm mb-2">Email</label>
-                          <div className="relative">
-                            <input
-                              type="email"
-                              value={formData.email}
-                              onChange={(e) => {
-                                setFormData({ ...formData, email: e.target.value });
-                                setHasChanges(true);
-                                if (validationErrors.email) {
-                                  const newErrors = {...validationErrors};
-                                  delete newErrors.email;
-                                  setValidationErrors(newErrors);
-                                }
-                              }}
-                              className={`w-full bg-white/10 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 ${
-                                validationErrors.email 
-                                  ? 'border border-red-500 focus:ring-red-500/20' 
-                                  : 'focus:ring-white/20'
-                              }`}
-                              placeholder="ana@example.com"
-                            />
-                            {validationErrors.email && (
-                              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                <AlertCircle className="w-5 h-5 text-red-500" />
-                              </div>
-                            )}
-                          </div>
-                          {validationErrors.email && (
-                            <p className="mt-1 text-xs text-red-500">{validationErrors.email}</p>
-                          )}
+                          <input
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => {
+                              setFormData({ ...formData, email: e.target.value });
+                              setHasChanges(true);
+                            }}
+                            className="w-full bg-white/10 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/20"
+                            placeholder="ana@example.com"
+                          />
                         </div>
 
                         {/* Teléfono */}
                         <div>
                           <label className="block text-white/80 text-sm mb-2">Teléfono</label>
-                          <div className="relative">
-                            <input
-                              type="tel"
-                              value={formData.phone}
-                              onChange={(e) => {
-                                setFormData({ ...formData, phone: e.target.value });
-                                setHasChanges(true);
-                                if (validationErrors.phone) {
-                                  const newErrors = {...validationErrors};
-                                  delete newErrors.phone;
-                                  setValidationErrors(newErrors);
-                                }
-                              }}
-                              className={`w-full bg-white/10 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 ${
-                                validationErrors.phone 
-                                  ? 'border border-red-500 focus:ring-red-500/20' 
-                                  : 'focus:ring-white/20'
-                              }`}
-                              placeholder="+57 300 123 4567"
-                            />
-                            {validationErrors.phone && (
-                              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                <AlertCircle className="w-5 h-5 text-red-500" />
-                              </div>
-                            )}
-                          </div>
-                          {validationErrors.phone && (
-                            <p className="mt-1 text-xs text-red-500">{validationErrors.phone}</p>
-                          )}
+                          <input
+                            type="tel"
+                            value={formData.phone}
+                            onChange={(e) => {
+                              setFormData({ ...formData, phone: e.target.value });
+                              setHasChanges(true);
+                            }}
+                            className="w-full bg-white/10 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/20"
+                            placeholder="+57 300 123 4567"
+                          />
                         </div>
 
                         {/* Fecha de nacimiento */}
@@ -586,20 +488,11 @@ const EditUserView = ({ isOpen, onClose, user, onSave, isCreating = false }) => 
                 </button>
                 <button
                   onClick={handleSave}
-                  disabled={!hasChanges || isSubmitting}
+                  disabled={!hasChanges}
                   className="px-3 py-1 bg-[#CBDFF4] text-[#090744] rounded-xl font-small hover:bg-[#CBDFF4]/90 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <LoadingSpinner size="sm" />
-                      <span>Guardando...</span>
-                    </>
-                  ) : (
-                    <>
-                      <CheckCircle className="w-4 h-4" />
-                      {isCreating ? 'Crear Usuario' : (hasChanges ? 'Guardar Cambios' : 'Sin Cambios')}
-                    </>
-                  )}
+                  <CheckCircle className="w-4 h-4" />
+                  {isCreating ? 'Crear Usuario' : (hasChanges ? 'Guardar Cambios' : 'Sin Cambios')}
                 </button>
               </div>
             </div>

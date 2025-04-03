@@ -1,159 +1,91 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useApi } from '../hooks/useApi';
+import api from '../services/apiClient';
 import { useToast } from '../contexts/ToastContext';
-import LoadingSpinner from '../components/ui/LoadingSpinner';
-import ErrorState from '../components/ui/ErrorState';
-import EmptyState from '../components/ui/EmptyState';
-import { CheckCircle, Database, RefreshCw, AlertCircle, XCircle } from 'lucide-react';
-import apiClient from '../services/apiClient';
 
 const ApiToastExamplePage = () => {
-  const { execute, data, isLoading, error } = useApi(apiClient.get);
-  const { showSuccess, showError, showInfo, showWarning } = useToast();
-
-  const fetchData = async () => {
+  const [formData, setFormData] = useState({ title: '', body: '' });
+  const { showSuccess } = useToast();
+  
+  // Usar el hook useApi para manejar la petición de crear un post
+  const createPostApi = useApi(api.post);
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
     try {
-      const endpoint = '/users';
-      await execute(endpoint);
-      showSuccess(`Datos cargados correctamente desde ${endpoint}`);
-    } catch (err) {
-      // El error ya se muestra automáticamente por useApi
-      console.error('Error controlado en componente:', err);
+      // Ejecutar la petición API con el hook
+      const result = await createPostApi.execute('/posts', formData);
+      
+      // Mostrar notificación de éxito
+      showSuccess('Post creado exitosamente');
+      
+      // Limpiar el formulario
+      setFormData({ title: '', body: '' });
+      
+      console.log('Post creado:', result);
+    } catch (error) {
+      // El hook ya maneja la notificación de error
+      console.error('Error al crear post:', error);
     }
   };
-
-  const simulateSuccess = () => {
-    showSuccess('Operación completada con éxito');
-  };
-
-  const simulateError = () => {
-    showError('Ha ocurrido un error en la operación');
-  };
-
-  const simulateInfo = () => {
-    showInfo('Esta es una notificación informativa');
-  };
-
-  const simulateWarning = () => {
-    showWarning('Advertencia: acción potencialmente peligrosa');
-  };
-
+  
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-[#090744] p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">
-          Demo de integración API con Toast
+    <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-lg mx-auto">
+        <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          Ejemplo de API con Toast
         </h1>
-
-        <div className="bg-white dark:bg-white/5 rounded-xl p-6 mb-8 shadow-sm border border-gray-200 dark:border-white/10">
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
-            Ejemplo de useApi Hook
-          </h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Este ejemplo muestra cómo el hook useApi maneja automáticamente los estados
-            de carga, errores y éxito, integrándose con el sistema de notificaciones.
-          </p>
-
-          <div className="flex flex-wrap gap-4 mb-8">
+        
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+              Título
+            </label>
+            <input
+              type="text"
+              id="title"
+              value={formData.title}
+              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="body" className="block text-sm font-medium text-gray-700">
+              Contenido
+            </label>
+            <textarea
+              id="body"
+              value={formData.body}
+              onChange={(e) => setFormData({ ...formData, body: e.target.value })}
+              rows="4"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
+            />
+          </div>
+          
+          <div>
             <button
-              onClick={fetchData}
-              disabled={isLoading}
-              className="px-4 py-2 bg-[#CBDFF4] text-[#090744] rounded-lg font-medium hover:bg-[#CBDFF4]/90 transition-colors flex items-center gap-2 disabled:opacity-50"
+              type="submit"
+              disabled={createPostApi.isLoading}
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
             >
-              {isLoading ? (
-                <>
-                  <LoadingSpinner size="sm" />
-                  <span>Cargando...</span>
-                </>
-              ) : (
-                <>
-                  <Database className="w-4 h-4" />
-                  <span>Cargar datos</span>
-                </>
-              )}
+              {createPostApi.isLoading ? 'Enviando...' : 'Crear Post'}
             </button>
           </div>
-
-          {/* Contenido basado en estado */}
-          <div className="border border-gray-200 dark:border-white/10 rounded-lg overflow-hidden">
-            {isLoading ? (
-              <div className="p-8 flex justify-center">
-                <div className="text-center">
-                  <LoadingSpinner size="lg" />
-                  <p className="mt-4 text-gray-600 dark:text-gray-400">Cargando datos...</p>
-                </div>
-              </div>
-            ) : error ? (
-              <ErrorState 
-                message="Error al cargar datos" 
-                details={error}
-                onRetry={fetchData}
-              />
-            ) : data ? (
-              <div className="p-6">
-                <div className="flex items-center text-green-600 dark:text-green-400 mb-4">
-                  <CheckCircle className="w-5 h-5 mr-2" />
-                  <span>Datos cargados correctamente</span>
-                </div>
-                <pre className="bg-gray-100 dark:bg-black/20 p-4 rounded-lg overflow-x-auto text-sm">
-                  {JSON.stringify(data, null, 2)}
-                </pre>
-              </div>
-            ) : (
-              <EmptyState 
-                title="No hay datos disponibles"
-                description="Haz clic en 'Cargar datos' para obtener información"
-                icon={Database}
-                action={fetchData}
-                actionLabel="Cargar ahora"
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-white/5 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-white/10">
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
-            Demo de Toast Notifications
-          </h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Ejemplos de notificaciones que puedes mostrar en la aplicación.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <button
-              onClick={simulateSuccess}
-              className="px-4 py-3 bg-green-500/10 text-green-500 rounded-lg font-medium hover:bg-green-500/20 transition-colors flex items-center justify-center gap-2"
-            >
-              <CheckCircle className="w-5 h-5" />
-              <span>Mostrar Success</span>
-            </button>
-            
-            <button
-              onClick={simulateError}
-              className="px-4 py-3 bg-red-500/10 text-red-500 rounded-lg font-medium hover:bg-red-500/20 transition-colors flex items-center justify-center gap-2"
-            >
-              <XCircle className="w-5 h-5" />
-              <span>Mostrar Error</span>
-            </button>
-            
-            <button
-              onClick={simulateInfo}
-              className="px-4 py-3 bg-blue-500/10 text-blue-500 rounded-lg font-medium hover:bg-blue-500/20 transition-colors flex items-center justify-center gap-2"
-            >
-              <Database className="w-5 h-5" />
-              <span>Mostrar Info</span>
-            </button>
-            
-            <button
-              onClick={simulateWarning}
-              className="px-4 py-3 bg-yellow-500/10 text-yellow-500 rounded-lg font-medium hover:bg-yellow-500/20 transition-colors flex items-center justify-center gap-2"
-            >
-              <AlertCircle className="w-5 h-5" />
-              <span>Mostrar Warning</span>
-            </button>
-          </div>
-        </div>
+          
+          {createPostApi.data && (
+            <div className="mt-4 p-4 border rounded-md bg-green-50">
+              <h3 className="text-lg font-medium text-green-800">Post creado:</h3>
+              <pre className="mt-2 text-sm text-green-700 overflow-x-auto">
+                {JSON.stringify(createPostApi.data, null, 2)}
+              </pre>
+            </div>
+          )}
+        </form>
       </div>
     </div>
   );
