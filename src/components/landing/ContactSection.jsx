@@ -1,52 +1,44 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, User, Phone } from 'lucide-react';
-import { useFormValidation, validations } from '../../hooks/useFormValidation';
-import InputField from '../shared/form/InputField';
-import FormGroup from '../shared/form/FormGroup';
+import { Send } from 'lucide-react';
 
 const ContactSection = () => {
-  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
-  // Definir el esquema de validación
-  const validationSchema = {
-    name: [
-      validations.required,
-      validations.minLength(2)
-    ],
-    email: [
-      validations.required,
-      validations.email
-    ],
-    phone: [
-      validations.required,
-      validations.phone
-    ]
-  };
+  const validateForm = () => {
+    const errors = {};
 
-  // Usar el hook de validación
-  const {
-    values: formData,
-    errors: formErrors,
-    handleChange,
-    handleBlur,
-    validateForm,
-    setValues
-  } = useFormValidation(
-    {
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    },
-    validationSchema
-  );
+    if (!formData.name.trim()) {
+      errors.name = 'El nombre es obligatorio';
+    } else if (formData.name.trim().length < 2) {
+      errors.name = 'El nombre debe tener al menos 2 caracteres';
+    }
 
-  const isFormValid = () => {
-    const errors = validateForm();
-    return Object.keys(errors).length === 0;
+    if (!formData.email.trim()) {
+      errors.email = 'El correo electrónico es obligatorio';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Ingresa un correo electrónico válido (ejemplo@dominio.com)';
+    }
+
+    if (!formData.phone.trim()) {
+      errors.phone = 'El teléfono es obligatorio';
+    } else {
+      const phoneRegex = /^[\d\s()-+]{6,}$/;
+      if (!phoneRegex.test(formData.phone.trim())) {
+        errors.phone = 'El número debe tener al menos 6 dígitos y puede incluir espacios, guiones o paréntesis';
+      }
+    }
+
+    // El mensaje es opcional, no necesita validación
+    return errors;
   };
 
   const handleSubmit = async (e) => {
@@ -55,9 +47,11 @@ const ContactSection = () => {
 
     // Limpiar mensajes anteriores
     setSubmitStatus({ type: '', message: '' });
+    setFormErrors({});
 
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
       setSubmitStatus({ 
         type: 'error', 
         message: 'Por favor, completa todos los campos obligatorios correctamente.' 
@@ -90,7 +84,7 @@ const ContactSection = () => {
           type: 'success', 
           message: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.' 
         });
-        setValues({ name: '', email: '', phone: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
         throw new Error('Error al enviar el mensaje');
       }
@@ -129,60 +123,69 @@ const ContactSection = () => {
           noValidate
           className="max-w-xl mx-auto space-y-6"
         >
-          <InputField
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            label="Nombre completo"
-            placeholder="Tu nombre completo"
-            error={formErrors.name}
-            required={true}
-            icon={<User className="text-gray-400" />}
-          />
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">
+              Nombre completo
+            </label>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => {
+                setFormData({...formData, name: e.target.value});
+                setFormErrors({...formErrors, name: ''});
+              }}
+              className={`w-full px-4 py-3 rounded-lg border ${formErrors.name ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900`}
+              required
+            />
+            {formErrors.name && <p className="text-red-500 text-xs mt-1">{formErrors.name}</p>}
+          </div>
 
-          <InputField
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            label="Correo electrónico"
-            placeholder="tu@email.com"
-            error={formErrors.email}
-            required={true}
-            icon={<Mail className="text-gray-400" />}
-          />
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">
+              Correo electrónico
+            </label>
+            <input
+              type="email"
+              value={formData.email}
+              onChange={(e) => {
+                setFormData({...formData, email: e.target.value});
+                setFormErrors({...formErrors, email: ''});
+              }}
+              className={`w-full px-4 py-3 rounded-lg border ${formErrors.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900`}
+              required
+            />
+            {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
+          </div>
 
-          <InputField
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            label="Teléfono"
-            placeholder="+57 300 123 4567"
-            error={formErrors.phone}
-            required={true}
-            icon={<Phone className="text-gray-400" />}
-          />
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">
+              Teléfono
+            </label>
+            <input
+              type="tel"
+              value={formData.phone}
+              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900"
+            />
+            {formErrors.phone && <p className="text-red-500 text-xs mt-1">{formErrors.phone}</p>}
+          </div>
 
-          <FormGroup label="Mensaje (opcional)">
+          <div>
+            <label className="block text-gray-700 text-sm font-medium mb-2">
+              Mensaje (opcional)
+            </label>
             <textarea
-              name="message"
               value={formData.message}
-              onChange={handleChange}
+              onChange={(e) => setFormData({...formData, message: e.target.value})}
               rows="4"
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900"
-              placeholder="Escribe tu mensaje aquí..."
             />
-          </FormGroup>
+          </div>
 
           <button
             type="submit"
-            disabled={isSubmitting || !isFormValid()}
-            className={`w-full px-6 py-4 bg-[#090744] text-white rounded-xl font-medium hover:bg-[#090744]/90 transition-all flex items-center justify-center space-x-2 ${(isSubmitting || !isFormValid()) ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={isSubmitting}
+            className={`w-full px-6 py-4 bg-[#090744] text-white rounded-xl font-medium hover:bg-[#090744]/90 transition-all flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <span>{isSubmitting ? 'Enviando...' : 'Enviar mensaje'}</span>
             <Send className="w-4 h-4" />
