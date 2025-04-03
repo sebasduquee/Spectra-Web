@@ -111,7 +111,10 @@ const ProfileMenu = ({ onLogout }) => {
               </button>
 
               <button
-                onClick={onLogout}
+                onClick={() => {
+                  setIsOpen(false);
+                  onLogout();
+                }}
                 className="w-full flex items-center space-x-3 p-2 hover:bg-red-500/10 rounded-lg text-red-400 hover:text-red-300 transition-colors"
               >
                 <LogOut className="w-4 h-4" />
