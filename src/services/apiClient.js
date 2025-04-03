@@ -44,7 +44,7 @@ apiClient.interceptors.response.use(
 import mockService from './mockService';
 
 // Determinar si debemos usar el mock service
-const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true' || false; // Desactivamos mock por defecto
+const USE_MOCK = false; // Desactivamos completamente el mock para usar el endpoint real
 
 // Métodos para interactuar con la API
 const api = {
@@ -78,14 +78,25 @@ const api = {
   async post(endpoint, data = {}) {
     // Usar mock service si está activado
     if (USE_MOCK) {
+      console.log("Usando servicio mock para POST:", endpoint);
       return await mockService.post(endpoint, data);
     }
     
     try {
+      console.log("Enviando POST real a:", API_BASE_URL + endpoint, "con datos:", data);
       const response = await apiClient.post(endpoint, data);
+      console.log("Respuesta recibida:", response.data);
       return response.data;
     } catch (error) {
       console.error(`Error en POST ${endpoint}:`, error);
+      // Mostrar más detalles del error para depuración
+      if (error.response) {
+        console.error("Respuesta de error:", error.response.status, error.response.data);
+      } else if (error.request) {
+        console.error("No se recibió respuesta:", error.request);
+      } else {
+        console.error("Error en la configuración:", error.message);
+      }
       throw error.response?.data?.message || 'Error al enviar datos';
     }
   },
