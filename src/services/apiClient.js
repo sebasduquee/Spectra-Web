@@ -4,15 +4,6 @@ import axios from 'axios';
 // Obtener la URL base de la API desde variables de entorno
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://jsonplaceholder.typicode.com';
 
-// Variable global para gestionar notificaciones
-// Se utilizará en el hook useApi
-let toastHandlers = null;
-
-// Función para configurar los manejadores de notificaciones
-export const setToastHandlers = (handlers) => {
-  toastHandlers = handlers;
-};
-
 // Crear instancia de axios con configuración base
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
