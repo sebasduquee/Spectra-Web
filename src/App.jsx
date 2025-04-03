@@ -11,6 +11,7 @@ import LoginPage from "./admin/pages/LoginPage";
 import DashboardPage from "./admin/pages/DashboardPage";
 import AllNotificationsView from "./admin/components/notifications/AllNotificationsView";
 import UsersView from './admin/pages/UsersView';
+import TestToastPage from './pages/TestToastPage';
 
 function App() {
   const pageTransition = {
@@ -34,6 +35,15 @@ function App() {
                 element={
                   <motion.div {...pageTransition}>
                     <LandingPage />
+                  </motion.div>
+                }
+              />
+              
+              <Route
+                path="/test-toast"
+                element={
+                  <motion.div {...pageTransition}>
+                    <TestToastPage />
                   </motion.div>
                 }
               />
