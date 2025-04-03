@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 // Obtener la URL base de la API desde variables de entorno
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://jsonplaceholder.typicode.com';
 
 // Crear instancia de axios con configuración base
 const apiClient = axios.create({
@@ -40,6 +40,12 @@ apiClient.interceptors.response.use(
   }
 );
 
+// Importar el servicio mock para pruebas
+import mockService from './mockService';
+
+// Determinar si debemos usar el mock service
+const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true' || true; // Cambia a false cuando tengas backend real
+
 // Métodos para interactuar con la API
 const api = {
   /**
@@ -49,6 +55,11 @@ const api = {
    * @returns {Promise} Promesa con los datos de respuesta
    */
   async get(endpoint, params = {}) {
+    // Usar mock service si está activado
+    if (USE_MOCK) {
+      return await mockService.get(endpoint, params);
+    }
+    
     try {
       const response = await apiClient.get(endpoint, { params });
       return response.data;
@@ -65,6 +76,11 @@ const api = {
    * @returns {Promise} Promesa con los datos de respuesta
    */
   async post(endpoint, data = {}) {
+    // Usar mock service si está activado
+    if (USE_MOCK) {
+      return await mockService.post(endpoint, data);
+    }
+    
     try {
       const response = await apiClient.post(endpoint, data);
       return response.data;
@@ -81,6 +97,11 @@ const api = {
    * @returns {Promise} Promesa con los datos de respuesta
    */
   async put(endpoint, data = {}) {
+    // Usar mock service si está activado
+    if (USE_MOCK) {
+      return await mockService.put(endpoint, data);
+    }
+    
     try {
       const response = await apiClient.put(endpoint, data);
       return response.data;
@@ -96,6 +117,11 @@ const api = {
    * @returns {Promise} Promesa con los datos de respuesta
    */
   async delete(endpoint) {
+    // Usar mock service si está activado
+    if (USE_MOCK) {
+      return await mockService.delete(endpoint);
+    }
+    
     try {
       const response = await apiClient.delete(endpoint);
       return response.data;
