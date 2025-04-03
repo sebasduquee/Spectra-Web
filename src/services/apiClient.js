@@ -97,7 +97,11 @@ const api = {
       } else {
         console.error("Error en la configuración:", error.message);
       }
-      throw error.response?.data?.message || 'Error al enviar datos';
+      // Obtenemos detalles más específicos del error
+      const errorMessage = error.response?.data?.details?.message || 
+                          error.response?.data?.message || 
+                          'Error al enviar datos';
+      throw errorMessage;
     }
   },
   

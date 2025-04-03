@@ -64,13 +64,13 @@ const ContactSection = () => {
     setSubmitStatus({ type: '', message: '' });
 
     try {
+      // Añadimos contactReason y cambiamos phoneNumber por phone
       const response = await api.post('/auth/contact-request', {
         name: formData.name,
         email: formData.email,
-        phoneNumber: formData.phone,
-        metadata: {
-          message: formData.message
-        }
+        phone: formData.phone,
+        contactReason: "landing_page",
+        message: formData.message
       });
 
       setSubmitStatus({ 
@@ -79,9 +79,10 @@ const ContactSection = () => {
       });
       setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
+      console.error('Error de contacto:', error);
       setSubmitStatus({ 
         type: 'error', 
-        message: 'Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.' 
+        message: `Hubo un error al enviar el mensaje: ${error}. Por favor, intenta nuevamente.` 
       });
     } finally {
       setIsSubmitting(false);
