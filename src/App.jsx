@@ -1,13 +1,13 @@
-
+// src/App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Pages
-import LandingPage from "./features/landing/LandingPage";
-import LoginPage from "./features/auth/LoginPage";
-import DashboardPage from "./features/dashboard/DashboardPage";
-import AllNotificationsView from "./features/notifications/components/AllNotificationsView";
-import UsersView from './features/users/UsersView';
+import LandingPage from "./pages/LandingPage";
+import LoginPage from "./admin/pages/LoginPage";
+import DashboardPage from "./admin/pages/DashboardPage";
+import AllNotificationsView from "./admin/components/notifications/AllNotificationsView";
+import UsersView from './admin/pages/UsersView';
 
 function App() {
   const pageTransition = {

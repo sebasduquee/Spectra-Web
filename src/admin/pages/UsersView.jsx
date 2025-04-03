@@ -13,11 +13,11 @@ import {
   XCircle,
   Clock,
 } from "lucide-react";
-import AdminLayout from "../../shared/layouts/AdminLayout";
-import EditUserView from "./components/EditUserView";
-import DeleteUserModal from "./components/DeleteUserModal";
-import UserPermissionsModal from "./components/UserPermissionsModal";
-import InitialCredentialsModal from "./components/InitialCredentialsModal";
+import AdminLayout from "../components/layout/AdminLayout";
+import EditUserView from "../components/users/EditUserView";
+import DeleteUserModal from "../components/users/DeleteUserModal";
+import UserPermissionsModal from "../components/users/UserPermissionsModal";
+import InitialCredentialsModal from "../components/users/InitialCredentialsModal";
 
 // Componente de tabla de usuarios
 const UsersTable = ({ users, onEdit, onDelete, onPermissions }) => {
