@@ -1,8 +1,9 @@
 // src/admin/pages/LoginPage.jsx
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,13 +12,15 @@ const LoginPage = () => {
     password: ''
   });
 
-  const handleSubmit = (e) => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Simulación de autenticación básica
-    if (formData.email === 'admin@spectrum.com' && formData.password === 'admin123') {
-      // Redirigir al dashboard
-      window.location.href = '/admin/dashboard';
+    const success = await login(formData.email, formData.password);
+    if (success) {
+      navigate('/admin/dashboard');
     } else {
       alert('Credenciales incorrectas');
     }
