@@ -1,6 +1,7 @@
 // src/App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { AuthProvider } from './contexts/AuthContext'; // Import AuthProvider
 
 // Pages
 import LandingPage from "./pages/LandingPage";
@@ -18,64 +19,66 @@ function App() {
   };
 
   return (
-    <BrowserRouter
-      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-    >
-      <AnimatePresence mode="wait">
-        <Routes>
-          {/* Public Routes */}
-          <Route
-            path="/"
-            element={
-              <motion.div {...pageTransition}>
-                <LandingPage />
-              </motion.div>
-            }
-          />
-
-          {/* Auth Routes */}
-          <Route
-            path="/admin/login"
-            element={
-              <motion.div {...pageTransition}>
-                <LoginPage />
-              </motion.div>
-            }
-          />
-
-          {/* Protected Admin Routes */}
-          <Route path="/admin">
+    <AuthProvider> {/* Wrap with AuthProvider */}
+      <BrowserRouter
+        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+      >
+        <AnimatePresence mode="wait">
+          <Routes>
+            {/* Public Routes */}
             <Route
-              path="dashboard"
+              path="/"
               element={
                 <motion.div {...pageTransition}>
-                  <DashboardPage />
-                </motion.div>
-              }
-            />
-            
-            <Route
-              path="users"
-              element={
-                <motion.div {...pageTransition}>
-                  <UsersView />
+                  <LandingPage />
                 </motion.div>
               }
             />
 
-            {/* Notifications */}
+            {/* Auth Routes */}
             <Route
-              path="notifications"
+              path="/admin/login"
               element={
                 <motion.div {...pageTransition}>
-                  <AllNotificationsView />
+                  <LoginPage />
                 </motion.div>
               }
             />
-          </Route>
-        </Routes>
-      </AnimatePresence>
-    </BrowserRouter>
+
+            {/* Protected Admin Routes */}
+            <Route path="/admin">
+              <Route
+                path="dashboard"
+                element={
+                  <motion.div {...pageTransition}>
+                    <DashboardPage />
+                  </motion.div>
+                }
+              />
+
+              <Route
+                path="users"
+                element={
+                  <motion.div {...pageTransition}>
+                    <UsersView />
+                  </motion.div>
+                }
+              />
+
+              {/* Notifications */}
+              <Route
+                path="notifications"
+                element={
+                  <motion.div {...pageTransition}>
+                    <AllNotificationsView />
+                  </motion.div>
+                }
+              />
+            </Route>
+          </Routes>
+        </AnimatePresence>
+      </BrowserRouter>
+    </AuthProvider> {/* Close AuthProvider */}
   );
 }
 
