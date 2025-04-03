@@ -107,12 +107,12 @@ const Footer = () => {
               © 2024 Spectrum. Todos los derechos reservados.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-white/60 hover:text-white text-sm">
+              <span className="text-white/60 cursor-pointer hover:text-white text-sm">
                 Política de privacidad
-              </a>
-              <a href="#" className="text-white/60 hover:text-white text-sm">
+              </span>
+              <span className="text-white/60 cursor-pointer hover:text-white text-sm">
                 Términos de servicio
-              </a>
+              </span>
             </div>
           </div>
         </div>
