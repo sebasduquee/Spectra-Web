@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useFormValidation, commonValidations } from '../../hooks/useFormValidation';
-import { InputField } from '../../components/shared/form/InputField';
+import InputField from '../../components/shared/form/InputField';
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);

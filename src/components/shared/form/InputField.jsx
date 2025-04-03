@@ -34,4 +34,5 @@ const InputField = ({
   );
 };
 
+export { InputField };
 export default InputField;
