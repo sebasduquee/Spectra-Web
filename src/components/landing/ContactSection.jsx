@@ -1,119 +1,96 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send } from 'lucide-react';
+import { useFormValidation, validators } from '../../hooks/useFormValidation';
+import { InputField } from '../shared/form/InputField';
+import { SelectField } from '../shared/form/SelectField';
+import FormGroup from '../shared/form/FormGroup';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
+  const validationRules = {
+    name: validators.required,
+    email: [validators.required, validators.email],
+    phone: validators.phone,
+    subject: validators.required,
+    message: [validators.required, validators.minLength(10)]
+  };
+
+  const initialFormState = {
     name: '',
     email: '',
     phone: '',
+    subject: '',
     message: ''
-  });
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
-
-  const validateForm = () => {
-    const errors = {};
-
-    if (!formData.name.trim()) {
-      errors.name = 'El nombre es obligatorio';
-    } else if (formData.name.trim().length < 2) {
-      errors.name = 'El nombre debe tener al menos 2 caracteres';
-    }
-
-    if (!formData.email.trim()) {
-      errors.email = 'El correo electrónico es obligatorio';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'Ingresa un correo electrónico válido (ejemplo@dominio.com)';
-    }
-
-    if (!formData.phone.trim()) {
-      errors.phone = 'El teléfono es obligatorio';
-    } else {
-      const phoneRegex = /^[\d\s()-+]{6,}$/;
-      if (!phoneRegex.test(formData.phone.trim())) {
-        errors.phone = 'El número debe tener al menos 6 dígitos y puede incluir espacios, guiones o paréntesis';
-      }
-    }
-
-    // El mensaje es opcional, no necesita validación
-    return errors;
   };
+
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    validateAll,
+    resetForm
+  } = useFormValidation(initialFormState, validationRules);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    e.stopPropagation();
-
-    // Limpiar mensajes anteriores
-    setSubmitStatus({ type: '', message: '' });
-    setFormErrors({});
-
-    const errors = validateForm();
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      setSubmitStatus({ 
-        type: 'error', 
-        message: 'Por favor, completa todos los campos obligatorios correctamente.' 
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus({ type: '', message: '' });
-
-    try {
-      const API_URL = `${import.meta.env.VITE_API_BASE_URL}/auth/contact-request`;
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phoneNumber: formData.phone,
-          metadata: {
-            message: formData.message
-          }
-        })
-      });
-
-      if (response.ok) {
-        setSubmitStatus({ 
-          type: 'success', 
-          message: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.' 
-        });
-        setFormData({ name: '', email: '', phone: '', message: '' });
-      } else {
-        throw new Error('Error al enviar el mensaje');
+    
+    if (validateAll()) {
+      setIsSubmitting(true);
+      
+      try {
+        // Simular envío al servidor
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        console.log('Form submitted:', values);
+        setSubmitSuccess(true);
+        resetForm();
+        
+        // Resetear estado de éxito después de un tiempo
+        setTimeout(() => {
+          setSubmitSuccess(false);
+        }, 5000);
+      } catch (error) {
+        console.error('Error submitting form:', error);
+      } finally {
+        setIsSubmitting(false);
       }
-    } catch (error) {
-      setSubmitStatus({ 
-        type: 'error', 
-        message: 'Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.' 
-      });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
+  const subjectOptions = [
+    { value: 'general', label: 'Información general' },
+    { value: 'support', label: 'Soporte técnico' },
+    { value: 'sales', label: 'Ventas' },
+    { value: 'partnership', label: 'Asociaciones' }
+  ];
+
   return (
-    <section id="contactSection" className="bg-white py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl font-bold text-[#090744] mb-4">
-            ¿Te gustaría saber más?
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Déjanos tus datos y nuestro equipo se pondrá en contacto contigo para resolver todas tus dudas.
-          </p>
-        </motion.div>
+    <section id="contacto" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl font-bold text-gray-900 mb-4"
+          >
+            Contáctanos
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-xl text-gray-600"
+          >
+            ¿Tienes preguntas o necesitas más información? Estamos aquí para ayudarte.
+          </motion.p>
+        </div>
 
         <motion.form
           initial={{ opacity: 0 }}
@@ -123,81 +100,102 @@ const ContactSection = () => {
           noValidate
           className="max-w-xl mx-auto space-y-6"
         >
-          <div>
-            <label className="block text-gray-700 text-sm font-medium mb-2">
-              Nombre completo
-            </label>
-            <input
-              type="text"
-              value={formData.name}
-              onChange={(e) => {
-                setFormData({...formData, name: e.target.value});
-                setFormErrors({...formErrors, name: ''});
-              }}
-              className={`w-full px-4 py-3 rounded-lg border ${formErrors.name ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900`}
-              required
-            />
-            {formErrors.name && <p className="text-red-500 text-xs mt-1">{formErrors.name}</p>}
-          </div>
+          <InputField
+            name="name"
+            label="Nombre completo"
+            value={values.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.name}
+            touched={touched.name}
+            required
+            placeholder="Tu nombre"
+            labelClassName="text-gray-700"
+          />
 
-          <div>
-            <label className="block text-gray-700 text-sm font-medium mb-2">
-              Correo electrónico
-            </label>
-            <input
-              type="email"
-              value={formData.email}
-              onChange={(e) => {
-                setFormData({...formData, email: e.target.value});
-                setFormErrors({...formErrors, email: ''});
-              }}
-              className={`w-full px-4 py-3 rounded-lg border ${formErrors.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900`}
-              required
-            />
-            {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
-          </div>
+          <InputField
+            name="email"
+            label="Correo electrónico"
+            type="email"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.email}
+            touched={touched.email}
+            required
+            placeholder="correo@ejemplo.com"
+            labelClassName="text-gray-700"
+          />
 
-          <div>
-            <label className="block text-gray-700 text-sm font-medium mb-2">
-              Teléfono
-            </label>
-            <input
-              type="tel"
-              value={formData.phone}
-              onChange={(e) => setFormData({...formData, phone: e.target.value})}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900"
-            />
-            {formErrors.phone && <p className="text-red-500 text-xs mt-1">{formErrors.phone}</p>}
-          </div>
+          <InputField
+            name="phone"
+            label="Teléfono"
+            type="tel"
+            value={values.phone}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.phone}
+            touched={touched.phone}
+            placeholder="+1 (123) 456-7890"
+            labelClassName="text-gray-700"
+          />
 
-          <div>
-            <label className="block text-gray-700 text-sm font-medium mb-2">
-              Mensaje (opcional)
-            </label>
-            <textarea
-              value={formData.message}
-              onChange={(e) => setFormData({...formData, message: e.target.value})}
-              rows="4"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900"
-            />
-          </div>
+          <SelectField
+            name="subject"
+            label="Asunto"
+            value={values.subject}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            options={subjectOptions}
+            error={errors.subject}
+            touched={touched.subject}
+            required
+            labelClassName="text-gray-700"
+          />
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`w-full px-6 py-4 bg-[#090744] text-white rounded-xl font-medium hover:bg-[#090744]/90 transition-all flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          <FormGroup
+            label="Mensaje"
+            htmlFor="message"
+            error={errors.message}
+            touched={touched.message}
+            required
+            labelClassName="text-gray-700"
           >
-            <span>{isSubmitting ? 'Enviando...' : 'Enviar mensaje'}</span>
-            <Send className="w-4 h-4" />
-          </button>
+            <textarea
+              id="message"
+              name="message"
+              value={values.message}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              rows="5"
+              className={`w-full px-4 py-3 rounded-lg border ${
+                touched.message && errors.message
+                  ? 'border-red-500'
+                  : 'border-gray-300'
+              } focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900`}
+              placeholder="¿En qué podemos ayudarte?"
+            ></textarea>
+          </FormGroup>
 
-          {submitStatus.message && (
-            <div className={`mt-4 p-4 rounded-lg ${
-              submitStatus.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-            }`}>
-              {submitStatus.message}
-            </div>
-          )}
+          <div className="text-center">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`px-8 py-3 rounded-lg font-medium transition-all ${
+                isSubmitting
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-[#090744] text-white hover:bg-[#0b0a5e]'
+              }`}
+            >
+              {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+            </button>
+            
+            {submitSuccess && (
+              <p className="text-green-600 mt-4">
+                ¡Mensaje enviado con éxito! Te contactaremos pronto.
+              </p>
+            )}
+          </div>
         </motion.form>
       </div>
     </section>
