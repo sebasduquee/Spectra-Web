@@ -44,7 +44,7 @@ apiClient.interceptors.response.use(
 import mockService from './mockService';
 
 // Determinar si debemos usar el mock service
-const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true' || true; // Cambia a false cuando tengas backend real
+const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true' || false; // Desactivamos mock por defecto
 
 // Métodos para interactuar con la API
 const api = {

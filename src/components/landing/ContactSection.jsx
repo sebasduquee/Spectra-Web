@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
+import api from '../../services/apiClient';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -63,31 +64,20 @@ const ContactSection = () => {
     setSubmitStatus({ type: '', message: '' });
 
     try {
-      const API_URL = `${import.meta.env.VITE_API_BASE_URL}/auth/contact-request`;
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phoneNumber: formData.phone,
-          metadata: {
-            message: formData.message
-          }
-        })
+      const response = await api.post('/auth/contact-request', {
+        name: formData.name,
+        email: formData.email,
+        phoneNumber: formData.phone,
+        metadata: {
+          message: formData.message
+        }
       });
 
-      if (response.ok) {
-        setSubmitStatus({ 
-          type: 'success', 
-          message: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.' 
-        });
-        setFormData({ name: '', email: '', phone: '', message: '' });
-      } else {
-        throw new Error('Error al enviar el mensaje');
-      }
+      setSubmitStatus({ 
+        type: 'success', 
+        message: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.' 
+      });
+      setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
       setSubmitStatus({ 
         type: 'error', 
