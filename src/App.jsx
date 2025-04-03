@@ -10,6 +10,7 @@ import LoginPage from "./admin/pages/LoginPage";
 import DashboardPage from "./admin/pages/DashboardPage";
 import AllNotificationsView from "./admin/components/notifications/AllNotificationsView";
 import UsersView from './admin/pages/UsersView';
+import TestApiPage from './pages/TestApiPage';
 
 function App() {
   const pageTransition = {
@@ -66,6 +67,16 @@ function App() {
                 element={
                   <motion.div {...pageTransition}>
                     <UsersView />
+                  </motion.div>
+                }
+              />
+              
+              {/* Ruta de prueba para el API Client */}
+              <Route
+                path="test-api"
+                element={
+                  <motion.div {...pageTransition}>
+                    <TestApiPage />
                   </motion.div>
                 }
               />
