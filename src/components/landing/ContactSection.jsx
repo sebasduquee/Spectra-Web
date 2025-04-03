@@ -70,10 +70,12 @@ const ContactSection = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          fullName: formData.name,
+          name: formData.name,
           email: formData.email,
-          phone: formData.phone,
-          message: formData.message
+          phoneNumber: formData.phone,
+          metadata: {
+            message: formData.message
+          }
         })
       });
 
