@@ -8,6 +8,10 @@ import {
 
 const Sidebar = ({ isOpen, onLogout }) => {
   const location = useLocation();
+  const handleLogout = (e) => {
+    e.preventDefault();
+    onLogout();
+  };
   const menuItems = [
     { icon: Home, label: 'Dashboard', path: '/admin/dashboard' },
     { icon: Users, label: 'Usuarios', path: '/admin/users' },

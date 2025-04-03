@@ -113,7 +113,7 @@ const ProfileMenu = ({ onLogout }) => {
               <button
                 onClick={() => {
                   setIsOpen(false);
-                  onLogout();
+                  setTimeout(() => onLogout(), 100);
                 }}
                 className="w-full flex items-center space-x-3 p-2 hover:bg-red-500/10 rounded-lg text-red-400 hover:text-red-300 transition-colors"
               >
