@@ -42,10 +42,8 @@ const ContactSection = () => {
   };
 
   const isFormValid = () => {
-    return formData.name?.length > 0 && 
-           formData.email?.length > 0 && 
-           formData.phone?.length > 0 &&
-           Object.keys(formErrors).length === 0;
+    const errors = validateForm();
+    return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = async (e) => {
