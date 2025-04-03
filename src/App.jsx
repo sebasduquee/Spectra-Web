@@ -1,7 +1,8 @@
 // src/App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { AuthProvider } from './contexts/AuthContext'; // Import AuthProvider
+import { AuthProvider } from './contexts/AuthContext';
+import { ProtectedRoute, PublicRoute } from './components/auth/ProtectedRoute';
 
 // Pages
 import LandingPage from "./pages/LandingPage";
@@ -39,9 +40,11 @@ function App() {
             <Route
               path="/admin/login"
               element={
-                <motion.div {...pageTransition}>
-                  <LoginPage />
-                </motion.div>
+                <PublicRoute>
+                  <motion.div {...pageTransition}>
+                    <LoginPage />
+                  </motion.div>
+                </PublicRoute>
               }
             />
 
@@ -50,9 +53,11 @@ function App() {
               <Route
                 path="dashboard"
                 element={
-                  <motion.div {...pageTransition}>
-                    <DashboardPage />
-                  </motion.div>
+                  <ProtectedRoute>
+                    <motion.div {...pageTransition}>
+                      <DashboardPage />
+                    </motion.div>
+                  </ProtectedRoute>
                 }
               />
 
