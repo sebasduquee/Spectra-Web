@@ -1,4 +1,3 @@
-
 // src/services/apiClient.js
 import axios from 'axios';
 
@@ -59,7 +58,7 @@ const api = {
     if (USE_MOCK) {
       return await mockService.get(endpoint, params);
     }
-    
+
     try {
       const response = await apiClient.get(endpoint, { params });
       return response.data;
@@ -81,7 +80,7 @@ const api = {
       console.log("Usando servicio mock para POST:", endpoint);
       return await mockService.post(endpoint, data);
     }
-    
+
     try {
       console.log("Enviando POST real a:", API_BASE_URL + endpoint, "con datos:", data);
       const response = await apiClient.post(endpoint, data);
@@ -100,7 +99,7 @@ const api = {
       // Mostrar detalles específicos de la validación
       if (error.response?.data?.details) {
         console.error("Detalles de validación:", error.response.data.details);
-        
+
         // Mostrar cada detalle de validación para facilitar la depuración
         if (error.response.data.details.details && Array.isArray(error.response.data.details.details)) {
           error.response.data.details.details.forEach((detail, index) => {
@@ -108,14 +107,14 @@ const api = {
           });
         }
       }
-      
+
       const errorMessage = error.response?.data?.details?.message || 
                           error.response?.data?.message || 
                           'Error al enviar datos';
       throw errorMessage;
     }
   },
-  
+
   /**
    * Realiza una petición PUT
    * @param {string} endpoint - Ruta relativa a la base URL
@@ -127,7 +126,7 @@ const api = {
     if (USE_MOCK) {
       return await mockService.put(endpoint, data);
     }
-    
+
     try {
       const response = await apiClient.put(endpoint, data);
       return response.data;
@@ -136,7 +135,7 @@ const api = {
       throw error.response?.data?.message || 'Error al actualizar datos';
     }
   },
-  
+
   /**
    * Realiza una petición DELETE
    * @param {string} endpoint - Ruta relativa a la base URL
@@ -147,7 +146,7 @@ const api = {
     if (USE_MOCK) {
       return await mockService.delete(endpoint);
     }
-    
+
     try {
       const response = await apiClient.delete(endpoint);
       return response.data;
@@ -155,6 +154,50 @@ const api = {
       console.error(`Error en DELETE ${endpoint}:`, error);
       throw error.response?.data?.message || 'Error al eliminar datos';
     }
+  },
+
+  /**
+   * Realiza una petición PATCH
+   * @param {string} endpoint - Ruta relativa a la base URL
+   * @param {object} data - Datos a enviar
+   * @returns {Promise} Promesa con los datos de respuesta
+   */
+  async patch(endpoint, data = {}) {
+    // Usar mock service si está activado
+    if (USE_MOCK) {
+      return await mockService.patch(endpoint, data);
+    }
+
+    try {
+      console.log("Enviando PATCH a:", API_BASE_URL + endpoint, "con datos:", data);
+      const response = await apiClient.patch(endpoint, data);
+      console.log("Respuesta PATCH recibida:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error(`Error en PATCH ${endpoint}:`, error);
+      // Mostrar más detalles del error para depuración
+      if (error.response) {
+        console.error("Respuesta de error:", error.response.status, error.response.data);
+      } else if (error.request) {
+        console.error("No se recibió respuesta:", error.request);
+      } else {
+        console.error("Error en la configuración:", error.message);
+      }
+
+      throw error.userMessage || error.response?.data?.message || 'Error al actualizar datos parcialmente';
+    }
+  },
+
+  /**
+   * Convierte un objeto en una string de query params
+   * @param {object} params - Objeto con los parámetros
+   * @returns {string} String con los query params
+   */
+  buildQueryParams(params = {}) {
+    return Object.keys(params)
+      .filter(key => params[key] !== undefined && params[key] !== null)
+      .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+      .join('&');
   }
 };
 
