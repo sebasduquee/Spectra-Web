@@ -78,7 +78,7 @@ function App() {
           </Routes>
         </AnimatePresence>
       </BrowserRouter>
-    </AuthProvider> {/* Close AuthProvider */}
+    </AuthProvider>
   );
 }
 
