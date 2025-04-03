@@ -1,0 +1,93 @@
+Mejora del cliente API
+Archivo a modificar: src/services/apiClient.js
+Amplía el archivo con métodos adicionales e interceptores básicos:
+javascriptCopy// Añadir a src/services/apiClient.js
+
+// Interceptor para agregar token a las solicitudes
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Interceptor para manejar respuestas
+apiClient.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    // Manejo centralizado de errores
+    let errorMessage = 'Ha ocurrido un error inesperado';
+    
+    if (error.response) {
+      // El servidor respondió con un código de error
+      const { status } = error.response;
+      
+      switch (status) {
+        case 400:
+          errorMessage = 'Solicitud incorrecta';
+          break;
+        case 401:
+          errorMessage = 'No autorizado. Por favor inicie sesión nuevamente';
+          break;
+        case 403:
+          errorMessage = 'No tiene permisos para realizar esta acción';
+          break;
+        case 404:
+          errorMessage = 'El recurso solicitado no existe';
+          break;
+        case 500:
+          errorMessage = 'Error en el servidor. Por favor, intente más tarde';
+          break;
+        default:
+          errorMessage = `Error ${status}`;
+      }
+    } else if (error.request) {
+      // La solicitud se realizó pero no se recibió respuesta
+      errorMessage = 'No se pudo conectar con el servidor';
+    }
+    
+    return Promise.reject({
+      ...error,
+      message: errorMessage
+    });
+  }
+);
+
+// Añadir métodos adicionales al objeto api
+api.put = async (endpoint, data = {}) => {
+  try {
+    const response = await apiClient.put(endpoint, data);
+    return response.data;
+  } catch (error) {
+    console.error(`Error en PUT ${endpoint}:`, error);
+    throw error.message || 'Error al actualizar datos';
+  }
+};
+
+api.patch = async (endpoint, data = {}) => {
+  try {
+    const response = await apiClient.patch(endpoint, data);
+    return response.data;
+  } catch (error) {
+    console.error(`Error en PATCH ${endpoint}:`, error);
+    throw error.message || 'Error al actualizar datos';
+  }
+};
+
+api.delete = async (endpoint) => {
+  try {
+    const response = await apiClient.delete(endpoint);
+    return response.data;
+  } catch (error) {
+    console.error(`Error en DELETE ${endpoint}:`, error);
+    throw error.message || 'Error al eliminar datos';
+  }
+};
