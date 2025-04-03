@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthProvider } from './contexts/AuthContext';
+import { ToastProvider } from './contexts/ToastContext'; // Added ToastProvider import
 import { ProtectedRoute, PublicRoute } from './components/auth/ProtectedRoute';
 
 // Pages
@@ -21,68 +22,70 @@ function App() {
 
   return (
     <AuthProvider> {/* Wrap with AuthProvider */}
-      <BrowserRouter
-        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-      >
-        <AnimatePresence mode="wait">
-          <Routes>
-            {/* Public Routes */}
-            <Route
-              path="/"
-              element={
-                <motion.div {...pageTransition}>
-                  <LandingPage />
-                </motion.div>
-              }
-            />
-
-            {/* Auth Routes */}
-            <Route
-              path="/admin/login"
-              element={
-                <PublicRoute>
-                  <motion.div {...pageTransition}>
-                    <LoginPage />
-                  </motion.div>
-                </PublicRoute>
-              }
-            />
-
-            {/* Protected Admin Routes */}
-            <Route path="/admin">
+      <ToastProvider> {/* Wrap with ToastProvider */}
+        <BrowserRouter
+          future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+        >
+          <AnimatePresence mode="wait">
+            <Routes>
+              {/* Public Routes */}
               <Route
-                path="dashboard"
+                path="/"
                 element={
-                  <ProtectedRoute>
+                  <motion.div {...pageTransition}>
+                    <LandingPage />
+                  </motion.div>
+                }
+              />
+
+              {/* Auth Routes */}
+              <Route
+                path="/admin/login"
+                element={
+                  <PublicRoute>
                     <motion.div {...pageTransition}>
-                      <DashboardPage />
+                      <LoginPage />
                     </motion.div>
-                  </ProtectedRoute>
+                  </PublicRoute>
                 }
               />
 
-              <Route
-                path="users"
-                element={
-                  <motion.div {...pageTransition}>
-                    <UsersView />
-                  </motion.div>
-                }
-              />
+              {/* Protected Admin Routes */}
+              <Route path="/admin">
+                <Route
+                  path="dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <motion.div {...pageTransition}>
+                        <DashboardPage />
+                      </motion.div>
+                    </ProtectedRoute>
+                  }
+                />
 
-              {/* Notifications */}
-              <Route
-                path="notifications"
-                element={
-                  <motion.div {...pageTransition}>
-                    <AllNotificationsView />
-                  </motion.div>
-                }
-              />
-            </Route>
-          </Routes>
-        </AnimatePresence>
-      </BrowserRouter>
+                <Route
+                  path="users"
+                  element={
+                    <motion.div {...pageTransition}>
+                      <UsersView />
+                    </motion.div>
+                  }
+                />
+
+                {/* Notifications */}
+                <Route
+                  path="notifications"
+                  element={
+                    <motion.div {...pageTransition}>
+                      <AllNotificationsView />
+                    </motion.div>
+                  }
+                />
+              </Route>
+            </Routes>
+          </AnimatePresence>
+        </BrowserRouter>
+      </ToastProvider>
     </AuthProvider>
   );
 }

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useToast } from '../../contexts/ToastContext';
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,17 +13,37 @@ const LoginPage = () => {
     password: ''
   });
 
-  const { login } = useAuth();
+  const { login, error } = useAuth();
+  const { addToast } = useToast();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    if (!formData.email.trim() || !formData.password.trim()) {
+      addToast({
+        type: 'warning',
+        message: 'Por favor completa todos los campos',
+        duration: 4000
+      });
+      return;
+    }
+
     const success = await login(formData.email, formData.password);
+
     if (success) {
+      addToast({
+        type: 'success',
+        message: '¡Bienvenido al panel de administración!',
+        duration: 3000
+      });
       navigate('/admin/dashboard');
-    } else {
-      alert('Credenciales incorrectas');
+    } else if (error) {
+      addToast({
+        type: 'error',
+        message: error || 'Error de autenticación. Verifica tus credenciales.',
+        duration: 5000
+      });
     }
   };
 

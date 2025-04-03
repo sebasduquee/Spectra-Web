@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import api from '../../services/apiClient';
+import { useToast } from '../../contexts/ToastContext';
 
 const ContactSection = () => {
+  const { addToast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -71,9 +73,9 @@ const ContactSection = () => {
       if (!formattedPhone.startsWith('+')) {
         formattedPhone = `+57${formattedPhone.replace(/^0/, '')}`;
       }
-      
+
       console.log("Enviando número de teléfono formateado:", formattedPhone);
-      
+
       const response = await api.post('/auth/contact-request', {
         name: formData.name,
         email: formData.email,
@@ -85,16 +87,18 @@ const ContactSection = () => {
         }
       });
 
-      setSubmitStatus({ 
+      addToast({ 
         type: 'success', 
-        message: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.' 
+        message: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.',
+        duration: 5000
       });
       setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
       console.error('Error de contacto:', error);
-      setSubmitStatus({ 
+      addToast({ 
         type: 'error', 
-        message: `Hubo un error al enviar el mensaje: ${error}. Por favor, intenta nuevamente.` 
+        message: `Hubo un error al enviar el mensaje: ${error}. Por favor, intenta nuevamente.`,
+        duration: 7000
       });
     } finally {
       setIsSubmitting(false);
