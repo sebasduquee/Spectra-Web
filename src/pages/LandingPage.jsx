@@ -79,7 +79,7 @@ const LandingPage = () => {
               {/* <span className="inline-block px-6 py-2 bg-white/5 text-white/80 rounded-full text-sm mb-8">
                 Plataforma Todo en Uno
               </span> */}
-              
+
               <h1 className="text-6xl md:text-l font-bold text-white mb-8">
                 Tu gestión 360° como creador<br/>
               </h1>
@@ -120,6 +120,14 @@ const LandingPage = () => {
       <PricingSection />
       <ContactSection />
       <Footer />
+      <div className="fixed bottom-4 right-4 z-50">
+          <a 
+            href="/admin/test-api" 
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg"
+          >
+            Probar API
+          </a>
+        </div>
     </GradientBackground>
   );
 };
