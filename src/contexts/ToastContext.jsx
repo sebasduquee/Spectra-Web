@@ -58,10 +58,27 @@ export const ToastProvider = ({ children }) => {
     }
   };
 
-  // Valor del contexto
+  // Métodos de conveniencia para diferentes tipos de toast
+  const showSuccess = useCallback((message, duration = 5000) => 
+    addToast({ type: 'success', message, duration }), [addToast]);
+
+  const showError = useCallback((message, duration = 5000) => 
+    addToast({ type: 'error', message, duration }), [addToast]);
+
+  const showInfo = useCallback((message, duration = 5000) => 
+    addToast({ type: 'info', message, duration }), [addToast]);
+
+  const showWarning = useCallback((message, duration = 5000) => 
+    addToast({ type: 'warning', message, duration }), [addToast]);
+
+  // Valor del contexto con los nuevos métodos
   const value = {
     addToast,
-    removeToast
+    removeToast,
+    showSuccess,
+    showError,
+    showInfo,
+    showWarning
   };
 
   return (
