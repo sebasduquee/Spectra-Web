@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 // Obtener la URL base de la API desde variables de entorno
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://jsonplaceholder.typicode.com';
 
 // Crear instancia de axios con configuración base
 const apiClient = axios.create({
@@ -14,28 +14,55 @@ const apiClient = axios.create({
   timeout: 10000, // 10 segundos
 });
 
+// Interceptor para añadir token de autenticación
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Interceptor para manejar errores de autenticación
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // Si hay un error 401, redirigir al login
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user');
+      window.location.href = '/admin/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
+// Importar el servicio mock para pruebas
+import mockService from './mockService';
+
+// Determinar si debemos usar el mock service
+const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true' || true; // Cambia a false cuando tengas backend real
+
 // Métodos para interactuar con la API
 const api = {
   /**
    * Realiza una petición GET
-   * @param {string} endpoint - Ruta relativa a la base URL o URL completa
+   * @param {string} endpoint - Ruta relativa a la base URL
    * @param {object} params - Parámetros de consulta
    * @returns {Promise} Promesa con los datos de respuesta
    */
   async get(endpoint, params = {}) {
+    // Usar mock service si está activado
+    if (USE_MOCK) {
+      return await mockService.get(endpoint, params);
+    }
+    
     try {
-      // Verifica si el endpoint es una URL completa
-      const isFullUrl = endpoint.startsWith('http://') || endpoint.startsWith('https://');
-      
-      // Si es URL completa, usar axios directamente
-      if (isFullUrl) {
-        const response = await axios.get(endpoint, { params });
-        return response.data;
-      } else {
-        // Si no, usar la instancia con baseURL configurada
-        const response = await apiClient.get(endpoint, { params });
-        return response.data;
-      }
+      const response = await apiClient.get(endpoint, { params });
+      return response.data;
     } catch (error) {
       console.error(`Error en GET ${endpoint}:`, error);
       throw error.response?.data?.message || 'Error al obtener datos';
@@ -44,27 +71,63 @@ const api = {
 
   /**
    * Realiza una petición POST
-   * @param {string} endpoint - Ruta relativa a la base URL o URL completa
+   * @param {string} endpoint - Ruta relativa a la base URL
    * @param {object} data - Datos a enviar
    * @returns {Promise} Promesa con los datos de respuesta
    */
   async post(endpoint, data = {}) {
+    // Usar mock service si está activado
+    if (USE_MOCK) {
+      return await mockService.post(endpoint, data);
+    }
+    
     try {
-      // Verifica si el endpoint es una URL completa
-      const isFullUrl = endpoint.startsWith('http://') || endpoint.startsWith('https://');
-      
-      // Si es URL completa, usar axios directamente
-      if (isFullUrl) {
-        const response = await axios.post(endpoint, data);
-        return response.data;
-      } else {
-        // Si no, usar la instancia con baseURL configurada
-        const response = await apiClient.post(endpoint, data);
-        return response.data;
-      }
+      const response = await apiClient.post(endpoint, data);
+      return response.data;
     } catch (error) {
       console.error(`Error en POST ${endpoint}:`, error);
       throw error.response?.data?.message || 'Error al enviar datos';
+    }
+  },
+  
+  /**
+   * Realiza una petición PUT
+   * @param {string} endpoint - Ruta relativa a la base URL
+   * @param {object} data - Datos a enviar
+   * @returns {Promise} Promesa con los datos de respuesta
+   */
+  async put(endpoint, data = {}) {
+    // Usar mock service si está activado
+    if (USE_MOCK) {
+      return await mockService.put(endpoint, data);
+    }
+    
+    try {
+      const response = await apiClient.put(endpoint, data);
+      return response.data;
+    } catch (error) {
+      console.error(`Error en PUT ${endpoint}:`, error);
+      throw error.response?.data?.message || 'Error al actualizar datos';
+    }
+  },
+  
+  /**
+   * Realiza una petición DELETE
+   * @param {string} endpoint - Ruta relativa a la base URL
+   * @returns {Promise} Promesa con los datos de respuesta
+   */
+  async delete(endpoint) {
+    // Usar mock service si está activado
+    if (USE_MOCK) {
+      return await mockService.delete(endpoint);
+    }
+    
+    try {
+      const response = await apiClient.delete(endpoint);
+      return response.data;
+    } catch (error) {
+      console.error(`Error en DELETE ${endpoint}:`, error);
+      throw error.response?.data?.message || 'Error al eliminar datos';
     }
   }
 };
