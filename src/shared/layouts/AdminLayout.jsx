@@ -1,8 +1,8 @@
-// src/admin/components/layout/AdminLayout.jsx
+// src/shared/layouts/AdminLayout.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from './Sidebar';
-import Header from './Header';
+import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
 
 const AdminLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
