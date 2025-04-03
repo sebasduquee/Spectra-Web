@@ -64,13 +64,16 @@ const ContactSection = () => {
     setSubmitStatus({ type: '', message: '' });
 
     try {
-      // Añadimos contactReason y cambiamos phoneNumber por phone
+      // Estructura diferente con metadata
       const response = await api.post('/auth/contact-request', {
         name: formData.name,
         email: formData.email,
-        phone: formData.phone,
-        contactReason: "landing_page",
-        message: formData.message
+        phoneNumber: formData.phone, // Volvemos a phoneNumber
+        metadata: {
+          message: formData.message,
+          contactReason: "landing_page",
+          source: "website"
+        }
       });
 
       setSubmitStatus({ 

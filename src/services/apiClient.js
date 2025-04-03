@@ -97,7 +97,11 @@ const api = {
       } else {
         console.error("Error en la configuración:", error.message);
       }
-      // Obtenemos detalles más específicos del error
+      // Mostrar detalles específicos de la validación
+      if (error.response?.data?.details) {
+        console.error("Detalles de validación:", error.response.data.details);
+      }
+      
       const errorMessage = error.response?.data?.details?.message || 
                           error.response?.data?.message || 
                           'Error al enviar datos';
