@@ -41,11 +41,6 @@ const ContactSection = () => {
     return errors;
   };
 
-  const isFormValid = () => {
-    const errors = validateForm();
-    return Object.keys(errors).length === 0;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -189,8 +184,8 @@ const ContactSection = () => {
 
           <button
             type="submit"
-            disabled={isSubmitting || !isFormValid()}
-            className={`w-full px-6 py-4 bg-[#090744] text-white rounded-xl font-medium hover:bg-[#090744]/90 transition-all flex items-center justify-center space-x-2 ${(isSubmitting || !isFormValid()) ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={isSubmitting}
+            className={`w-full px-6 py-4 bg-[#090744] text-white rounded-xl font-medium hover:bg-[#090744]/90 transition-all flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <span>{isSubmitting ? 'Enviando...' : 'Enviar mensaje'}</span>
             <Send className="w-4 h-4" />
