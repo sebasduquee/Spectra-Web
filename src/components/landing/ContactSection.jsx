@@ -32,9 +32,10 @@ const ContactSection = () => {
     if (!formData.phone.trim()) {
       errors.phone = 'El teléfono es obligatorio';
     } else {
-      const phoneRegex = /^[\d\s()-+]{6,}$/;
+      // Regex que permite formato internacional con código de país
+      const phoneRegex = /^(\+?\d{1,3})?[\d\s()-]{6,}$/;
       if (!phoneRegex.test(formData.phone.trim())) {
-        errors.phone = 'El número debe tener al menos 6 dígitos y puede incluir espacios, guiones o paréntesis';
+        errors.phone = 'Ingresa un número válido. Puedes incluir el código de país (+57)';
       }
     }
 
@@ -64,11 +65,19 @@ const ContactSection = () => {
     setSubmitStatus({ type: '', message: '' });
 
     try {
-      // Estructura diferente con metadata
+      // Formatear el número de teléfono para asegurar que tenga formato internacional
+      let formattedPhone = formData.phone;
+      // Si no comienza con +, agregamos el prefijo de Colombia +57
+      if (!formattedPhone.startsWith('+')) {
+        formattedPhone = `+57${formattedPhone.replace(/^0/, '')}`;
+      }
+      
+      console.log("Enviando número de teléfono formateado:", formattedPhone);
+      
       const response = await api.post('/auth/contact-request', {
         name: formData.name,
         email: formData.email,
-        phoneNumber: formData.phone, // Volvemos a phoneNumber
+        phoneNumber: formattedPhone, // Número de teléfono con formato internacional
         metadata: {
           message: formData.message,
           contactReason: "landing_page",
@@ -153,14 +162,16 @@ const ContactSection = () => {
 
           <div>
             <label className="block text-gray-700 text-sm font-medium mb-2">
-              Teléfono
+              Teléfono (con código de país)
             </label>
             <input
               type="tel"
               value={formData.phone}
               onChange={(e) => setFormData({...formData, phone: e.target.value})}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900"
+              placeholder="+57 000 000 0000"
             />
+            <small className="text-gray-500 text-xs">Ejemplo: +57 300 123 4567</small>
             {formErrors.phone && <p className="text-red-500 text-xs mt-1">{formErrors.phone}</p>}
           </div>
 

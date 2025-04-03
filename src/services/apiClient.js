@@ -100,6 +100,13 @@ const api = {
       // Mostrar detalles específicos de la validación
       if (error.response?.data?.details) {
         console.error("Detalles de validación:", error.response.data.details);
+        
+        // Mostrar cada detalle de validación para facilitar la depuración
+        if (error.response.data.details.details && Array.isArray(error.response.data.details.details)) {
+          error.response.data.details.details.forEach((detail, index) => {
+            console.error(`Error de validación ${index + 1}:`, detail.message, 'Campo:', detail.path?.join('.'));
+          });
+        }
       }
       
       const errorMessage = error.response?.data?.details?.message || 
