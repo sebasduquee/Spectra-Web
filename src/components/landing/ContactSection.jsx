@@ -37,6 +37,7 @@ const ContactSection = () => {
       }
     }
 
+    // El mensaje es opcional, no necesita validación
     return errors;
   };
 
