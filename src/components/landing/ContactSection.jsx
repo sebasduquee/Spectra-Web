@@ -28,7 +28,9 @@ const ContactSection = () => {
       errors.email = 'Ingresa un correo electrónico válido (ejemplo@dominio.com)';
     }
 
-    if (formData.phone.trim()) {
+    if (!formData.phone.trim()) {
+      errors.phone = 'El teléfono es obligatorio';
+    } else {
       const phoneRegex = /^[\d\s()-+]{6,}$/;
       if (!phoneRegex.test(formData.phone.trim())) {
         errors.phone = 'El número debe tener al menos 6 dígitos y puede incluir espacios, guiones o paréntesis';
@@ -51,7 +53,7 @@ const ContactSection = () => {
       setFormErrors(errors);
       setSubmitStatus({ 
         type: 'error', 
-        message: 'Por favor, revisa los campos marcados en rojo y completa la información correctamente.' 
+        message: 'Por favor, completa todos los campos obligatorios correctamente.' 
       });
       return;
     }
