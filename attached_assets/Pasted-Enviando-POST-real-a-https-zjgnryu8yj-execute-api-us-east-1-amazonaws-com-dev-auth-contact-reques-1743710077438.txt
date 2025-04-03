@@ -1,0 +1,86 @@
+Enviando POST real a: https://zjgnryu8yj.execute-api.us-east-1.amazonaws.com/dev/auth/contact-request con datos: {name: 'alejandra', email: 'ale123@gmail.com', phone: '1234567', contactReason: 'landing_page', message: 'holamondoo'}
+apiClient.js:87 
+            
+            
+           POST https://zjgnryu8yj.execute-api.us-east-1.amazonaws.com/dev/auth/contact-request 400 (Bad Request)
+dispatchXhrRequest @ axios.js?v=638529b2:1637
+xhr @ axios.js?v=638529b2:1517
+dispatchRequest @ axios.js?v=638529b2:1992
+Promise.then
+_request @ axios.js?v=638529b2:2195
+request @ axios.js?v=638529b2:2104
+httpMethod @ axios.js?v=638529b2:2242
+wrap @ axios.js?v=638529b2:8
+post @ apiClient.js:87
+handleSubmit @ ContactSection.jsx:68
+callCallback2 @ chunk-PJEEZAML.js?v=638529b2:3674
+invokeGuardedCallbackDev @ chunk-PJEEZAML.js?v=638529b2:3699
+invokeGuardedCallback @ chunk-PJEEZAML.js?v=638529b2:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-PJEEZAML.js?v=638529b2:3736
+executeDispatch @ chunk-PJEEZAML.js?v=638529b2:7014
+processDispatchQueueItemsInOrder @ chunk-PJEEZAML.js?v=638529b2:7034
+processDispatchQueue @ chunk-PJEEZAML.js?v=638529b2:7043
+dispatchEventsForPlugins @ chunk-PJEEZAML.js?v=638529b2:7051
+(anonymous) @ chunk-PJEEZAML.js?v=638529b2:7174
+batchedUpdates$1 @ chunk-PJEEZAML.js?v=638529b2:18913
+batchedUpdates @ chunk-PJEEZAML.js?v=638529b2:3579
+dispatchEventForPluginEventSystem @ chunk-PJEEZAML.js?v=638529b2:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-PJEEZAML.js?v=638529b2:5478
+dispatchEvent @ chunk-PJEEZAML.js?v=638529b2:5472
+dispatchDiscreteEvent @ chunk-PJEEZAML.js?v=638529b2:5449Understand this errorAI
+apiClient.js:91 Error en POST /auth/contact-request: AxiosError {message: 'Request failed with status code 400', name: 'AxiosError', code: 'ERR_BAD_REQUEST', config: {…}, request: XMLHttpRequest, …}
+post @ apiClient.js:91
+await in post
+handleSubmit @ ContactSection.jsx:68
+callCallback2 @ chunk-PJEEZAML.js?v=638529b2:3674
+invokeGuardedCallbackDev @ chunk-PJEEZAML.js?v=638529b2:3699
+invokeGuardedCallback @ chunk-PJEEZAML.js?v=638529b2:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-PJEEZAML.js?v=638529b2:3736
+executeDispatch @ chunk-PJEEZAML.js?v=638529b2:7014
+processDispatchQueueItemsInOrder @ chunk-PJEEZAML.js?v=638529b2:7034
+processDispatchQueue @ chunk-PJEEZAML.js?v=638529b2:7043
+dispatchEventsForPlugins @ chunk-PJEEZAML.js?v=638529b2:7051
+(anonymous) @ chunk-PJEEZAML.js?v=638529b2:7174
+batchedUpdates$1 @ chunk-PJEEZAML.js?v=638529b2:18913
+batchedUpdates @ chunk-PJEEZAML.js?v=638529b2:3579
+dispatchEventForPluginEventSystem @ chunk-PJEEZAML.js?v=638529b2:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-PJEEZAML.js?v=638529b2:5478
+dispatchEvent @ chunk-PJEEZAML.js?v=638529b2:5472
+dispatchDiscreteEvent @ chunk-PJEEZAML.js?v=638529b2:5449Understand this errorAI
+apiClient.js:94 Respuesta de error: 400 {code: 'VALIDATION_ERROR', message: 'Validation failed', statusCode: 400, details: {…}}
+post @ apiClient.js:94
+await in post
+handleSubmit @ ContactSection.jsx:68
+callCallback2 @ chunk-PJEEZAML.js?v=638529b2:3674
+invokeGuardedCallbackDev @ chunk-PJEEZAML.js?v=638529b2:3699
+invokeGuardedCallback @ chunk-PJEEZAML.js?v=638529b2:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-PJEEZAML.js?v=638529b2:3736
+executeDispatch @ chunk-PJEEZAML.js?v=638529b2:7014
+processDispatchQueueItemsInOrder @ chunk-PJEEZAML.js?v=638529b2:7034
+processDispatchQueue @ chunk-PJEEZAML.js?v=638529b2:7043
+dispatchEventsForPlugins @ chunk-PJEEZAML.js?v=638529b2:7051
+(anonymous) @ chunk-PJEEZAML.js?v=638529b2:7174
+batchedUpdates$1 @ chunk-PJEEZAML.js?v=638529b2:18913
+batchedUpdates @ chunk-PJEEZAML.js?v=638529b2:3579
+dispatchEventForPluginEventSystem @ chunk-PJEEZAML.js?v=638529b2:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-PJEEZAML.js?v=638529b2:5478
+dispatchEvent @ chunk-PJEEZAML.js?v=638529b2:5472
+dispatchDiscreteEvent @ chunk-PJEEZAML.js?v=638529b2:5449Understand this errorAI
+ContactSection.jsx:82 Error de contacto: Validation failed
+handleSubmit @ ContactSection.jsx:82
+await in handleSubmit
+callCallback2 @ chunk-PJEEZAML.js?v=638529b2:3674
+invokeGuardedCallbackDev @ chunk-PJEEZAML.js?v=638529b2:3699
+invokeGuardedCallback @ chunk-PJEEZAML.js?v=638529b2:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-PJEEZAML.js?v=638529b2:3736
+executeDispatch @ chunk-PJEEZAML.js?v=638529b2:7014
+processDispatchQueueItemsInOrder @ chunk-PJEEZAML.js?v=638529b2:7034
+processDispatchQueue @ chunk-PJEEZAML.js?v=638529b2:7043
+dispatchEventsForPlugins @ chunk-PJEEZAML.js?v=638529b2:7051
+(anonymous) @ chunk-PJEEZAML.js?v=638529b2:7174
+batchedUpdates$1 @ chunk-PJEEZAML.js?v=638529b2:18913
+batchedUpdates @ chunk-PJEEZAML.js?v=638529b2:3579
+dispatchEventForPluginEventSystem @ chunk-PJEEZAML.js?v=638529b2:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-PJEEZAML.js?v=638529b2:5478
+dispatchEvent @ chunk-PJEEZAML.js?v=638529b2:5472
+dispatchDiscreteEvent @ chunk-PJEEZAML.js?v=638529b2:5449Understand this errorAI
