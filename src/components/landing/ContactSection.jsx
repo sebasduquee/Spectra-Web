@@ -1,8 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import api from '../../services/apiClient';
 import { useToast } from '../../contexts/ToastContext';
+
+// Placeholder for useApi hook -  This needs to be implemented correctly based on your actual useApi hook
+const useApi = (apiFunc) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const execute = useCallback(async (...args) => {
+    setIsLoading(true);
+    try {
+      const response = await apiFunc(...args);
+      return response.data; // Assuming your API returns data in a 'data' property. Adjust as needed.
+    } catch (error) {
+      console.error('Error in useApi hook:', error);
+      throw error; // Re-throw the error to be handled by the calling component
+    } finally {
+      setIsLoading(false);
+    }
+  }, [apiFunc]);
+  return { isLoading, execute };
+};
+
 
 const ContactSection = () => {
   const { addToast } = useToast();
@@ -13,8 +32,8 @@ const ContactSection = () => {
     message: ''
   });
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+  const { isLoading: isSubmitting, execute: submitForm } = useApi(api.post);
+
 
   const validateForm = () => {
     const errors = {};
@@ -34,14 +53,12 @@ const ContactSection = () => {
     if (!formData.phone.trim()) {
       errors.phone = 'El teléfono es obligatorio';
     } else {
-      // Regex que permite formato internacional con código de país
       const phoneRegex = /^(\+?\d{1,3})?[\d\s()-]{6,}$/;
       if (!phoneRegex.test(formData.phone.trim())) {
         errors.phone = 'Ingresa un número válido. Puedes incluir el código de país (+57)';
       }
     }
 
-    // El mensaje es opcional, no necesita validación
     return errors;
   };
 
@@ -49,7 +66,6 @@ const ContactSection = () => {
     e.preventDefault();
     e.stopPropagation();
 
-    // Limpiar mensajes anteriores
     setSubmitStatus({ type: '', message: '' });
     setFormErrors({});
 
@@ -67,19 +83,15 @@ const ContactSection = () => {
     setSubmitStatus({ type: '', message: '' });
 
     try {
-      // Formatear el número de teléfono para asegurar que tenga formato internacional
       let formattedPhone = formData.phone;
-      // Si no comienza con +, agregamos el prefijo de Colombia +57
       if (!formattedPhone.startsWith('+')) {
         formattedPhone = `+57${formattedPhone.replace(/^0/, '')}`;
       }
 
-      console.log("Enviando número de teléfono formateado:", formattedPhone);
-
-      const response = await api.post('/auth/contact-request', {
+      await submitForm('/auth/contact-request', {
         name: formData.name,
         email: formData.email,
-        phoneNumber: formattedPhone, // Número de teléfono con formato internacional
+        phoneNumber: formattedPhone, 
         metadata: {
           message: formData.message,
           contactReason: "landing_page",
@@ -104,6 +116,8 @@ const ContactSection = () => {
       setIsSubmitting(false);
     }
   };
+
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
   return (
     <section id="contactSection" className="bg-white py-24 px-6">
@@ -136,6 +150,7 @@ const ContactSection = () => {
             </label>
             <input
               type="text"
+              name="name"
               value={formData.name}
               onChange={(e) => {
                 setFormData({...formData, name: e.target.value});
@@ -153,6 +168,7 @@ const ContactSection = () => {
             </label>
             <input
               type="email"
+              name="email"
               value={formData.email}
               onChange={(e) => {
                 setFormData({...formData, email: e.target.value});
@@ -170,6 +186,7 @@ const ContactSection = () => {
             </label>
             <input
               type="tel"
+              name="phone"
               value={formData.phone}
               onChange={(e) => setFormData({...formData, phone: e.target.value})}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900"
@@ -184,6 +201,7 @@ const ContactSection = () => {
               Mensaje (opcional)
             </label>
             <textarea
+              name="message"
               value={formData.message}
               onChange={(e) => setFormData({...formData, message: e.target.value})}
               rows="4"

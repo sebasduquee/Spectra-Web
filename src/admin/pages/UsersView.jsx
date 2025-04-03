@@ -25,6 +25,8 @@ import ErrorState from "../../components/ui/ErrorState";
 import EmptyState from "../../components/ui/EmptyState";
 import { TableRowSkeleton } from "../../components/ui/SkeletonLoader";
 import { useToast } from "../../contexts/ToastContext";
+import { useApi } from '../../hooks/useApi'; // Added import
+
 
 // Componente de tabla de usuarios
 const UsersTable = ({ users, onEdit, onDelete, onPermissions, isLoading }) => {
@@ -202,42 +204,13 @@ const UsersView = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const { showError, showSuccess } = useToast();
-  
+  const { getUsers } = useApi(); //Using the custom hook
+
   // Estados
   const [users, setUsers] = useState([]);
   // Mock de usuarios para simulación
-  const mockUsers = [
-    {
-      id: 1,
-      name: "Ana Martínez",
-      username: "anamartinez",
-      email: "ana@creator.com",
-      plan: "Diamond",
-      status: "active",
-      lastActive: "Hace 5 min",
-      avatar: null,
-    },
-    {
-      id: 2,
-      name: "Carlos Rodriguez",
-      username: "carlosr",
-      email: "carlos@creator.com",
-      plan: "Gold",
-      status: "active",
-      lastActive: "Hace 1 hora",
-      avatar: null,
-    },
-    {
-      id: 3,
-      name: "Laura Gómez",
-      username: "laurag",
-      email: "laura@creator.com",
-      plan: "Silver",
-      status: "pending",
-      lastActive: "Hace 2 días",
-      avatar: null,
-    },
-  ];
+  //const mockUsers = [ ... ]; // Removed mock data
+
 
   // Estados para modales
   const [showFormModal, setShowFormModal] = useState(false);
@@ -254,16 +227,10 @@ const UsersView = () => {
       try {
         setIsLoading(true);
         setError(null);
-        
-        // Simulamos una llamada API
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // En un entorno real, esto sería una llamada a la API:
-        // const response = await userService.getUsers();
-        // setUsers(response.data);
-        
-        setUsers(mockUsers);
-        setSearchResults(mockUsers);
+
+        const fetchedUsers = await getUsers(); //Fetching users using the hook
+        setUsers(fetchedUsers);
+        setSearchResults(fetchedUsers);
       } catch (err) {
         const errorMsg = err.message || "Error al cargar usuarios";
         setError(errorMsg);
@@ -272,22 +239,23 @@ const UsersView = () => {
         setIsLoading(false);
       }
     };
-    
+
     fetchUsers();
-  }, []);
+  }, [getUsers]); // Added getUsers to the dependency array
+
 
   useEffect(() => {
     if (searchTerm.trim() === '') {
       setSearchResults(users);
       return;
     }
-    
+
     const filtered = users.filter(user => 
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.username.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    
+
     setSearchResults(filtered);
   }, [searchTerm, users]);
 
@@ -318,10 +286,9 @@ const UsersView = () => {
   const handleSaveUser = async (userData) => {
     try {
       setIsLoading(true);
-      
-      // Simulamos una llamada API
+      // Placeholder for API call using useApi hook -  Replace with actual API call
       await new Promise(resolve => setTimeout(resolve, 800));
-      
+
       if (selectedUser) {
         // Actualizar usuario existente
         setUsers(
@@ -340,7 +307,7 @@ const UsersView = () => {
           avatar: null,
           ...userData,
         };
-        
+
         setUsers([...users, newUser]);
         setNewUserCredentials({
           email: userData.email,
@@ -349,7 +316,7 @@ const UsersView = () => {
         setShowCredentialsModal(true);
         showSuccess("Usuario creado correctamente");
       }
-      
+
       setShowFormModal(false);
     } catch (err) {
       const errorMsg = err.message || "Error al guardar usuario";
@@ -364,8 +331,7 @@ const UsersView = () => {
     setError(null);
     // Simulamos una nueva carga
     setTimeout(() => {
-      setUsers(mockUsers);
-      setSearchResults(mockUsers);
+      //setUsers(mockUsers);  //Removed mock data
       setIsLoading(false);
     }, 1000);
   };
