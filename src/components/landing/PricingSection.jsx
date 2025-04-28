@@ -11,7 +11,7 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => (
     viewport={{ once: true }}
     className="relative"
   >
-    <div className={`h-full p-6 rounded-xl backdrop-blur-xl border ${
+    <div className={`h-full p-8 rounded-xl backdrop-blur-xl border ${
       isPopular 
         ? 'bg-[#CBDFF4]/10 border-[#CBDFF4]/30' 
         : 'bg-white/5 border-white/10'
@@ -23,7 +23,7 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => (
       )}
 
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-8">
         <h3 className={`text-2xl font-bold ${
           isPopular ? 'text-[#CBDFF4]' : 'text-white'
         }`}>
@@ -43,7 +43,7 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => (
       </div>
 
       {/* Features */}
-      <ul className="space-y-4 mb-8">
+      <ul className="space-y-5 mb-10">
         {plan.features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
             <Check className={`w-5 h-5 mt-0.5 ${
@@ -124,7 +124,7 @@ const PricingSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
             <PlanCard
               key={index}
