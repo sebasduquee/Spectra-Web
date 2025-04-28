@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthProvider } from './contexts/AuthContext';
-import { ToastProvider } from './contexts/ToastContext'; // Added ToastProvider import
+import { ToastProvider } from './contexts/ToastContext'; 
 import { ProtectedRoute, PublicRoute } from './components/auth/ProtectedRoute';
 
 // Pages
@@ -11,6 +11,7 @@ import LoginPage from "./admin/pages/LoginPage";
 import DashboardPage from "./admin/pages/DashboardPage";
 import AllNotificationsView from "./admin/components/notifications/AllNotificationsView";
 import UsersView from './admin/pages/UsersView';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'; // Added import for PrivacyPolicyPage
 
 function App() {
   const pageTransition = {
@@ -21,8 +22,8 @@ function App() {
   };
 
   return (
-    <AuthProvider> {/* Wrap with AuthProvider */}
-      <ToastProvider> {/* Wrap with ToastProvider */}
+    <AuthProvider> 
+      <ToastProvider> 
         <BrowserRouter
           future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
         >
@@ -37,6 +38,7 @@ function App() {
                   </motion.div>
                 }
               />
+              <Route path="/politica-privacidad" element={<PrivacyPolicyPage />} /> {/* Added route for PrivacyPolicyPage */}
 
               {/* Auth Routes */}
               <Route
