@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
@@ -7,6 +7,11 @@ import Footer from '../components/landing/Footer';
 import Header from '../components/landing/Header';
 
 const PrivacyPolicyPage = () => {
+  // Scroll al inicio de la página cuando se carga el componente
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <div className="min-h-screen bg-[#090744]">
       <Header />
