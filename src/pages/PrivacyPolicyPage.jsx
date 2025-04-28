@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import Footer from '../components/landing/Footer';
-import Header from '../components/landing/Header';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
 const PrivacyPolicyPage = () => {
   // Scroll al inicio de la página cuando se carga el componente
@@ -14,7 +16,38 @@ const PrivacyPolicyPage = () => {
   
   return (
     <div className="min-h-screen bg-[#090744]">
-      <Header />
+      {/* Header simplificado */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#090744]/80 backdrop-blur-md py-3">
+        <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
+          {/* Logo - Solo el ícono */}
+          <Link to="/" className="flex items-center">
+            <img src="/images/brand/logo.svg" alt="Spectrum" className="h-8" />
+          </Link>
+
+          {/* Desktop Navigation - Todos redirigen a inicio */}
+          <nav className="hidden md:flex space-x-8">
+            <Link to="/" className="text-white/80 hover:text-white transition-colors">
+              Características
+            </Link>
+            <Link to="/" className="text-white/80 hover:text-white transition-colors">
+              Cómo funciona
+            </Link>
+            <Link to="/" className="text-white/80 hover:text-white transition-colors">
+              Precios
+            </Link>
+            <Link to="/" className="text-white/80 hover:text-white transition-colors">
+              Testimonios
+            </Link>
+          </nav>
+          
+          {/* Call to Action Button */}
+          <div className="hidden md:block">
+            <Link to="/" className="px-5 py-2 bg-[#CBDFF4] text-[#090744] rounded-xl font-medium hover:bg-[#CBDFF4]/90 transition-all">
+              Contáctanos
+            </Link>
+          </div>
+        </div>
+      </header>
       
       <main className="pt-24 pb-16 px-4">
         <div className="max-w-4xl mx-auto">
