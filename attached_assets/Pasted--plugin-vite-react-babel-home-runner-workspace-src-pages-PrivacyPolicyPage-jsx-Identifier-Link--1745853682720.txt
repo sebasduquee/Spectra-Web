@@ -1,0 +1,45 @@
+[plugin:vite:react-babel] /home/runner/workspace/src/pages/PrivacyPolicyPage.jsx: Identifier 'Link' has already been declared. (7:9)
+  10 |
+/home/runner/workspace/src/pages/PrivacyPolicyPage.jsx:7:9
+5  |  import { ArrowLeft } from 'lucide-react';
+6  |  import Footer from '../components/landing/Footer';
+7  |  import { Link } from 'react-router-dom';
+   |           ^
+8  |  import { motion } from 'framer-motion';
+9  |  import { Menu, X } from 'lucide-react';
+    at constructor (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:360:19)
+    at JSXParserMixin.raise (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:3327:19)
+    at ScopeHandler.checkRedeclarationInScope (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:1555:19)
+    at ScopeHandler.declareName (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:1521:12)
+    at JSXParserMixin.declareNameFromIdentifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:7476:16)
+    at JSXParserMixin.checkIdentifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:7472:12)
+    at JSXParserMixin.checkLVal (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:7413:12)
+    at JSXParserMixin.finishImportSpecifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13888:10)
+    at JSXParserMixin.parseImportSpecifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:14044:17)
+    at JSXParserMixin.parseNamedImportSpecifiers (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:14023:36)
+    at JSXParserMixin.parseImportSpecifiersAndAfter (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13865:37)
+    at JSXParserMixin.parseImport (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13858:17)
+    at JSXParserMixin.parseStatementContent (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12504:27)
+    at JSXParserMixin.parseStatementLike (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12396:17)
+    at JSXParserMixin.parseModuleItem (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12373:17)
+    at JSXParserMixin.parseBlockOrModuleBlockBody (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12950:36)
+    at JSXParserMixin.parseBlockBody (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12943:10)
+    at JSXParserMixin.parseProgram (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12270:10)
+    at JSXParserMixin.parseTopLevel (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12260:25)
+    at JSXParserMixin.parse (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:14110:10)
+    at parse (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:14144:38)
+    at parser (/home/runner/workspace/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/runner/workspace/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/runner/workspace/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/runner/workspace/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/runner/workspace/node_modules/gensync/index.js:261:32)
+    at /home/runner/workspace/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/workspace/node_modules/gensync/index.js:223:11)
+    at /home/runner/workspace/node_modules/gensync/index.js:189:28
+    at /home/runner/workspace/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+    at /home/runner/workspace/node_modules/gensync/index.js:113:33
+    at step (/home/runner/workspace/node_modules
