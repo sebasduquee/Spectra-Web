@@ -11,7 +11,7 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => (
     viewport={{ once: true }}
     className="relative"
   >
-    <div className={`h-full p-8 rounded-xl backdrop-blur-xl border ${
+    <div className={`h-full p-8 rounded-xl backdrop-blur-xl border flex flex-col ${
       isPopular 
         ? 'bg-[#CBDFF4]/10 border-[#CBDFF4]/30' 
         : 'bg-white/5 border-white/10'
@@ -43,7 +43,7 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => (
       </div>
 
       {/* Features */}
-      <ul className="space-y-5 mb-10">
+      <ul className="space-y-5 mb-auto flex-grow">
         {plan.features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
             <Check className={`w-5 h-5 mt-0.5 ${
@@ -55,15 +55,17 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => (
       </ul>
 
       {/* CTA Button */}
-      <button 
-        onClick={onContactClick} 
-        className={`w-full py-4 rounded-xl font-medium transition-colors ${
-        isPopular
-          ? 'bg-[#CBDFF4] text-[#090744] hover:bg-[#CBDFF4]/90'
-          : 'bg-white/10 text-white hover:bg-white/20'
-      }`}>
-        Empezar ahora
-      </button>
+      <div className="mt-10">
+        <button 
+          onClick={onContactClick} 
+          className={`w-full py-4 rounded-xl font-medium transition-colors ${
+          isPopular
+            ? 'bg-[#CBDFF4] text-[#090744] hover:bg-[#CBDFF4]/90'
+            : 'bg-white/10 text-white hover:bg-white/20'
+        }`}>
+          Empezar ahora
+        </button>
+      </div>
     </div>
   </motion.div>
 );
