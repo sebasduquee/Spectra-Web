@@ -2,11 +2,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Menu, X } from 'lucide-react';
 import Footer from '../components/landing/Footer';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
 
 const PrivacyPolicyPage = () => {
   // Scroll al inicio de la página cuando se carga el componente
