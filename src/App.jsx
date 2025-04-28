@@ -11,7 +11,8 @@ import LoginPage from "./admin/pages/LoginPage";
 import DashboardPage from "./admin/pages/DashboardPage";
 import AllNotificationsView from "./admin/components/notifications/AllNotificationsView";
 import UsersView from './admin/pages/UsersView';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage'; // Added import for PrivacyPolicyPage
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage'; // Added import for TermsOfServicePage
 
 function App() {
   const pageTransition = {
@@ -38,7 +39,8 @@ function App() {
                   </motion.div>
                 }
               />
-              <Route path="/politica-privacidad" element={<PrivacyPolicyPage />} /> {/* Added route for PrivacyPolicyPage */}
+              <Route path="/politica-privacidad" element={<PrivacyPolicyPage />} /> 
+              <Route path="/terminos-y-condiciones" element={<TermsOfServicePage />} /> {/* Added route for TermsOfServicePage */}
 
               {/* Auth Routes */}
               <Route
