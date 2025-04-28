@@ -72,16 +72,6 @@ const PricingSection = () => {
   const scrollToElement = useScrollTo();
   const plans = [
     {
-      name: "Plan Básico",
-      price: 1300000,
-      features: [
-        "Asistente personalizado (Concierge AI 100%)",
-        "Módulo contabilidad con declaración de renta anual",
-        "Acceso a soporte básico",
-        "Chatbot 24/7"
-      ]
-    },
-    {
       name: "Plan Silver",
       price: 2000000,
       features: [
@@ -90,8 +80,7 @@ const PricingSection = () => {
         "Contador dedicado",
         "Soporte prioritario",
         "Chatbot 24/7"
-      ],
-      isPopular: true
+      ]
     },
     {
       name: "Plan Gold",
@@ -102,7 +91,8 @@ const PricingSection = () => {
         "Módulo inversiones con gestor personal",
         "Soporte premium",
         "Reuniones mensuales de seguimiento"
-      ]
+      ],
+      isPopular: true
     },
     {
       name: "Plan Diamond",
