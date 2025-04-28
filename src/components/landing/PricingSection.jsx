@@ -73,7 +73,7 @@ const PricingSection = () => {
   const plans = [
     {
       name: "Plan Silver",
-      price: 2000000,
+      price: 1600000,
       features: [
         "Asistente personalizado (Concierge AI 100%)",
         "Módulo contabilidad completo",
@@ -84,7 +84,7 @@ const PricingSection = () => {
     },
     {
       name: "Plan Gold",
-      price: 2900000,
+      price: 2600000,
       features: [
         "Todo lo del Plan Silver",
         "Módulo legal con abogado dedicado",
