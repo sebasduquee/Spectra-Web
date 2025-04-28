@@ -110,7 +110,7 @@ const Footer = () => {
               <Link to="/politica-privacidad" className="text-white/60 hover:text-white text-sm">
                 Política de privacidad
               </Link>
-              <Link to="/terminos-servicio" className="text-white/60 hover:text-white text-sm">
+              <Link to="/terminos-y-condiciones" className="text-white/60 hover:text-white text-sm">
                 Términos de servicio
               </Link>
             </div>
