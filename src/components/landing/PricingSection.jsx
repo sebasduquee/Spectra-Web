@@ -77,10 +77,9 @@ const PricingSection = () => {
       name: "Plan Silver",
       price: 1600000,
       features: [
-        "Asistente personalizado (Concierge AI 100%)",
-        "Módulo contabilidad completo",
-        "Contador dedicado",
-        "Soporte prioritario",
+        "Asistente personalizado",
+        "Módulo contabilidad",
+        "Módulo Legal",
         "Chatbot 24/7"
       ]
     },
@@ -88,11 +87,12 @@ const PricingSection = () => {
       name: "Plan Gold",
       price: 2600000,
       features: [
-        "Todo lo del Plan Silver",
-        "Módulo legal con abogado dedicado",
-        "Módulo inversiones con gestor personal",
-        "Soporte premium",
-        "Reuniones mensuales de seguimiento"
+        "Asistente personalizado",
+        "Módulo de contabilidad  y Tesorería",
+        "Módulo legal con abogado",
+        "Módulo de inversiones con gestor personal",
+        "Reuniones mensuales de seguimiento",
+        "Chatbot 24/7"
       ],
       isPopular: true
     },
@@ -100,11 +100,13 @@ const PricingSection = () => {
       name: "Plan Diamond",
       price: 3700000,
       features: [
-        "Todo lo del Plan Gold",
-        "Módulo Media con guía personalizada",
-        "Estrategia integral de contenido",
-        "Gestor de cuenta exclusivo",
-        "Reuniones semanales de seguimiento"
+        "Asistente personalizado",
+        "Módulo de contabilidad, tesoreria y finanzas",
+        "Módulo legal con abogado dedicado",
+        "Módulo de inversiones con gestor personal",
+        "Soporte premiun",
+        "Reuniones semanales de seguimiento",
+        "Gestión de Redes Sociales"
       ]
     }
   ];
