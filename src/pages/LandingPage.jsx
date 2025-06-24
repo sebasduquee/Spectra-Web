@@ -93,7 +93,10 @@ const LandingPage = () => {
                 >
                   Empezar Ahora
                 </button>
-                <button className="px-8 py-4 bg-white/5 text-white rounded-xl font-medium hover:bg-white/10 transition-all">
+                <button 
+                  onClick={() => window.open('https://spectrumai.replit.app/', '_blank')}
+                  className="px-8 py-4 bg-white/5 text-white rounded-xl font-medium hover:bg-white/10 transition-all"
+                >
                   Ver Demo
                 </button>
               </div>
