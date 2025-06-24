@@ -43,7 +43,7 @@ apiClient.interceptors.response.use(
 import mockService from './mockService';
 
 // Determinar si debemos usar el mock service
-const USE_MOCK = true; // Activamos el mock temporalmente hasta que se configure el endpoint real
+const USE_MOCK = false; // Desactivamos el mock para usar la API real
 
 // Métodos para interactuar con la API
 const api = {
