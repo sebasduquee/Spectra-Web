@@ -1,0 +1,147 @@
+Enviando número de teléfono formateado: +573013943691
+index-CbGbL70a.js:350 Enviando POST real a: https://jsonplaceholder.typicode.com/auth/contact-request con datos: 
+{name: 'Anderson Montilva', email: 'andersonmontilva@gmail.com', phoneNumber: '+573013943691', metadata: {…}}
+email
+: 
+"andersonmontilva@gmail.com"
+metadata
+: 
+contactReason
+: 
+"landing_page"
+message
+: 
+"Quiero que me contacten."
+source
+: 
+"website"
+[[Prototype]]
+: 
+Object
+name
+: 
+"Anderson Montilva"
+phoneNumber
+: 
+"+573013943691"
+[[Prototype]]
+: 
+Object
+constructor
+: 
+ƒ Object()
+hasOwnProperty
+: 
+ƒ hasOwnProperty()
+isPrototypeOf
+: 
+ƒ isPrototypeOf()
+propertyIsEnumerable
+: 
+ƒ propertyIsEnumerable()
+toLocaleString
+: 
+ƒ toLocaleString()
+toString
+: 
+ƒ toString()
+valueOf
+: 
+ƒ valueOf()
+__defineGetter__
+: 
+ƒ __defineGetter__()
+__defineSetter__
+: 
+ƒ __defineSetter__()
+__lookupGetter__
+: 
+ƒ __lookupGetter__()
+__lookupSetter__
+: 
+ƒ __lookupSetter__()
+__proto__
+: 
+(...)
+get __proto__
+: 
+ƒ __proto__()
+set __proto__
+: 
+ƒ __proto__()
+index-CbGbL70a.js:347 
+ 
+ POST https://jsonplaceholder.typicode.com/auth/contact-request 404 (Not Found)
+(anonymous)	@	index-CbGbL70a.js:347
+xhr	@	index-CbGbL70a.js:347
+f1	@	index-CbGbL70a.js:349
+Promise.then		
+_request	@	index-CbGbL70a.js:350
+request	@	index-CbGbL70a.js:349
+(anonymous)	@	index-CbGbL70a.js:350
+(anonymous)	@	index-CbGbL70a.js:345
+post	@	index-CbGbL70a.js:350
+c	@	index-CbGbL70a.js:350
+Fk	@	index-CbGbL70a.js:37
+Uk	@	index-CbGbL70a.js:37
+Vk	@	index-CbGbL70a.js:37
+Vx	@	index-CbGbL70a.js:37
+uA	@	index-CbGbL70a.js:37
+(anonymous)	@	index-CbGbL70a.js:37
+rv	@	index-CbGbL70a.js:40
+$O	@	index-CbGbL70a.js:37
+Oh	@	index-CbGbL70a.js:37
+Ng	@	index-CbGbL70a.js:37
+a$	@	index-CbGbL70a.js:37
+[NEW] Explain Console errors by using Copilot in Edge: click 
+ to explain an error. Learn more
+Don't show again
+index-CbGbL70a.js:350 
+ Error en POST /auth/contact-request: 
+ee {message: 'Request failed with status code 404', name: 'AxiosError', code: 'ERR_BAD_REQUEST', config: {…}, request: XMLHttpRequest, …}
+post	@	index-CbGbL70a.js:350
+await in post		
+c	@	index-CbGbL70a.js:350
+Fk	@	index-CbGbL70a.js:37
+Uk	@	index-CbGbL70a.js:37
+Vk	@	index-CbGbL70a.js:37
+Vx	@	index-CbGbL70a.js:37
+uA	@	index-CbGbL70a.js:37
+(anonymous)	@	index-CbGbL70a.js:37
+rv	@	index-CbGbL70a.js:40
+$O	@	index-CbGbL70a.js:37
+Oh	@	index-CbGbL70a.js:37
+Ng	@	index-CbGbL70a.js:37
+a$	@	index-CbGbL70a.js:37
+index-CbGbL70a.js:350 
+ Respuesta de error: 404 
+{}
+post	@	index-CbGbL70a.js:350
+await in post		
+c	@	index-CbGbL70a.js:350
+Fk	@	index-CbGbL70a.js:37
+Uk	@	index-CbGbL70a.js:37
+Vk	@	index-CbGbL70a.js:37
+Vx	@	index-CbGbL70a.js:37
+uA	@	index-CbGbL70a.js:37
+(anonymous)	@	index-CbGbL70a.js:37
+rv	@	index-CbGbL70a.js:40
+$O	@	index-CbGbL70a.js:37
+Oh	@	index-CbGbL70a.js:37
+Ng	@	index-CbGbL70a.js:37
+a$	@	index-CbGbL70a.js:37
+index-CbGbL70a.js:350 
+ Error de contacto: Error al enviar datos
+c	@	index-CbGbL70a.js:350
+await in c		
+Fk	@	index-CbGbL70a.js:37
+Uk	@	index-CbGbL70a.js:37
+Vk	@	index-CbGbL70a.js:37
+Vx	@	index-CbGbL70a.js:37
+uA	@	index-CbGbL70a.js:37
+(anonymous)	@	index-CbGbL70a.js:37
+rv	@	index-CbGbL70a.js:40
+$O	@	index-CbGbL70a.js:37
+Oh	@	index-CbGbL70a.js:37
+Ng	@	index-CbGbL70a.js:37
+a$	@	index-CbGbL70a.js:37
