@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Obtener la URL base de la API desde variables de entorno
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://jsonplaceholder.typicode.com';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://zjgnryu8yj.execute-api.us-east-1.amazonaws.com/dev';
 
 // Crear instancia de axios con configuración base
 const apiClient = axios.create({
