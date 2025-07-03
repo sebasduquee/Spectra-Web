@@ -2,4 +2,21 @@
 User-agent: *
 Allow: /
 
+# Bloquear archivos no necesarios para SEO
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /attached_assets/
+
+# Permitir específicamente páginas importantes
+Allow: /
+Allow: /en
+Allow: /politica-privacidad
+Allow: /terminos-y-condiciones
+
+# Sitemap
 Sitemap: https://spectrumai.com.co/sitemap.xml
+
+# Crawl-delay para no sobrecargar el servidor
+Crawl-delay: 1
