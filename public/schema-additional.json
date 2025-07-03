@@ -40,8 +40,10 @@
         "@type": "Place",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Salento",
-          "@addressRegion": "Quindío",
+          "streetAddress": "Cra. 32 #13-49",
+          "addressLocality": "El Poblado",
+          "addressRegion": "Antioquia",
+          "addressSubregion": "Medellín",
           "addressCountry": "Colombia"
         }
       }

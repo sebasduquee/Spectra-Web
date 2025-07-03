@@ -18,10 +18,11 @@ const StructuredData = ({ type = 'organization', data = {} }) => {
     "foundingDate": "2024",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "CL 5 # 5-16 LC 2",
-      "addressLocality": "Salento",
-      "addressRegion": "Quindío",
-      "postalCode": "634001",
+      "streetAddress": "Cra. 32 #13-49",
+      "addressLocality": "El Poblado",
+      "addressRegion": "Antioquia",
+      "addressSubregion": "Medellín",
+      "postalCode": "050021",
       "addressCountry": "CO"
     },
     "contactPoint": {
