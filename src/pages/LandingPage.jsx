@@ -14,7 +14,7 @@ import AppShowcase from '../components/shared/AppShowcase';
 import GallerySection from '../components/landing/GallerySection';
 import Footer from '../components/landing/Footer';
 import ContactSection from '../components/landing/ContactSection';
-import SEOHead from '../components/SEO/SEOHead';
+import SEOHead from '../components/shared/SEOHead';
 
 
 const LandingPage = () => {
@@ -33,6 +33,7 @@ const LandingPage = () => {
 
   return (
     <GradientBackground className="min-h-screen w-full">
+      <SEOHead />
       {/* Navbar con fondo dinámico */}
       <motion.nav
         initial={{ y: -100 }}
