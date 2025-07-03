@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <script type="module">
+import RefreshRuntime from "/@react-refresh"
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spectrum - Plataforma de asistencia AI para profesionales</title>
+    <meta name="description" content="Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://spectrumai.com.co/" />
+    <meta property="og:title" content="Spectrum - Plataforma de asistencia AI para profesionales" />
+    <meta property="og:description" content="Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma." />
+    <meta property="og:image" content="https://spectrumai.com.co/images/brand/preview-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://spectrumai.com.co/" />
+    <meta property="twitter:title" content="Spectrum - Plataforma de asistencia AI para profesionales" />
+    <meta property="twitter:description" content="Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma." />
+    <meta property="twitter:image" content="https://spectrumai.com.co/images/brand/preview-image.jpg" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Spectrum AI",
+      "alternateName": "Spectrum",
+      "url": "https://spectrumai.com.co",
+      "logo": "https://spectrumai.com.co/images/brand/logo.svg",
+      "image": "https://spectrumai.com.co/images/brand/preview-image.jpg",
+      "description": "Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.",
+      "foundingDate": "2024",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "CL 5 # 5-16 LC 2",
+        "addressLocality": "Salento",
+        "addressRegion": "Quindío",
+        "postalCode": "634001",
+        "addressCountry": "CO"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+57-322-534-0550",
+        "contactType": "customer service",
+        "email": "contacto@spectrumai.com.co",
+        "availableLanguage": ["Spanish", "English"]
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/spectrum-ai",
+        "https://www.instagram.com/spectrumai",
+        "https://twitter.com/spectrumai"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Colombia"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Spectrum - Plataforma de asistencia AI para profesionales",
+      "description": "Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.",
+      "url": "https://spectrumai.com.co",
+      "inLanguage": "es",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Spectrum AI",
+        "url": "https://spectrumai.com.co"
+      },
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Spectrum AI"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Spectrum AI Platform",
+      "description": "Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Spectrum AI",
+        "url": "https://spectrumai.com.co"
+      },
+      "serviceType": "AI Assistance Platform",
+      "category": "Technology",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Colombia"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Spectrum Plans",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Silver Plan",
+            "description": "Plan básico con asistencia AI y gestión contable",
+            "price": "1600000",
+            "priceCurrency": "COP",
+            "priceValidUntil": "2025-12-31",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Gold Plan",
+            "description": "Plan completo con todos los servicios incluidos",
+            "price": "2600000",
+            "priceCurrency": "COP",
+            "priceValidUntil": "2025-12-31",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Diamond Plan",
+            "description": "Plan premium con servicios exclusivos",
+            "price": "3700000",
+            "priceCurrency": "COP",
+            "priceValidUntil": "2025-12-31",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/index.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,167 @@
+Service
+0 ERRORS
+0 WARNINGS
+expand_less
+@type	
+Service
+name	
+Spectrum AI Platform
+description	
+Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.
+serviceType	
+AI Assistance Platform
+category	
+Technology
+provider	
+@type	
+Organization
+name	
+Spectrum AI
+url	
+https://spectrumai.com.co/
+areaServed	
+@type	
+Country
+name	
+Colombia
+hasOfferCatalog	
+@type	
+OfferCatalog
+name	
+Spectrum Plans
+itemListElement	
+@type	
+Offer
+name	
+Silver Plan
+description	
+Plan básico con asistencia AI y gestión contable
+price	
+1600000
+priceCurrency	
+COP
+priceValidUntil	
+2025-12-31
+availability	
+http://schema.org/InStock
+itemListElement	
+@type	
+Offer
+name	
+Gold Plan
+description	
+Plan completo con todos los servicios incluidos
+price	
+2600000
+priceCurrency	
+COP
+priceValidUntil	
+2025-12-31
+availability	
+http://schema.org/InStock
+itemListElement	
+@type	
+Offer
+name	
+Diamond Plan
+description	
+Plan premium con servicios exclusivos
+price	
+3700000
+priceCurrency	
+COP
+priceValidUntil	
+2025-12-31
+availability	
+http://schema.org/InStock
+Service
+0 ERRORS
+0 WARNINGS
+expand_less
+@type	
+Service
+name	
+Spectrum AI Platform
+description	
+Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.
+serviceType	
+AI Assistance Platform
+category	
+Technology
+provider	
+@type	
+Organization
+name	
+Spectrum AI
+url	
+https://spectrumai.com.co/
+areaServed	
+@type	
+Country
+name	
+Colombia
+hasOfferCatalog	
+@type	
+OfferCatalog
+name	
+Spectrum Plans
+itemListElement	
+@type	
+Offer
+name	
+Plan Silver
+description	
+Plan básico con asistencia AI y gestión contable
+price	
+1600000
+priceCurrency	
+COP
+priceValidUntil	
+2025-12-31
+availability	
+http://schema.org/InStock
+seller	
+@type	
+Organization
+name	
+Spectrum AI
+itemListElement	
+@type	
+Offer
+name	
+Plan Gold
+description	
+Plan completo con todos los servicios incluidos
+price	
+2600000
+priceCurrency	
+COP
+priceValidUntil	
+2025-12-31
+availability	
+http://schema.org/InStock
+seller	
+@type	
+Organization
+name	
+Spectrum AI
+itemListElement	
+@type	
+Offer
+name	
+Plan Diamond
+description	
+Plan premium con servicios exclusivos
+price	
+3700000
+priceCurrency	
+COP
+priceValidUntil	
+2025-12-31
+availability	
+http://schema.org/InStock
+seller	
+@type	
+Organization
+name	
+Spectrum AI

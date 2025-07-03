@@ -1,0 +1,130 @@
+Details
+Crawl
+error
+Crawl failed on Jul 3, 2025, 8:04:57 PM
+Crawled as
+Google Inspection Tool smartphone
+Crawl allowed?
+Yes
+Page fetch
+Successful
+Indexing allowed?
+error
+No: 'noindex' detected in 'X-Robots-Tag' http header
+Detected items
+check_circle
+Spectrum AI
+type
+Organization
+name
+Spectrum AI
+alternateName
+Spectrum
+url
+https://spectrumai.com.co/
+logo
+https://spectrumai.com.co/images/brand/logo.svg
+image
+https://spectrumai.com.co/images/brand/preview-image.jpg
+description
+Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.
+foundingDate
+2024
+address
+type
+PostalAddress
+streetAddress
+CL 5 # 5-16 LC 2
+addressLocality
+Salento
+addressRegion
+Quindío
+postalCode
+634001
+addressCountry
+type
+Country
+name
+CO
+contactPoint
+type
+ContactPoint
+telephone
++57-322-534-0550
+contactType
+customer service
+email
+contacto@spectrumai.com.co
+availableLanguage
+Spanish
+availableLanguage
+English
+sameAs
+https://www.linkedin.com/company/spectrum-ai
+sameAs
+https://www.instagram.com/spectrumai
+sameAs
+https://twitter.com/spectrumai
+areaServed
+type
+Country
+name
+Colombia
+check_circle
+Spectrum AI
+type
+Organization
+name
+Spectrum AI
+alternateName
+Spectrum
+url
+https://spectrumai.com.co/
+logo
+https://spectrumai.com.co/images/brand/logo.svg
+image
+https://spectrumai.com.co/images/brand/preview-image.jpg
+description
+Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.
+foundingDate
+2024
+address
+type
+PostalAddress
+streetAddress
+CL 5 # 5-16 LC 2
+addressLocality
+Salento
+addressRegion
+Quindío
+postalCode
+634001
+addressCountry
+type
+Country
+name
+CO
+contactPoint
+type
+ContactPoint
+telephone
++57-322-534-0550
+contactType
+customer service
+email
+contacto@spectrumai.com.co
+availableLanguage
+Spanish
+availableLanguage
+English
+sameAs
+https://www.linkedin.com/company/spectrum-ai
+sameAs
+https://www.instagram.com/spectrumai
+sameAs
+https://twitter.com/spectrumai
+areaServed
+type
+Country
+name
+Colombia
