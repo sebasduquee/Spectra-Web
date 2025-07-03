@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useScrollTo } from '../hooks/useScrollTo';
+import LanguageSelector from '../components/shared/LanguageSelector';
 import GradientBackground from '../components/shared/GradientBackground';
 import FeaturesSection from '../components/landing/FeaturesSection';
 import HowItWorksSection from '../components/landing/HowItWorksSection';
@@ -16,6 +18,7 @@ import ContactSection from '../components/landing/ContactSection';
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollTo = useScrollTo();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,16 +54,17 @@ const LandingPage = () => {
               onClick={() => scrollTo('#features')}
               className="text-white/80 hover:text-white transition-colors"
             >
-              Características
+              {t('nav.features')}
             </button>
             <button 
               onClick={() => scrollTo('#pricing')}
               className="text-white/80 hover:text-white transition-colors"
             >
-              Planes
+              {t('nav.pricing')}
             </button>
+            <LanguageSelector className="text-white/80 hover:text-white" />
             <Link to="/admin/login" className="px-8 py-3 bg-[#CBDFF4] text-[#010129] rounded-full font-medium hover:opacity-90 transition-all">
-              Admin Portal
+              {t('nav.adminPortal')}
             </Link>
           </div>
         </div>
@@ -81,23 +85,23 @@ const LandingPage = () => {
               </span> */}
               
               <h1 className="text-6xl md:text-l font-bold text-white mb-8">
-                Tu gestión 360° como creador<br/>
+                {t('hero.title')}<br/>
               </h1>
               <p className="text-l text-white/70 max-w-xl mb-12">
-                Hacemos tu vida más fácil a través de nuestros servicios de asistente virtual, gestión contable y financiera, jurídica, inversiones, estrategia de media y mucho más en una sola plataforma.
+                {t('hero.subtitle')}
               </p>
               <div className="flex gap-4">
                 <button 
                   onClick={() => scrollTo('#contactSection')}
                   className="px-8 py-4 bg-[#CBDFF4] text-[#010129] rounded-xl font-medium hover:bg-[#CBDFF4]/90 transition-all"
                 >
-                  Empezar Ahora
+                  {t('hero.startNow')}
                 </button>
                 <button 
                   onClick={() => window.open('https://spectrumai.replit.app/', '_blank')}
                   className="px-8 py-4 bg-white/5 text-white rounded-xl font-medium hover:bg-white/10 transition-all"
                 >
-                  Ver Demo
+                  {t('hero.viewDemo')}
                 </button>
               </div>
             </motion.div>

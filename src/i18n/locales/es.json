@@ -1,0 +1,100 @@
+
+{
+  "nav": {
+    "features": "Características",
+    "pricing": "Planes",
+    "adminPortal": "Admin Portal"
+  },
+  "hero": {
+    "title": "Tu gestión 360° como creador",
+    "subtitle": "Hacemos tu vida más fácil a través de nuestros servicios de asistente virtual, gestión contable y financiera, jurídica, inversiones, estrategia de media y mucho más en una sola plataforma.",
+    "startNow": "Empezar Ahora",
+    "viewDemo": "Ver Demo"
+  },
+  "features": {
+    "title": "Todo lo que necesitas en una plataforma"
+  },
+  "pricing": {
+    "title": "Elige el plan perfecto para ti",
+    "subtitle": "Escogelo a tu medida.",
+    "popular": "Más popular",
+    "startNow": "Empezar ahora",
+    "customPlan": "¿Necesitas un plan personalizado?",
+    "contactUs": "Contáctanos",
+    "ctaTitle": "¿Listo para comenzar?",
+    "ctaSubtitle": "Chatea con nuestra asistente virtual aquí.",
+    "ctaButton": "Comienza aquí",
+    "plans": {
+      "silver": {
+        "name": "Plan Silver",
+        "features": [
+          "Asistente personalizado",
+          "Módulo contabilidad",
+          "Módulo Legal",
+          "Chatbot 24/7"
+        ]
+      },
+      "gold": {
+        "name": "Plan Gold",
+        "features": [
+          "Asistente personalizado",
+          "Módulo de contabilidad y Tesorería",
+          "Módulo legal con abogado",
+          "Módulo de inversiones con gestor personal",
+          "Reuniones mensuales de seguimiento",
+          "Chatbot 24/7"
+        ]
+      },
+      "diamond": {
+        "name": "Plan Diamond",
+        "features": [
+          "Asistente personalizado",
+          "Módulo de contabilidad, tesoreria y finanzas",
+          "Módulo legal con abogado dedicado",
+          "Módulo de inversiones con gestor personal",
+          "Soporte premiun",
+          "Reuniones semanales de seguimiento",
+          "Gestión de Redes Sociales"
+        ]
+      }
+    }
+  },
+  "howItWorks": {
+    "step1": {
+      "title": "Crea tu cuenta",
+      "description": "Regístrate en minutos y accede a todas las herramientas que necesitas para llevar tu día a día de manera profesional."
+    },
+    "step2": {
+      "title": "Personaliza tu experiencia",
+      "description": "Configura tus módulos según tus necesidades específicas. Desde asistencia AI hasta gestión legal, todo adaptado a tu perfil."
+    },
+    "step3": {
+      "title": "Conecta con expertos",
+      "description": "Accede a nuestro equipo de asesores especializados en cada área. Contadores, abogados y estrategas de media listos para ayudarte."
+    },
+    "step4": {
+      "title": "Escala tu negocio",
+      "description": "Aprovecha nuestras herramientas y asesoría para llevar tu carrera al siguiente nivel."
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "name": "Nombre",
+    "email": "Email",
+    "phone": "Teléfono",
+    "message": "Mensaje",
+    "send": "Enviar mensaje",
+    "sending": "Enviando...",
+    "success": "¡Mensaje enviado exitosamente!",
+    "error": "Error al enviar el mensaje"
+  },
+  "footer": {
+    "description": "Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.",
+    "quickLinks": "Enlaces rápidos",
+    "legal": "Legal",
+    "contact": "Contacto",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio",
+    "allRightsReserved": "Todos los derechos reservados."
+  }
+}

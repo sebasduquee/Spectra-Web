@@ -2,7 +2,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthProvider } from './contexts/AuthContext';
-import { ToastProvider } from './contexts/ToastContext'; 
+import { ToastProvider } from './contexts/ToastContext';
+import './i18n/config'; // Initialize i18n 
 import { ProtectedRoute, PublicRoute } from './components/auth/ProtectedRoute';
 
 // Pages

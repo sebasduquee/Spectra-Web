@@ -1,0 +1,100 @@
+
+{
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "adminPortal": "Admin Portal"
+  },
+  "hero": {
+    "title": "Your 360° management as a creator",
+    "subtitle": "We make your life easier through our virtual assistant services, accounting and financial management, legal, investments, media strategy and much more in a single platform.",
+    "startNow": "Get Started",
+    "viewDemo": "View Demo"
+  },
+  "features": {
+    "title": "Everything you need in one platform"
+  },
+  "pricing": {
+    "title": "Choose the perfect plan for you",
+    "subtitle": "Choose it to your measure.",
+    "popular": "Most popular",
+    "startNow": "Get started",
+    "customPlan": "Need a custom plan?",
+    "contactUs": "Contact us",
+    "ctaTitle": "Ready to get started?",
+    "ctaSubtitle": "Chat with our virtual assistant here.",
+    "ctaButton": "Start here",
+    "plans": {
+      "silver": {
+        "name": "Silver Plan",
+        "features": [
+          "Personal assistant",
+          "Accounting module",
+          "Legal module",
+          "24/7 Chatbot"
+        ]
+      },
+      "gold": {
+        "name": "Gold Plan",
+        "features": [
+          "Personal assistant",
+          "Accounting and Treasury module",
+          "Legal module with lawyer",
+          "Investment module with personal manager",
+          "Monthly follow-up meetings",
+          "24/7 Chatbot"
+        ]
+      },
+      "diamond": {
+        "name": "Diamond Plan",
+        "features": [
+          "Personal assistant",
+          "Accounting, treasury and finance module",
+          "Legal module with dedicated lawyer",
+          "Investment module with personal manager",
+          "Premium support",
+          "Weekly follow-up meetings",
+          "Social Media Management"
+        ]
+      }
+    }
+  },
+  "howItWorks": {
+    "step1": {
+      "title": "Create your account",
+      "description": "Register in minutes and access all the tools you need to manage your day-to-day professionally."
+    },
+    "step2": {
+      "title": "Customize your experience",
+      "description": "Configure your modules according to your specific needs. From AI assistance to legal management, everything adapted to your profile."
+    },
+    "step3": {
+      "title": "Connect with experts",
+      "description": "Access our team of specialized advisors in each area. Accountants, lawyers and media strategists ready to help you."
+    },
+    "step4": {
+      "title": "Scale your business",
+      "description": "Take advantage of our tools and advice to take your career to the next level."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Error sending message"
+  },
+  "footer": {
+    "description": "Simplify your day-to-day with AI assistance, accounting, legal, investment and media strategy management in a single platform.",
+    "quickLinks": "Quick links",
+    "legal": "Legal",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "allRightsReserved": "All rights reserved."
+  }
+}

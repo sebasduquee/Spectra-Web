@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useScrollTo } from '../../hooks/useScrollTo';
 
-const PlanCard = ({ plan, isPopular, delay, onContactClick }) => (
+const PlanCard = ({ plan, isPopular, delay, onContactClick }) => {
+  const { t } = useTranslation();
+  return (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -18,7 +21,7 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => (
     }`}>
       {isPopular && (
         <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#CBDFF4] text-[#090744] text-sm font-medium rounded-full">
-          Más popular
+          {t('pricing.popular')}
         </span>
       )}
 
@@ -63,51 +66,34 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => (
             ? 'bg-[#CBDFF4] text-[#090744] hover:bg-[#CBDFF4]/90'
             : 'bg-white/10 text-white hover:bg-white/20'
         }`}>
-          Empezar ahora
+          {t('pricing.startNow')}
         </button>
       </div>
     </div>
   </motion.div>
-);
+  );
+};
 
 const PricingSection = () => {
   const scrollToElement = useScrollTo();
+  const { t } = useTranslation();
+  
   const plans = [
     {
-      name: "Plan Silver",
+      name: t('pricing.plans.silver.name'),
       price: 1600000,
-      features: [
-        "Asistente personalizado",
-        "Módulo contabilidad",
-        "Módulo Legal",
-        "Chatbot 24/7"
-      ]
+      features: t('pricing.plans.silver.features', { returnObjects: true })
     },
     {
-      name: "Plan Gold",
+      name: t('pricing.plans.gold.name'),
       price: 2600000,
-      features: [
-        "Asistente personalizado",
-        "Módulo de contabilidad  y Tesorería",
-        "Módulo legal con abogado",
-        "Módulo de inversiones con gestor personal",
-        "Reuniones mensuales de seguimiento",
-        "Chatbot 24/7"
-      ],
+      features: t('pricing.plans.gold.features', { returnObjects: true }),
       isPopular: true
     },
     {
-      name: "Plan Diamond",
+      name: t('pricing.plans.diamond.name'),
       price: 3700000,
-      features: [
-        "Asistente personalizado",
-        "Módulo de contabilidad, tesoreria y finanzas",
-        "Módulo legal con abogado dedicado",
-        "Módulo de inversiones con gestor personal",
-        "Soporte premiun",
-        "Reuniones semanales de seguimiento",
-        "Gestión de Redes Sociales"
-      ]
+      features: t('pricing.plans.diamond.features', { returnObjects: true })
     }
   ];
 
@@ -121,10 +107,10 @@ const PricingSection = () => {
           className="text-center mb-10"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Elige el plan perfecto para ti
+            {t('pricing.title')}
           </h2>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            Escogelo a tu medida.
+            {t('pricing.subtitle')}
           </p>
         </motion.div>
 
@@ -147,9 +133,9 @@ const PricingSection = () => {
           className="text-center mt-12"
         >
           <p className="text-white/60">
-            ¿Necesitas un plan personalizado? {" "}
+            {t('pricing.customPlan')} {" "}
             <a href="#contact" className="text-[#CBDFF4] hover:underline">
-              Contáctanos
+              {t('pricing.contactUs')}
             </a>
           </p>
         </motion.div>
@@ -161,16 +147,16 @@ const PricingSection = () => {
           className="text-center mt-16 pt-8"
         >
           <h3 className="text-3xl font-bold text-white mb-6">
-            ¿Listo para comenzar?
+            {t('pricing.ctaTitle')}
           </h3>
           <p className="text-white/70 mb-8 max-w-2xl mx-auto">
-            Chatea con nuestra asistente virtual aquí.
+            {t('pricing.ctaSubtitle')}
           </p>
           <button 
             onClick={() => scrollToElement('#contactSection')}
             className="px-8 py-4 bg-[#CBDFF4] text-[#090744] rounded-xl font-medium hover:bg-[#CBDFF4]/90 transition-all"
           >
-            Comienza aquí
+            {t('pricing.ctaButton')}
           </button>
         </motion.div>
 
