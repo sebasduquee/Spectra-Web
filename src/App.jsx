@@ -6,6 +6,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { ToastProvider } from './contexts/ToastContext';
 import './i18n/config'; // Initialize i18n 
 import { ProtectedRoute, PublicRoute } from './components/auth/ProtectedRoute';
+import ResourcePreloader from './components/shared/ResourcePreloader';
 
 // Pages
 import LandingPage from "./pages/LandingPage";

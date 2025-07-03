@@ -1,35 +1,47 @@
-
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Import translation files
-import esTranslations from './locales/es.json';
-import enTranslations from './locales/en.json';
+// Lazy loading de traducciones
+const loadResources = async (lng) => {
+  try {
+    const module = await import(`./locales/${lng}.json`);
+    return module.default;
+  } catch (error) {
+    console.warn(`No se pudo cargar el idioma: ${lng}`);
+    return {};
+  }
+};
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources: {
-      es: {
-        translation: esTranslations
-      },
-      en: {
-        translation: enTranslations
-      }
-    },
+    resources: {}, // Inicialmente vacío
+
     lng: 'es', // idioma por defecto (español)
     fallbackLng: 'es',
-    
+
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
     },
 
     interpolation: {
-      escapeValue: false,
-    },
+      escapeValue: false
+    }
   });
+
+// Cargar idiomas de forma asíncrona
+const loadLanguage = async (lng) => {
+  if (!i18n.hasResourceBundle(lng, 'translation')) {
+    const resources = await loadResources(lng);
+    i18n.addResourceBundle(lng, 'translation', resources);
+  }
+};
+
+// Cargar idioma por defecto
+loadLanguage('es');
+loadLanguage('en');
 
 export default i18n;

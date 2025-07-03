@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DeviceFrame from './DeviceFrame';
+import LazyImage from './LazyImage';
 
 const AppShowcase = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

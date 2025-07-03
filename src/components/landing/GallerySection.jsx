@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import LazyImage from '../shared/LazyImage';
 
 const GallerySection = () => {
   const { t } = useTranslation();
@@ -57,7 +58,7 @@ const GallerySection = () => {
             >
               {/* Imagen */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#090744] to-transparent opacity-60 z-10" />
-              <img
+              <LazyImage
                 src={image.src}
                 alt={image.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
