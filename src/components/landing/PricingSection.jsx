@@ -47,7 +47,7 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => {
 
       {/* Features */}
       <ul className="space-y-5 mb-auto flex-grow">
-        {plan.features.map((feature, index) => (
+        {(Array.isArray(plan.features) ? plan.features : []).map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
             <Check className={`w-5 h-5 mt-0.5 ${
               isPopular ? 'text-[#CBDFF4]' : 'text-white/60'
