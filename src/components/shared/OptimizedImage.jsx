@@ -1,46 +1,44 @@
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 
 const OptimizedImage = ({ 
   src, 
   alt, 
-  className = "", 
+  className = '', 
   width, 
   height,
-  priority = false,
-  placeholder = "blur"
+  loading = 'lazy',
+  ...props 
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
+  // Generate WebP version path
+  const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+  
+  const handleLoad = () => setIsLoaded(true);
+  const handleError = () => setHasError(true);
+
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      {!isLoaded && !hasError && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-      )}
+    <picture className={className}>
+      {/* WebP version for modern browsers */}
+      <source srcSet={webpSrc} type="image/webp" />
       
-      <motion.img
+      {/* Fallback to original format */}
+      <img
         src={src}
         alt={alt}
         width={width}
         height={height}
-        loading={priority ? "eager" : "lazy"}
-        decoding="async"
-        onLoad={() => setIsLoaded(true)}
-        onError={() => setHasError(true)}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isLoaded ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        className={`w-full h-full object-cover ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        loading={loading}
+        onLoad={handleLoad}
+        onError={handleError}
+        className={`transition-opacity duration-300 ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        } ${hasError ? 'opacity-50' : ''}`}
+        {...props}
       />
-      
-      {hasError && (
-        <div className="absolute inset-0 bg-gray-300 flex items-center justify-center text-gray-500">
-          <span>Error al cargar imagen</span>
-        </div>
-      )}
-    </div>
+    </picture>
   );
 };
 

@@ -10,12 +10,38 @@
   "background_color": "#090744",
   "categories": ["business", "productivity", "finance"],
   "lang": "es",
+  "screenshots": [
+    {
+      "src": "/images/brand/preview-image.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Contacto",
+      "url": "/#contact",
+      "description": "Contacta con nosotros"
+    },
+    {
+      "name": "Precios",
+      "url": "/#pricing", 
+      "description": "Ver nuestros planes"
+    }
+  ],
   "icons": [
     {
       "src": "/images/brand/logo.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/images/brand/preview-image.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
     }
   ]
 }

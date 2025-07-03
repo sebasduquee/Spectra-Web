@@ -40,6 +40,28 @@ Sitemap: https://spectrumai.com.co/sitemap.xml
 # Crawl-delay para no sobrecargar el servidor
 Crawl-delay: 1
 
+# Configuración adicional para mejorar SEO
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Permitir específicamente motores de búsqueda importantes
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /attached_assets/
+Disallow: /*?*
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.map$
+
 # Información adicional para motores de búsqueda
 # Spectrum AI - Plataforma líder de asistencia AI en Colombia
 # Servicios: asistencia virtual, gestión contable, legal, inversiones
