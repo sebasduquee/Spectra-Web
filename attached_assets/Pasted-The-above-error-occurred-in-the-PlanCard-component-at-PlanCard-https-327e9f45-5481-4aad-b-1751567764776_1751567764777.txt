@@ -1,0 +1,27 @@
+The above error occurred in the <PlanCard> component:
+
+    at PlanCard (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/src/components/landing/PricingSection.jsx:23:21)
+    at div
+    at div
+    at section
+    at PricingSection (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/src/components/landing/PricingSection.jsx:138:27)
+    at div
+    at div
+    at GradientBackground (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/src/components/shared/GradientBackground.jsx:19:31)
+    at LandingPage (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/src/pages/LandingPage.jsx:37:39)
+    at div
+    at MotionComponent (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/node_modules/.vite/deps/framer-motion.js?v=ce12dd44:950:40)
+    at RenderedRoute (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/node_modules/.vite/deps/react-router-dom.js?v=ce12dd44:4075:5)
+    at Routes (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/node_modules/.vite/deps/react-router-dom.js?v=ce12dd44:4545:5)
+    at PresenceChild (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/node_modules/.vite/deps/framer-motion.js?v=ce12dd44:126:24)
+    at AnimatePresence (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/node_modules/.vite/deps/framer-motion.js?v=ce12dd44:215:26)
+    at Router (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/node_modules/.vite/deps/react-router-dom.js?v=ce12dd44:4488:15)
+    at BrowserRouter (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/node_modules/.vite/deps/react-router-dom.js?v=ce12dd44:5234:5)
+    at ToastProvider (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/src/contexts/ToastContext.jsx:22:33)
+    at AuthProvider (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/src/contexts/AuthContext.jsx:20:32)
+    at _a (https://327e9f45-5481-4aad-b5a3-2307333bd1f5-00-34s3kj4lpf2ac.riker.replit.dev:3000/node_modules/.vite/deps/react-helmet-async.js?v=ce12dd44:624:5)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+plan.features.map is not a function
