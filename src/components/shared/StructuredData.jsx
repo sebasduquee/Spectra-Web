@@ -1,11 +1,29 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import i18n from '../../i18n/config';
 
 const StructuredData = ({ type = 'organization', data = {} }) => {
   const { t, i18n } = useTranslation();
-  
+
+  // Get current language and pricing data
+  const currentLanguage = i18n.language;
+  const getPricingData = (language) => {
+    if (language === 'en') {
+      return {
+        currency: 'USD',
+        prices: { silver: 1600, gold: 2600, diamond: 3700 }
+      };
+    } else {
+      return {
+        currency: 'COP',
+        prices: { silver: 1600000, gold: 2600000, diamond: 3700000 }
+      };
+    }
+  };
+
+  const pricingData = getPricingData(currentLanguage);
+
   const getOrganizationData = () => ({
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -67,8 +85,8 @@ const StructuredData = ({ type = 'organization', data = {} }) => {
           "@type": "Offer",
           "name": t('pricing.plans.silver.name'),
           "description": "Plan básico con asistencia AI y gestión contable",
-          "price": "1600000",
-          "priceCurrency": "COP",
+          "price": pricingData.prices.silver,
+          "priceCurrency": pricingData.currency,
           "priceValidUntil": "2025-12-31",
           "availability": "https://schema.org/InStock",
           "seller": {
@@ -80,8 +98,8 @@ const StructuredData = ({ type = 'organization', data = {} }) => {
           "@type": "Offer",
           "name": t('pricing.plans.gold.name'),
           "description": "Plan completo con todos los servicios incluidos",
-          "price": "2600000",
-          "priceCurrency": "COP",
+          "price": pricingData.prices.gold,
+          "priceCurrency": pricingData.currency,
           "priceValidUntil": "2025-12-31",
           "availability": "https://schema.org/InStock",
           "seller": {
@@ -93,8 +111,8 @@ const StructuredData = ({ type = 'organization', data = {} }) => {
           "@type": "Offer",
           "name": t('pricing.plans.diamond.name'),
           "description": "Plan premium con servicios exclusivos",
-          "price": "3700000",
-          "priceCurrency": "COP",
+          "price": pricingData.prices.diamond,
+          "priceCurrency": pricingData.currency,
           "priceValidUntil": "2025-12-31",
           "availability": "https://schema.org/InStock",
           "seller": {
@@ -139,8 +157,8 @@ const StructuredData = ({ type = 'organization', data = {} }) => {
     "operatingSystem": "Web",
     "offers": {
       "@type": "Offer",
-      "price": "1600000",
-      "priceCurrency": "COP",
+      "price": pricingData.prices.silver,
+      "priceCurrency": pricingData.currency,
       "availability": "https://schema.org/InStock"
     },
     "aggregateRating": {

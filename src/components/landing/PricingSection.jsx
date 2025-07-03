@@ -38,11 +38,13 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => {
       {/* Price */}
       <div className="mb-8">
         <div className="flex items-baseline">
-          <span className="text-white text-sm">COP</span>
+          <span className="text-white text-sm">{plan.symbol}</span>
           <span className="text-3xl font-bold text-white ml-2">
-            {new Intl.NumberFormat('es-CO').format(plan.price)}
+            {new Intl.NumberFormat(plan.locale).format(plan.price)}
           </span>
-          <span className="text-white/60 ml-2">/mes</span>
+          <span className="text-white/60 ml-2">
+            {plan.currency === 'USD' ? '/month' : '/mes'}
+          </span>
         </div>
       </div>
 
@@ -111,17 +113,55 @@ const PricingSection = () => {
     );
   }
 
+  // Get current language
+  const currentLanguage = i18n.language;
+  
+  // Define pricing based on language
+  const getPricingData = (language) => {
+    if (language === 'en') {
+      return {
+        currency: 'USD',
+        symbol: '$',
+        prices: {
+          silver: 1600,
+          gold: 2600,
+          diamond: 3700
+        },
+        locale: 'en-US'
+      };
+    } else {
+      return {
+        currency: 'COP',
+        symbol: 'COP',
+        prices: {
+          silver: 1600000,
+          gold: 2600000,
+          diamond: 3700000
+        },
+        locale: 'es-CO'
+      };
+    }
+  };
+
+  const pricingData = getPricingData(currentLanguage);
+
   const plans = [
     {
       name: t('pricing.plans.silver.name'),
-      price: 1600000,
+      price: pricingData.prices.silver,
+      currency: pricingData.currency,
+      symbol: pricingData.symbol,
+      locale: pricingData.locale,
       features: Array.isArray(t('pricing.plans.silver.features', { returnObjects: true })) 
         ? t('pricing.plans.silver.features', { returnObjects: true })
         : []
     },
     {
       name: t('pricing.plans.gold.name'),
-      price: 2600000,
+      price: pricingData.prices.gold,
+      currency: pricingData.currency,
+      symbol: pricingData.symbol,
+      locale: pricingData.locale,
       features: Array.isArray(t('pricing.plans.gold.features', { returnObjects: true }))
         ? t('pricing.plans.gold.features', { returnObjects: true })
         : [],
@@ -129,7 +169,10 @@ const PricingSection = () => {
     },
     {
       name: t('pricing.plans.diamond.name'),
-      price: 3700000,
+      price: pricingData.prices.diamond,
+      currency: pricingData.currency,
+      symbol: pricingData.symbol,
+      locale: pricingData.locale,
       features: Array.isArray(t('pricing.plans.diamond.features', { returnObjects: true }))
         ? t('pricing.plans.diamond.features', { returnObjects: true })
         : []

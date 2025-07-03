@@ -59,6 +59,8 @@
   "pricing": {
     "title": "Choose the perfect plan for you",
     "subtitle": "Choose it to your measure.",
+    "currency": "USD", 
+    "period": "/month",
     "popular": "Most popular",
     "startNow": "Get started",
     "customPlan": "Need a custom plan?",

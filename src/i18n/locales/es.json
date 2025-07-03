@@ -58,6 +58,8 @@
   "pricing": {
     "title": "Elige el plan perfecto para ti",
     "subtitle": "Escogelo a tu medida.",
+    "currency": "COP",
+    "period": "/mes",
     "popular": "Más popular",
     "startNow": "Empezar ahora",
     "customPlan": "¿Necesitas un plan personalizado?",
