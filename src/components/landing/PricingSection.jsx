@@ -47,14 +47,22 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => {
 
       {/* Features */}
       <ul className="space-y-5 mb-auto flex-grow">
-        {(Array.isArray(plan.features) ? plan.features : []).map((feature, index) => (
-          <li key={index} className="flex items-start gap-3">
-            <Check className={`w-5 h-5 mt-0.5 ${
-              isPopular ? 'text-[#CBDFF4]' : 'text-white/60'
-            }`} />
-            <span className="text-white/80">{feature}</span>
-          </li>
-        ))}
+        {plan.features && plan.features.length > 0 ? (
+          plan.features.map((feature, index) => (
+            <li key={index} className="flex items-start gap-3">
+              <Check className={`w-5 h-5 mt-0.5 ${
+                isPopular ? 'text-[#CBDFF4]' : 'text-white/60'
+              }`} />
+              <span className="text-white/80">{feature}</span>
+            </li>
+          ))
+        ) : (
+          <div className="space-y-3">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="h-4 bg-white/10 rounded animate-pulse"></div>
+            ))}
+          </div>
+        )}
       </ul>
 
       {/* CTA Button */}
@@ -76,24 +84,54 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => {
 
 const PricingSection = () => {
   const scrollToElement = useScrollTo();
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
   
+  // Loading state component
+  const LoadingState = () => (
+    <div className="max-w-6xl mx-auto">
+      <div className="text-center mb-10">
+        <div className="h-12 bg-white/10 rounded-lg w-96 mx-auto mb-4 animate-pulse"></div>
+        <div className="h-6 bg-white/5 rounded-lg w-128 mx-auto animate-pulse"></div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="h-96 bg-white/5 rounded-xl animate-pulse"></div>
+        ))}
+      </div>
+    </div>
+  );
+
+  // Show loading while translations aren't ready
+  if (!ready) {
+    return (
+      <section className="pt-8 pb-16 px-4" id="pricing">
+        <LoadingState />
+      </section>
+    );
+  }
+
   const plans = [
     {
       name: t('pricing.plans.silver.name'),
       price: 1600000,
-      features: t('pricing.plans.silver.features', { returnObjects: true })
+      features: Array.isArray(t('pricing.plans.silver.features', { returnObjects: true })) 
+        ? t('pricing.plans.silver.features', { returnObjects: true })
+        : []
     },
     {
       name: t('pricing.plans.gold.name'),
       price: 2600000,
-      features: t('pricing.plans.gold.features', { returnObjects: true }),
+      features: Array.isArray(t('pricing.plans.gold.features', { returnObjects: true }))
+        ? t('pricing.plans.gold.features', { returnObjects: true })
+        : [],
       isPopular: true
     },
     {
       name: t('pricing.plans.diamond.name'),
       price: 3700000,
-      features: t('pricing.plans.diamond.features', { returnObjects: true })
+      features: Array.isArray(t('pricing.plans.diamond.features', { returnObjects: true }))
+        ? t('pricing.plans.diamond.features', { returnObjects: true })
+        : []
     }
   ];
 

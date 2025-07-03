@@ -36,14 +36,49 @@ const LandingPage = () => {
     return (
       <GradientBackground className="min-h-screen w-full">
         <SEOHead />
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="animate-pulse">
+        
+        {/* Navbar skeleton */}
+        <div className="fixed w-full z-50 bg-[#090744]/95 backdrop-blur-md py-4">
+          <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <img 
               src="/images/brand/logo.svg" 
               alt="SPECTRUM" 
-              className="h-16 mx-auto opacity-50" 
+              className="h-12 opacity-50" 
             />
-            <div className="mt-4 text-white/50 text-center">Cargando...</div>
+            <div className="hidden md:flex items-center space-x-12">
+              <div className="h-4 w-20 bg-white/10 rounded animate-pulse"></div>
+              <div className="h-4 w-16 bg-white/10 rounded animate-pulse"></div>
+              <div className="h-4 w-8 bg-white/10 rounded animate-pulse"></div>
+              <div className="h-10 w-32 bg-white/10 rounded-full animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero skeleton */}
+        <div className="pt-28 pb-32 px-16">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-center gap-12">
+              <div className="flex-1 lg:pr-8">
+                <div className="h-16 bg-white/10 rounded-lg mb-8 animate-pulse"></div>
+                <div className="h-6 bg-white/5 rounded-lg mb-4 animate-pulse"></div>
+                <div className="h-6 bg-white/5 rounded-lg w-3/4 mb-12 animate-pulse"></div>
+                <div className="flex gap-4">
+                  <div className="h-12 w-32 bg-white/10 rounded-xl animate-pulse"></div>
+                  <div className="h-12 w-32 bg-white/5 rounded-xl animate-pulse"></div>
+                </div>
+              </div>
+              <div className="lg:flex-1 flex justify-center">
+                <div className="w-80 h-96 bg-white/5 rounded-3xl animate-pulse"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Loading indicator */}
+        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2">
+          <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full flex items-center space-x-3">
+            <div className="w-4 h-4 bg-[#CBDFF4] rounded-full animate-pulse"></div>
+            <span className="text-white/70">Cargando...</span>
           </div>
         </div>
       </GradientBackground>
