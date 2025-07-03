@@ -38,7 +38,9 @@ const PlanCard = ({ plan, isPopular, delay, onContactClick }) => {
       {/* Price */}
       <div className="mb-8">
         <div className="flex items-baseline">
-          <span className="text-white text-sm">{plan.symbol}</span>
+          <span className="text-white text-sm">
+            {plan.currency === 'USD' ? 'USD' : plan.symbol}
+          </span>
           <span className="text-3xl font-bold text-white ml-2">
             {new Intl.NumberFormat(plan.locale).format(plan.price)}
           </span>
