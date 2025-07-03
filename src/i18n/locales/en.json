@@ -35,6 +35,26 @@
       "description": "Optimize your digital presence with content strategies and data analysis."
     }
   },
+  "gallery": {
+    "title": "A platform designed for you",
+    "subtitle": "Explore how Spectrum can make your day-to-day simpler",
+    "workspace": {
+      "title": "We manage your schedule",
+      "description": "So you don't have to worry about anything."
+    },
+    "team": {
+      "title": "Dedicated team",
+      "description": "Experts in each area ready to help you."
+    },
+    "analytics": {
+      "title": "Control of your finances",
+      "description": "We help you have clarity in your personal finances."
+    },
+    "mobile": {
+      "title": "Always with you",
+      "description": "Access all your information whenever you need it."
+    }
+  },
   "pricing": {
     "title": "Choose the perfect plan for you",
     "subtitle": "Choose it to your measure.",

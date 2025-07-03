@@ -1,27 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const GallerySection = () => {
+  const { t } = useTranslation();
+  
   const images = [
     {
       src: "/images/gallery/workspace.jpg",
-      title: "Gestionamos tu agenda",
-      description: "Para que no tengas que preocuparte por nada."
+      title: t('gallery.workspace.title'),
+      description: t('gallery.workspace.description')
     },
     {
       src: "/images/gallery/team.jpg",
-      title: "Equipo dedicado",
-      description: "Expertos en cada área listos para ayudarte."
+      title: t('gallery.team.title'),
+      description: t('gallery.team.description')
     },
     {
       src: "/images/gallery/analytics.jpg",
-      title: "Control de tus finanzas",
-      description: "Te ayudamos a tener claridad en tus finanzas personales."
+      title: t('gallery.analytics.title'),
+      description: t('gallery.analytics.description')
     },
     {
       src: "/images/gallery/mobile.jpg",
-      title: "Siempre contigo",
-      description: "Accede a toda tu información siempre que lo necesites."
+      title: t('gallery.mobile.title'),
+      description: t('gallery.mobile.description')
     }
   ];
 
@@ -35,10 +38,10 @@ const GallerySection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Una plataforma diseñada para ti
+            {t('gallery.title')}
           </h2>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            Explora cómo Spectrum puede hacer más simple tu día a día
+            {t('gallery.subtitle')}
           </p>
         </motion.div>
 
