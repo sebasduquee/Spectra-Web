@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import api from '../../services/apiClient';
 import { useToast } from '../../contexts/ToastContext';
 
 const ContactSection = () => {
+  const { t } = useTranslation();
   const { addToast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -20,24 +22,24 @@ const ContactSection = () => {
     const errors = {};
 
     if (!formData.name.trim()) {
-      errors.name = 'El nombre es obligatorio';
+      errors.name = t('contact.validation.nameRequired');
     } else if (formData.name.trim().length < 2) {
-      errors.name = 'El nombre debe tener al menos 2 caracteres';
+      errors.name = t('contact.validation.nameMinLength');
     }
 
     if (!formData.email.trim()) {
-      errors.email = 'El correo electrónico es obligatorio';
+      errors.email = t('contact.validation.emailRequired');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'Ingresa un correo electrónico válido (ejemplo@dominio.com)';
+      errors.email = t('contact.validation.emailValid');
     }
 
     if (!formData.phone.trim()) {
-      errors.phone = 'El teléfono es obligatorio';
+      errors.phone = t('contact.validation.phoneRequired');
     } else {
       // Regex que permite formato internacional con código de país
       const phoneRegex = /^(\+?\d{1,3})?[\d\s()-]{6,}$/;
       if (!phoneRegex.test(formData.phone.trim())) {
-        errors.phone = 'Ingresa un número válido. Puedes incluir el código de país (+57)';
+        errors.phone = t('contact.validation.phoneValid');
       }
     }
 
@@ -58,7 +60,7 @@ const ContactSection = () => {
       setFormErrors(errors);
       setSubmitStatus({ 
         type: 'error', 
-        message: 'Por favor, completa todos los campos obligatorios correctamente.' 
+        message: t('contact.validation.completeFields')
       });
       return;
     }
@@ -89,7 +91,7 @@ const ContactSection = () => {
 
       addToast({ 
         type: 'success', 
-        message: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.',
+        message: t('contact.messages.success'),
         duration: 5000
       });
       setFormData({ name: '', email: '', phone: '', message: '' });
@@ -97,7 +99,7 @@ const ContactSection = () => {
       console.error('Error de contacto:', error);
       addToast({ 
         type: 'error', 
-        message: `Hubo un error al enviar el mensaje: ${error}. Por favor, intenta nuevamente.`,
+        message: `${t('contact.messages.error')}: ${error}. ${t('contact.messages.tryAgain')}`,
         duration: 7000
       });
     } finally {
@@ -115,10 +117,10 @@ const ContactSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold text-[#090744] mb-4">
-            ¿Te gustaría saber más?
+            {t('contact.title')}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Déjanos tus datos y nuestro equipo se pondrá en contacto contigo para resolver todas tus dudas.
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 
@@ -132,7 +134,7 @@ const ContactSection = () => {
         >
           <div>
             <label className="block text-gray-700 text-sm font-medium mb-2">
-              Nombre completo
+              {t('contact.form.fullName')}
             </label>
             <input
               type="text"
@@ -149,7 +151,7 @@ const ContactSection = () => {
 
           <div>
             <label className="block text-gray-700 text-sm font-medium mb-2">
-              Correo electrónico
+              {t('contact.form.email')}
             </label>
             <input
               type="email"
@@ -166,22 +168,22 @@ const ContactSection = () => {
 
           <div>
             <label className="block text-gray-700 text-sm font-medium mb-2">
-              Teléfono (con código de país)
+              {t('contact.form.phone')}
             </label>
             <input
               type="tel"
               value={formData.phone}
               onChange={(e) => setFormData({...formData, phone: e.target.value})}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#CBDFF4] text-gray-900"
-              placeholder="+57 000 000 0000"
+              placeholder={t('contact.form.phonePlaceholder')}
             />
-            <small className="text-gray-500 text-xs">Ejemplo: +57 300 123 4567</small>
+            <small className="text-gray-500 text-xs">{t('contact.form.phoneExample')}</small>
             {formErrors.phone && <p className="text-red-500 text-xs mt-1">{formErrors.phone}</p>}
           </div>
 
           <div>
             <label className="block text-gray-700 text-sm font-medium mb-2">
-              Mensaje (opcional)
+              {t('contact.form.message')}
             </label>
             <textarea
               value={formData.message}
@@ -196,7 +198,7 @@ const ContactSection = () => {
             disabled={isSubmitting}
             className={`w-full px-6 py-4 bg-[#090744] text-white rounded-xl font-medium hover:bg-[#090744]/90 transition-all flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            <span>{isSubmitting ? 'Enviando...' : 'Enviar mensaje'}</span>
+            <span>{isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}</span>
             <Send className="w-4 h-4" />
           </button>
 

@@ -143,15 +143,32 @@
     }
   },
   "contact": {
-    "title": "Contacto",
-    "name": "Nombre",
-    "email": "Email",
-    "phone": "Teléfono",
-    "message": "Mensaje",
-    "send": "Enviar mensaje",
-    "sending": "Enviando...",
-    "success": "¡Mensaje enviado exitosamente!",
-    "error": "Error al enviar el mensaje"
+    "title": "¿Te gustaría saber más?",
+    "subtitle": "Déjanos tus datos y nuestro equipo se pondrá en contacto contigo para resolver todas tus dudas.",
+    "form": {
+      "fullName": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono (con código de país)",
+      "phonePlaceholder": "+57 000 000 0000",
+      "phoneExample": "Ejemplo: +57 300 123 4567",
+      "message": "Mensaje (opcional)",
+      "submit": "Enviar mensaje",
+      "sending": "Enviando..."
+    },
+    "validation": {
+      "nameRequired": "El nombre es obligatorio",
+      "nameMinLength": "El nombre debe tener al menos 2 caracteres",
+      "emailRequired": "El correo electrónico es obligatorio",
+      "emailValid": "Ingresa un correo electrónico válido (ejemplo@dominio.com)",
+      "phoneRequired": "El teléfono es obligatorio",
+      "phoneValid": "Ingresa un número válido. Puedes incluir el código de país (+57)",
+      "completeFields": "Por favor, completa todos los campos obligatorios correctamente."
+    },
+    "messages": {
+      "success": "¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.",
+      "error": "Hubo un error al enviar el mensaje",
+      "tryAgain": "Por favor, intenta nuevamente."
+    }
   },
   "footer": {
     "description": "Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.",

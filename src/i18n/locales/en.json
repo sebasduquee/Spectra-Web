@@ -143,15 +143,32 @@
     }
   },
   "contact": {
-    "title": "Contact",
-    "name": "Name",
-    "email": "Email",
-    "phone": "Phone",
-    "message": "Message",
-    "send": "Send message",
-    "sending": "Sending...",
-    "success": "Message sent successfully!",
-    "error": "Error sending message"
+    "title": "Would you like to know more?",
+    "subtitle": "Leave us your information and our team will get in touch with you to answer all your questions.",
+    "form": {
+      "fullName": "Full name",
+      "email": "Email address",
+      "phone": "Phone (with country code)",
+      "phonePlaceholder": "+1 000 000 0000",
+      "phoneExample": "Example: +1 300 123 4567",
+      "message": "Message (optional)",
+      "submit": "Send message",
+      "sending": "Sending..."
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMinLength": "Name must be at least 2 characters",
+      "emailRequired": "Email is required",
+      "emailValid": "Enter a valid email address (example@domain.com)",
+      "phoneRequired": "Phone is required",
+      "phoneValid": "Enter a valid number. You can include the country code (+1)",
+      "completeFields": "Please complete all required fields correctly."
+    },
+    "messages": {
+      "success": "Message sent successfully! We will get in touch with you soon.",
+      "error": "There was an error sending the message",
+      "tryAgain": "Please try again."
+    }
   },
   "footer": {
     "description": "Simplify your day-to-day with AI assistance, accounting, legal, investment and media strategy management in a single platform.",
