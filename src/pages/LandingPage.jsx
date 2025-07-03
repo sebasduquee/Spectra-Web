@@ -16,6 +16,7 @@ import GallerySection from '../components/landing/GallerySection';
 import Footer from '../components/landing/Footer';
 import ContactSection from '../components/landing/ContactSection';
 import SEOHead from '../components/shared/SEOHead';
+import StructuredData from '../components/shared/StructuredData';
 
 
 const LandingPage = () => {
@@ -37,7 +38,7 @@ const LandingPage = () => {
     return (
       <GradientBackground className="min-h-screen w-full">
         <SEOHead />
-        
+
         {/* Navbar skeleton */}
         <div className="fixed w-full z-50 bg-[#090744]/95 backdrop-blur-md py-4">
           <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -87,8 +88,13 @@ const LandingPage = () => {
   }
 
   return (
-    <GradientBackground className="min-h-screen w-full">
+    <>
       <SEOHead />
+      <StructuredData type="organization" />
+      <StructuredData type="service" />
+      <StructuredData type="webpage" />
+      <StructuredData type="software" />
+      <GradientBackground className="min-h-screen w-full">
       {/* Navbar con fondo dinámico */}
       <motion.nav
         initial={{ y: -100 }}
@@ -187,6 +193,7 @@ const LandingPage = () => {
       <ContactSection />
       <Footer />
     </GradientBackground>
+    </>
   );
 };
 
