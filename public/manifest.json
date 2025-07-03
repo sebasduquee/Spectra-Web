@@ -1,0 +1,21 @@
+
+{
+  "name": "Spectrum AI - Plataforma de asistencia profesional",
+  "short_name": "Spectrum AI",
+  "description": "Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#090744",
+  "background_color": "#090744",
+  "categories": ["business", "productivity", "finance"],
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/images/brand/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
