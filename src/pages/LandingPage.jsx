@@ -7,6 +7,7 @@ import LanguageSelector from '../components/shared/LanguageSelector';
 import GradientBackground from '../components/shared/GradientBackground';
 import FeaturesSection from '../components/landing/FeaturesSection';
 import HowItWorksSection from '../components/landing/HowItWorksSection';
+import WhySpectrumSection from '../components/landing/WhySpectrumSection';
 import TestimonialsSection from '../components/landing/TestimonialsSection';
 import PricingSection from '../components/landing/PricingSection';
 import AppShowcase from '../components/shared/AppShowcase';
@@ -83,7 +84,7 @@ const LandingPage = () => {
               {/* <span className="inline-block px-6 py-2 bg-white/5 text-white/80 rounded-full text-sm mb-8">
                 Plataforma Todo en Uno
               </span> */}
-              
+
               <h1 className="text-6xl md:text-l font-bold text-white mb-8">
                 {t('hero.title')}<br/>
               </h1>
@@ -123,6 +124,7 @@ const LandingPage = () => {
       <FeaturesSection />
       <GallerySection />
       <HowItWorksSection />
+      <WhySpectrumSection />
       <TestimonialsSection />
       <PricingSection />
       <ContactSection />

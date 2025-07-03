@@ -120,6 +120,28 @@
       "description": "Take advantage of our tools and advice to take your career to the next level."
     }
   },
+  "whySpectrum": {
+    "title": "What does it mean to be part of Spectrum?",
+    "subtitle": "Join a community of creators who have transformed their professional management",
+    "benefits": {
+      "community": {
+        "title": "Exclusive community",
+        "description": "Connect with other content creators and professionals who share your same goals and challenges."
+      },
+      "growth": {
+        "title": "Guaranteed growth",
+        "description": "Our personalized strategies are designed to accelerate the growth of your personal brand."
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Count on our team of experts available when you need them, no matter the time."
+      },
+      "technology": {
+        "title": "Cutting-edge technology",
+        "description": "Access the most advanced AI and automation tools in the market."
+      }
+    }
+  },
   "contact": {
     "title": "Contact",
     "name": "Name",

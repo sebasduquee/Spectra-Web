@@ -120,6 +120,28 @@
       "description": "Aprovecha nuestras herramientas y asesoría para llevar tu carrera al siguiente nivel."
     }
   },
+  "whySpectrum": {
+    "title": "¿Qué significa hacer parte de Spectrum?",
+    "subtitle": "Únete a una comunidad de creadores que han transformado su gestión profesional",
+    "benefits": {
+      "community": {
+        "title": "Comunidad exclusiva",
+        "description": "Conecta con otros creadores de contenido y profesionales que comparten tus mismos objetivos y desafíos."
+      },
+      "growth": {
+        "title": "Crecimiento garantizado",
+        "description": "Nuestras estrategias personalizadas están diseñadas para acelerar el crecimiento de tu marca personal."
+      },
+      "support": {
+        "title": "Soporte 24/7",
+        "description": "Cuenta con nuestro equipo de expertos disponible cuando lo necesites, sin importar la hora."
+      },
+      "technology": {
+        "title": "Tecnología de vanguardia",
+        "description": "Accede a las herramientas más avanzadas de IA y automatización del mercado."
+      }
+    }
+  },
   "contact": {
     "title": "Contacto",
     "name": "Nombre",
