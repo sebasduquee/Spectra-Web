@@ -171,17 +171,43 @@
     }
   },
   "footer": {
-    "description": "Simplify your day-to-day with AI assistance, accounting, legal, investment and media strategy management in a single platform.",
-    "quickLinks": "Quick links",
-    "legal": "Legal",
-    "contact": "Contact",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service",
-    "allRightsReserved": "All rights reserved."
+    "company": {
+      "name": "Spectrum",
+      "description": "The comprehensive platform that transforms how professionals manage their daily tasks with artificial intelligence.",
+      "address": "CL 5 # 5-16 LC 2, Salento, Quindío, Colombia",
+      "email": "contacto@spectrumai.com.co",
+      "phone": "+57 322 534 0550"
+    },
+    "links": {
+      "services": "Services",
+      "about": "About",
+      "contact": "Contact",
+      "pricing": "Pricing",
+      "support": "Support",
+      "documentation": "Documentation"
+    },
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms and Conditions"
+    },
+    "social": {
+      "title": "Follow us"
+    },
+    "copyright": "© 2024 Spectrum. All rights reserved."
   },
   "seo": {
-    "title": "Spectrum - AI assistance platform for professionals and content creators",
-    "description": "Simplify your daily routine with AI assistance, accounting management, legal services, investments and media strategy in one platform. Specialized for professionals and content creators in Colombia.",
-    "keywords": "AI assistance, accounting management, legal services, investments, digital strategy, content creators, professionals, Colombia, automation, Spectrum"
+    "defaultTitle": "Spectrum - AI Assistance Platform for Professionals",
+    "defaultDescription": "Simplify your daily tasks with AI assistance, accounting management, legal services, investments and media strategy in one platform.",
+    "defaultKeywords": "AI assistance, accounting management, legal services, investments, digital strategy, automation, professionals, Colombia",
+    "pages": {
+      "pricing": {
+        "title": "Pricing and Plans",
+        "description": "Discover our plans starting at $1,600,000 COP. AI assistance, accounting, legal and investment management for professionals."
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Contact us to learn more about Spectrum. Schedule a free demo of our AI assistance platform."
+      }
+    }
   }
 }

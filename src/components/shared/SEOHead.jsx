@@ -1,94 +1,63 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
 const SEOHead = ({ 
-  title, 
-  description, 
+  title,
+  description,
   keywords,
   image = "https://spectrumai.com.co/images/brand/preview-image.jpg",
-  url = "https://spectrumai.com.co/",
-  type = "website"
+  url,
+  type = "website",
+  noIndex = false 
 }) => {
   const { t, i18n } = useTranslation();
-  
+
+  // Títulos y descripciones por defecto basados en el idioma
+  const defaultTitle = t('seo.defaultTitle', 'Spectrum - Plataforma de asistencia AI para profesionales');
+  const defaultDescription = t('seo.defaultDescription', 'Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.');
+  const defaultKeywords = t('seo.defaultKeywords', 'asistencia AI, gestión contable, servicios legales, inversiones, estrategia digital, automatización, profesionales, Colombia');
+
+  const finalTitle = title ? `${title} | Spectrum` : defaultTitle;
+  const finalDescription = description || defaultDescription;
+  const finalKeywords = keywords || defaultKeywords;
+  const currentUrl = url || window.location.href;
   const currentLang = i18n.language || 'es';
-  const alternateUrl = currentLang === 'es' ? 'https://spectrumai.com.co/en' : 'https://spectrumai.com.co/';
-  
-  const siteTitle = title || t('seo.title');
-  const siteDescription = description || t('seo.description');
-  const siteKeywords = keywords || t('seo.keywords');
 
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
+      {/* Básico */}
       <html lang={currentLang} />
-      <title>{siteTitle}</title>
-      <meta name="description" content={siteDescription} />
-      <meta name="keywords" content={siteKeywords} />
-      <meta name="author" content="Spectrum AI Zomac S.A.S" />
-      <meta name="robots" content="index, follow" />
-      <link rel="canonical" href={url} />
-      
-      {/* Language alternates */}
-      <link rel="alternate" hrefLang="es" href="https://spectrumai.com.co/" />
-      <link rel="alternate" hrefLang="en" href="https://spectrumai.com.co/en" />
-      <link rel="alternate" hrefLang="x-default" href="https://spectrumai.com.co/" />
-      
-      {/* Open Graph / Facebook */}
+      <title>{finalTitle}</title>
+      <meta name="description" content={finalDescription} />
+      <meta name="keywords" content={finalKeywords} />
+
+      {/* No index si se requiere */}
+      {noIndex && <meta name="robots" content="noindex,nofollow" />}
+
+      {/* Open Graph */}
       <meta property="og:type" content={type} />
-      <meta property="og:url" content={url} />
-      <meta property="og:title" content={siteTitle} />
-      <meta property="og:description" content={siteDescription} />
+      <meta property="og:title" content={finalTitle} />
+      <meta property="og:description" content={finalDescription} />
       <meta property="og:image" content={image} />
-      <meta property="og:locale" content={currentLang === 'es' ? 'es_CO' : 'en_US'} />
+      <meta property="og:url" content={currentUrl} />
       <meta property="og:site_name" content="Spectrum" />
-      
+      <meta property="og:locale" content={currentLang === 'es' ? 'es_CO' : 'en_US'} />
+
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={url} />
-      <meta property="twitter:title" content={siteTitle} />
-      <meta property="twitter:description" content={siteDescription} />
-      <meta property="twitter:image" content={image} />
-      
-      {/* JSON-LD Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Spectrum AI Zomac S.A.S",
-          "alternateName": "Spectrum",
-          "url": "https://spectrumai.com.co",
-          "logo": "https://spectrumai.com.co/images/brand/logo.svg",
-          "description": siteDescription,
-          "founder": {
-            "@type": "Organization",
-            "name": "Spectrum AI Zomac S.A.S"
-          },
-          "foundingDate": "2024",
-          "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "CO",
-            "addressLocality": "Colombia"
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer service",
-            "availableLanguage": ["Spanish", "English"]
-          },
-          "sameAs": [
-            "https://www.instagram.com/spectrumai.co"
-          ],
-          "serviceType": [
-            "AI Assistance",
-            "Accounting Services", 
-            "Legal Services",
-            "Investment Advisory",
-            "Media Strategy"
-          ]
-        })}
-      </script>
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={finalTitle} />
+      <meta name="twitter:description" content={finalDescription} />
+      <meta name="twitter:image" content={image} />
+      <meta name="twitter:url" content={currentUrl} />
+
+      {/* Canonical URL */}
+      <link rel="canonical" href={currentUrl} />
+
+      {/* Idiomas alternativos */}
+      <link rel="alternate" hrefLang="es" href={currentUrl.replace(/\/en$/, '')} />
+      <link rel="alternate" hrefLang="en" href={currentUrl + '/en'} />
+      <link rel="alternate" hrefLang="x-default" href={currentUrl.replace(/\/en$/, '')} />
     </Helmet>
   );
 };

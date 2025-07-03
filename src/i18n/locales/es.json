@@ -171,17 +171,43 @@
     }
   },
   "footer": {
-    "description": "Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.",
-    "quickLinks": "Enlaces rápidos",
-    "legal": "Legal",
-    "contact": "Contacto",
-    "privacyPolicy": "Política de Privacidad",
-    "termsOfService": "Términos de Servicio",
-    "allRightsReserved": "Todos los derechos reservados."
+    "company": {
+      "name": "Spectrum",
+      "description": "La plataforma integral que transforma la forma en que los profesionales gestionan su día a día con inteligencia artificial.",
+      "address": "CL 5 # 5-16 LC 2, Salento, Quindío, Colombia",
+      "email": "contacto@spectrumai.com.co",
+      "phone": "+57 322 534 0550"
+    },
+    "links": {
+      "services": "Servicios",
+      "about": "Acerca de",
+      "contact": "Contacto",
+      "pricing": "Precios",
+      "support": "Soporte",
+      "documentation": "Documentación"
+    },
+    "legal": {
+      "privacy": "Política de Privacidad",
+      "terms": "Términos y Condiciones"
+    },
+    "social": {
+      "title": "Síguenos"
+    },
+    "copyright": "© 2024 Spectrum. Todos los derechos reservados."
   },
   "seo": {
-    "title": "Spectrum - Plataforma de asistencia AI para profesionales y creadores de contenido",
-    "description": "Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma. Especializada para profesionales y creadores de contenido en Colombia.",
-    "keywords": "asistencia AI, gestión contable, servicios legales, inversiones, estrategia digital, creadores de contenido, profesionales, Colombia, automatización, Spectrum"
+    "defaultTitle": "Spectrum - Plataforma de asistencia AI para profesionales",
+    "defaultDescription": "Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma.",
+    "defaultKeywords": "asistencia AI, gestión contable, servicios legales, inversiones, estrategia digital, automatización, profesionales, Colombia",
+    "pages": {
+      "pricing": {
+        "title": "Precios y Planes",
+        "description": "Conoce nuestros planes desde $1.600.000 COP. Asistencia AI, gestión contable, legal e inversiones para profesionales."
+      },
+      "contact": {
+        "title": "Contacto",
+        "description": "Contáctanos para conocer más sobre Spectrum. Agenda una demo gratuita de nuestra plataforma de asistencia AI."
+      }
+    }
   }
 }
