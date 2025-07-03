@@ -1,0 +1,50 @@
+
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "name": "Spectrum AI",
+      "url": "https://spectrumai.com.co",
+      "description": "Plataforma integral de asistencia AI para profesionales. Servicios de contabilidad, legal, inversiones y estrategia digital.",
+      "serviceType": ["AI Assistance", "Accounting Services", "Legal Services", "Investment Management", "Digital Strategy"],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Colombia"
+      },
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "Professional Certification",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Colombian AI Association"
+        }
+      },
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Business Automation",
+        "Financial Management", 
+        "Legal Consulting",
+        "Digital Transformation"
+      ]
+    },
+    {
+      "@type": "Brand",
+      "name": "Spectrum",
+      "alternateName": ["Spectrum AI", "SpectrumAI"],
+      "url": "https://spectrumai.com.co",
+      "logo": "https://spectrumai.com.co/images/brand/logo.svg",
+      "slogan": "Simplifica tu día a día con asistencia AI",
+      "foundingDate": "2024",
+      "foundingLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Salento",
+          "@addressRegion": "Quindío",
+          "addressCountry": "Colombia"
+        }
+      }
+    }
+  ]
+}

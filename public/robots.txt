@@ -18,5 +18,15 @@ Allow: /terminos-y-condiciones
 # Sitemap
 Sitemap: https://spectrumai.com.co/sitemap.xml
 
-# Crawl-delay para no sobrecargar el servidor
+# Crawl-delay para no sobrecargar el servidor  
 Crawl-delay: 1
+
+# Permitir acceso completo a contenido principal
+Allow: /images/
+Allow: /blog/
+Allow: /*.css$
+Allow: /*.js$
+
+# Información de marca
+# Spectrum AI - Plataforma de asistencia profesional
+# Keywords: spectrum, spectrum ai, spectrumai, colombia

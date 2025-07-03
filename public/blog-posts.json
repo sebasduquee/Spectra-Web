@@ -1,0 +1,19 @@
+
+{
+  "posts": [
+    {
+      "title": "Cómo la IA está transformando la gestión empresarial en Colombia",
+      "slug": "ia-transformacion-empresarial-colombia",
+      "description": "Descubre cómo Spectrum AI está revolucionando la forma en que los profesionales manejan sus tareas diarias.",
+      "keywords": "spectrum ai, transformación digital, colombia, empresas",
+      "publishDate": "2025-01-03"
+    },
+    {
+      "title": "Automatización contable: El futuro de las finanzas empresariales", 
+      "slug": "automatizacion-contable-spectrum",
+      "description": "Conoce cómo Spectrum simplifica la gestión contable con inteligencia artificial.",
+      "keywords": "spectrum, contabilidad automatizada, finanzas, ai",
+      "publishDate": "2025-01-02"
+    }
+  ]
+}

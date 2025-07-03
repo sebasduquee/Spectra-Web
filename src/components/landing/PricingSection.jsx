@@ -156,7 +156,7 @@ const PricingSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
             <PlanCard
-              key={index}
+              key={`plan-${plan.name}-${index}`}
               plan={plan}
               isPopular={plan.isPopular}
               delay={0.2 + index * 0.1}
