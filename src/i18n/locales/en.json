@@ -12,7 +12,28 @@
     "viewDemo": "View Demo"
   },
   "features": {
-    "title": "Everything you need in one platform"
+    "title": "Everything you need in one place",
+    "subtitle": "Simplify your day-to-day with our specialized tools.",
+    "virtualAssistant": {
+      "title": "Virtual Assistant",
+      "description": "24/7 personal assistant powered by AI to solve all your questions and manage your day-to-day."
+    },
+    "accounting": {
+      "title": "Accounting Management",
+      "description": "Control your finances with personalized advice and automatic document management."
+    },
+    "legal": {
+      "title": "Legal Advisory",
+      "description": "We provide specialized legal support."
+    },
+    "investments": {
+      "title": "Investments",
+      "description": "Maximize your income with personalized investment strategies."
+    },
+    "mediaStrategy": {
+      "title": "Media Strategy",
+      "description": "Optimize your digital presence with content strategies and data analysis."
+    }
   },
   "pricing": {
     "title": "Choose the perfect plan for you",

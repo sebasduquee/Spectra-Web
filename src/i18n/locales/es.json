@@ -12,7 +12,28 @@
     "viewDemo": "Ver Demo"
   },
   "features": {
-    "title": "Todo lo que necesitas en una plataforma"
+    "title": "Todo lo que necesitas en un solo lugar",
+    "subtitle": "Simplifica tu día a día con nuestras herramientas especializadas.",
+    "virtualAssistant": {
+      "title": "Asistente virtual",
+      "description": "Asistente personal 24/7 impulsado por AI para resolver todas tus dudas y gestionar tu día a día."
+    },
+    "accounting": {
+      "title": "Gestión Contable",
+      "description": "Controla tus finanzas con asesoria personalizada, y gestión automática de documentos."
+    },
+    "legal": {
+      "title": "Asesoría Legal",
+      "description": "Te brindamos soporte legal especializado."
+    },
+    "investments": {
+      "title": "Inversiones",
+      "description": "Máximiza tus ingresos con estrategias de inversión personalizadas."
+    },
+    "mediaStrategy": {
+      "title": "Estrategia de Media",
+      "description": "Optimiza tu presencia digital con estrategias de contenido y analisis de datos."
+    }
   },
   "pricing": {
     "title": "Elige el plan perfecto para ti",

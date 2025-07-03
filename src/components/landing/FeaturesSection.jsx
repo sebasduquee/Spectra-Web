@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, Shield, BarChart3, Briefcase, BrainCircuit } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const FeatureCard = ({ icon: Icon, title, description, delay }) => (
   <motion.div
@@ -19,35 +20,37 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => (
 );
 
 const FeaturesSection = () => {
+  const { t } = useTranslation();
+
   const features = [
     {
       icon: BrainCircuit,
-      title: "Asistente virtual",
-      description: "Asistente personal 24/7 impulsado por AI para resolver todas tus dudas y gestionar tu día a día.",
+      title: t('features.virtualAssistant.title'),
+      description: t('features.virtualAssistant.description'),
       delay: 0.2
     },
     {
       icon: Briefcase,
-      title: "Gestión Contable",
-      description: "Controla tus finanzas con asesoria personalizada, y gestión automática de documentos.",
+      title: t('features.accounting.title'),
+      description: t('features.accounting.description'),
       delay: 0.4
     },
     {
       icon: Shield,
-      title: "Asesoría Legal",
-      description: "Te brindamos soporte legal especializado.",
+      title: t('features.legal.title'),
+      description: t('features.legal.description'),
       delay: 0.6
     },
     {
       icon: BarChart3,
-      title: "Inversiones",
-      description: "Máximiza tus ingresos con estrategias de inversión personalizadas.",
+      title: t('features.investments.title'),
+      description: t('features.investments.description'),
       delay: 0.8
     },
     {
       icon: MessageCircle,
-      title: "Estrategia de Media",
-      description: "Optimiza tu presencia digital con estrategias de contenido y analisis de datos.",
+      title: t('features.mediaStrategy.title'),
+      description: t('features.mediaStrategy.description'),
       delay: 1.0
     }
   ];
@@ -63,10 +66,10 @@ const FeaturesSection = () => {
 
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[#090744] mb-6">
-            Todo lo que necesitas en un solo lugar
+            {t('features.title')}
           </h2>
           <p className="text-xl text-[#090744]/70 max-w-2xl mx-auto">
-            Simplifica tu día a día con nuestras herramientas especializadas.
+            {t('features.subtitle')}
           </p>
         </motion.div>
 
