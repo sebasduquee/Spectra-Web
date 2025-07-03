@@ -1,23 +1,24 @@
+
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Lazy loading de traducciones
-const loadResources = async (lng) => {
-  try {
-    const module = await import(`./locales/${lng}.json`);
-    return module.default;
-  } catch (error) {
-    console.warn(`No se pudo cargar el idioma: ${lng}`);
-    return {};
-  }
-};
+// Importar traducciones directamente (síncrono)
+import esTranslations from './locales/es.json';
+import enTranslations from './locales/en.json';
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources: {}, // Inicialmente vacío
+    resources: {
+      es: {
+        translation: esTranslations
+      },
+      en: {
+        translation: enTranslations
+      }
+    },
 
     lng: 'es', // idioma por defecto (español)
     fallbackLng: 'es',
@@ -30,23 +31,17 @@ i18n
     interpolation: {
       escapeValue: false
     },
-    // Configuraciones para carga más rápida
+
+    // Configuración para inicialización inmediata
     react: {
-      useSuspense: false, // Evita suspense para carga más rápida
+      useSuspense: false,
     },
-    initImmediate: true, // Inicializa inmediatamente
+    
+    // Asegurar que esté listo desde el inicio
+    initImmediate: false,
+    
+    // Debug para verificar carga
+    debug: false,
   });
-
-// Cargar idiomas de forma asíncrona
-const loadLanguage = async (lng) => {
-  if (!i18n.hasResourceBundle(lng, 'translation')) {
-    const resources = await loadResources(lng);
-    i18n.addResourceBundle(lng, 'translation', resources);
-  }
-};
-
-// Cargar idioma por defecto
-loadLanguage('es');
-loadLanguage('en');
 
 export default i18n;

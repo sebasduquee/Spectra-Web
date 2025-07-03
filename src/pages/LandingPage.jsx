@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useScrollTo } from '../hooks/useScrollTo';
+import i18n from '../i18n/config';
 import LanguageSelector from '../components/shared/LanguageSelector';
 import GradientBackground from '../components/shared/GradientBackground';
 import FeaturesSection from '../components/landing/FeaturesSection';
@@ -31,8 +32,8 @@ const LandingPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Mostrar skeleton mientras cargan las traducciones
-  if (!ready) {
+  // Mostrar skeleton solo si las traducciones no están listas Y es crítico
+  if (!ready && !i18n.isInitialized) {
     return (
       <GradientBackground className="min-h-screen w-full">
         <SEOHead />
@@ -78,7 +79,7 @@ const LandingPage = () => {
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2">
           <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full flex items-center space-x-3">
             <div className="w-4 h-4 bg-[#CBDFF4] rounded-full animate-pulse"></div>
-            <span className="text-white/70">Cargando...</span>
+            <span className="text-white/70">Cargando traducciones...</span>
           </div>
         </div>
       </GradientBackground>

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useScrollTo } from '../../hooks/useScrollTo';
+import i18n from '../../i18n/config';
 
 const PlanCard = ({ plan, isPopular, delay, onContactClick }) => {
   const { t } = useTranslation();
@@ -102,7 +103,7 @@ const PricingSection = () => {
   );
 
   // Show loading while translations aren't ready
-  if (!ready) {
+  if (!ready || !i18n.isInitialized) {
     return (
       <section className="pt-8 pb-16 px-4" id="pricing">
         <LoadingState />
