@@ -29,7 +29,12 @@ i18n
 
     interpolation: {
       escapeValue: false
-    }
+    },
+    // Configuraciones para carga más rápida
+    react: {
+      useSuspense: false, // Evita suspense para carga más rápida
+    },
+    initImmediate: true, // Inicializa inmediatamente
   });
 
 // Cargar idiomas de forma asíncrona

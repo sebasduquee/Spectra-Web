@@ -20,7 +20,7 @@ import SEOHead from '../components/shared/SEOHead';
 const LandingPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollTo = useScrollTo();
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +30,25 @@ const LandingPage = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Mostrar skeleton mientras cargan las traducciones
+  if (!ready) {
+    return (
+      <GradientBackground className="min-h-screen w-full">
+        <SEOHead />
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="animate-pulse">
+            <img 
+              src="/images/brand/logo.svg" 
+              alt="SPECTRUM" 
+              className="h-16 mx-auto opacity-50" 
+            />
+            <div className="mt-4 text-white/50 text-center">Cargando...</div>
+          </div>
+        </div>
+      </GradientBackground>
+    );
+  }
 
   return (
     <GradientBackground className="min-h-screen w-full">
