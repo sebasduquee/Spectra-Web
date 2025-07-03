@@ -172,6 +172,12 @@
     }
   },
   "footer": {
+    "description": "La plataforma integral que transforma la forma en que los profesionales gestionan su día a día con inteligencia artificial.",
+    "quickLinks": "Enlaces rápidos",
+    "contact": "Contacto",
+    "allRightsReserved": "Todos los derechos reservados",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos y Condiciones",
     "company": {
       "name": "Spectrum",
       "description": "La plataforma integral que transforma la forma en que los profesionales gestionan su día a día con inteligencia artificial.",

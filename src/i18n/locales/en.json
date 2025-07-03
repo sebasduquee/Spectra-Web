@@ -173,6 +173,12 @@
     }
   },
   "footer": {
+    "description": "The comprehensive platform that transforms how professionals manage their daily tasks with artificial intelligence.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "allRightsReserved": "All rights reserved",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
     "company": {
       "name": "Spectrum",
       "description": "The comprehensive platform that transforms how professionals manage their daily tasks with artificial intelligence.",
