@@ -2,31 +2,47 @@
 User-agent: *
 Allow: /
 
+# Páginas importantes - alta prioridad
+Allow: /
+Allow: /en
+Allow: /#features
+Allow: /#pricing
+Allow: /#contact
+
+# Archivos estáticos permitidos
+Allow: /images/
+Allow: /blog/
+Allow: /*.css$
+Allow: /*.js$
+Allow: *.svg$
+Allow: *.jpg$
+Allow: *.png$
+Allow: *.webp$
+
 # Bloquear archivos no necesarios para SEO
 Disallow: /admin/
 Disallow: /_next/
 Disallow: /api/
 Disallow: /*.json$
 Disallow: /attached_assets/
+Disallow: /*?*
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.map$
 
-# Permitir específicamente páginas importantes
-Allow: /
-Allow: /en
+# Permitir específicamente páginas legales
 Allow: /politica-privacidad
 Allow: /terminos-y-condiciones
 
-# Sitemap
+# Sitemap ubicación
 Sitemap: https://spectrumai.com.co/sitemap.xml
 
-# Crawl-delay para no sobrecargar el servidor  
+# Crawl-delay para no sobrecargar el servidor
 Crawl-delay: 1
 
-# Permitir acceso completo a contenido principal
-Allow: /images/
-Allow: /blog/
-Allow: /*.css$
-Allow: /*.js$
-
-# Información de marca
-# Spectrum AI - Plataforma de asistencia profesional
-# Keywords: spectrum, spectrum ai, spectrumai, colombia
+# Información adicional para motores de búsqueda
+# Spectrum AI - Plataforma líder de asistencia AI en Colombia
+# Servicios: asistencia virtual, gestión contable, legal, inversiones
+# Keywords principales: spectrum, spectrum ai, spectrumai, colombia, asistencia ai
+# Ubicación: Salento, Quindío, Colombia
+# Contacto: contacto@spectrumai.com.co
