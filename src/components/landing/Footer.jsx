@@ -3,10 +3,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useScrollTo } from "../../hooks/useScrollTo";
 
 const Footer = () => {
   const scrollTo = useScrollTo();
+  const { t } = useTranslation();
   return (
     <footer className="bg-[#090744]/95 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-16">
@@ -19,8 +21,7 @@ const Footer = () => {
               className="h-12 mb-6" 
             />
             <p className="text-white/70 max-w-sm mb-6">
-              Simplifica tu día a día con asistencia AI, gestión contable, legal,
-              inversiones y estrategia de media en una sola plataforma.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               {/* Redes sociales */}
@@ -39,14 +40,14 @@ const Footer = () => {
 
           {/* Links rápidos */}
           <div>
-            <h3 className="text-white font-medium mb-4">Links rápidos</h3>
+            <h3 className="text-white font-medium mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-3">
               <li>
                 <button
                   onClick={() => scrollTo('#features')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
-                  Características
+                  {t('nav.features')}
                 </button>
               </li>
               <li>
@@ -54,7 +55,7 @@ const Footer = () => {
                   onClick={() => scrollTo('#pricing')}
                   className="text-white/70 hover:text-white transition-colors"
                 >
-                  Planes
+                  {t('nav.pricing')}
                 </button>
               </li>
               <li>
@@ -70,7 +71,7 @@ const Footer = () => {
                   to="/admin/login"
                   className="text-white/70 hover:text-white transition-colors"
                 >
-                  Admin Portal
+                  {t('nav.adminPortal')}
                 </Link>
               </li>
             </ul>
@@ -78,7 +79,7 @@ const Footer = () => {
 
           {/* Contacto */}
           <div>
-            <h3 className="text-white font-medium mb-4">Contacto</h3>
+            <h3 className="text-white font-medium mb-4">{t('footer.contact')}</h3>
             <ul className="space-y-3">
               <li className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-[#CBDFF4]" />
@@ -104,14 +105,14 @@ const Footer = () => {
         <div className="mt-16 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-white/60 text-sm">
-              © 2024 Spectrum. Todos los derechos reservados.
+              © 2024 Spectrum. {t('footer.allRightsReserved')}
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="/politica-privacidad" className="text-white/60 hover:text-white text-sm">
-                Política de privacidad
+                {t('footer.privacyPolicy')}
               </Link>
               <Link to="/terminos-y-condiciones" className="text-white/60 hover:text-white text-sm">
-                Términos de servicio
+                {t('footer.termsOfService')}
               </Link>
             </div>
           </div>
