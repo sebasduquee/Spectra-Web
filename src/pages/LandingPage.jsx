@@ -14,6 +14,7 @@ import AppShowcase from '../components/shared/AppShowcase';
 import GallerySection from '../components/landing/GallerySection';
 import Footer from '../components/landing/Footer';
 import ContactSection from '../components/landing/ContactSection';
+import SEOHead from '../components/SEO/SEOHead';
 
 
 const LandingPage = () => {

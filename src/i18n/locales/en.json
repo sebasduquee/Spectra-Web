@@ -1,4 +1,3 @@
-
 {
   "nav": {
     "features": "Features",
@@ -179,5 +178,10 @@
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "allRightsReserved": "All rights reserved."
+  },
+  "seo": {
+    "title": "Spectrum - AI assistance platform for professionals and content creators",
+    "description": "Simplify your daily routine with AI assistance, accounting management, legal services, investments and media strategy in one platform. Specialized for professionals and content creators in Colombia.",
+    "keywords": "AI assistance, accounting management, legal services, investments, digital strategy, content creators, professionals, Colombia, automation, Spectrum"
   }
 }

@@ -1,4 +1,3 @@
-
 {
   "nav": {
     "features": "Características",
@@ -179,5 +178,10 @@
     "privacyPolicy": "Política de Privacidad",
     "termsOfService": "Términos de Servicio",
     "allRightsReserved": "Todos los derechos reservados."
+  },
+  "seo": {
+    "title": "Spectrum - Plataforma de asistencia AI para profesionales y creadores de contenido",
+    "description": "Simplifica tu día a día con asistencia AI, gestión contable, legal, inversiones y estrategia de media en una sola plataforma. Especializada para profesionales y creadores de contenido en Colombia.",
+    "keywords": "asistencia AI, gestión contable, servicios legales, inversiones, estrategia digital, creadores de contenido, profesionales, Colombia, automatización, Spectrum"
   }
 }

@@ -1,6 +1,7 @@
 // src/App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './contexts/AuthContext';
 import { ToastProvider } from './contexts/ToastContext';
 import './i18n/config'; // Initialize i18n 
@@ -24,11 +25,12 @@ function App() {
   };
 
   return (
-    <AuthProvider> 
-      <ToastProvider> 
-        <BrowserRouter
-          future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-        >
+    <HelmetProvider>
+      <AuthProvider> 
+        <ToastProvider> 
+          <BrowserRouter
+            future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+          >
           <AnimatePresence mode="wait">
             <Routes>
               {/* Public Routes */}
@@ -89,9 +91,10 @@ function App() {
               </Route>
             </Routes>
           </AnimatePresence>
-        </BrowserRouter>
-      </ToastProvider>
-    </AuthProvider>
+          </BrowserRouter>
+        </ToastProvider>
+      </AuthProvider>
+    </HelmetProvider>
   );
 }
 
